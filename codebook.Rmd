@@ -28,17 +28,20 @@ pander::panderOptions("table.split.table", Inf)
 ```{r prepare_codebook}
 library(codebook)
 library(readxl)
-library(here)
+#library(here)
 library(rio)
 
 codebook_data <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", n_max = 243)
-#Read codebook from second sheet in excel file.
+
+# Read codebook from second sheet in Excel file.
 dict <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", sheet = "codebook")
 
-#Add variable labels to data
+# Add variable labels to data (from Excel file)
 var_label(codebook_data) <- dict_to_list(dict)
+
+# Add value labels to data (manually)
 val_labels(codebook_data$include_in_analysis) <- c("excluded" = 0, "included" = 1)
-val_labels(codebook_data$is_RR) <- c("CR" = 0, "RR"= 1)
+val_labels(codebook_data$is_RR) <- c("SR" = 0, "RR"= 1)
 val_labels(codebook_data$support_binary) <- c("no support" = 0, "partial or full support" = 1)
 val_labels(codebook_data$is_replication) <- c("is not a replication" = 0, "is a replication" = 1)
 val_labels(codebook_data$contains_replic) <- c("does not contain 'replic'" = 0, "contains 'replic'" = 1)
@@ -46,8 +49,8 @@ val_labels(codebook_data$hyp_from_fulltext) <- c("hypothesis from abstract alone
 val_labels(codebook_data$result_from_fulltext) <- c("result from abstract alone" = 0, "result from full text" = 1)
 val_labels(codebook_data$coding_round) <- c("RR pilot" = 0,
                                             "main coding round" = 1,
-                                            "CR replacements and late RR additions" = 2,
-                                            "second CR replacement" = 3)
+                                            "SR replacements and late RR additions" = 2,
+                                            "second SR replacement" = 3)
 val_labels(codebook_data$uses_AS_coding) <- c("uses MS coding" = 0, "uses AS coding" = 1)
 val_labels(codebook_data$coded_by_MS) <- c("not coded by MS" = 0, "coded by MS" = 1)
 val_labels(codebook_data$evaluation_certainty_MS) <- c("not certain" = 1,
@@ -79,9 +82,9 @@ val_labels(codebook_data$is_replication_special_issue) <- c("not part of replica
 val_labels(codebook_data$hypothesis_intro_contains_replic) <- c("hypothesis intro does not contain 'replic'" = 0, "hypothesis intro contains 'replic'" = 1)
 
 
-#Add meta data
+# Add meta data
 metadata(codebook_data)$name <- "Positive Results in Registered Reports in Psychology"
-metadata(codebook_data)$description <- "Coded variables to compare the proportion of papers that find support for their first tested hypothesis between Registered Reports and conventional reports in psychology"
+metadata(codebook_data)$description <- "Coded variables to compare the proportion of papers that find support for their first tested hypothesis between Registered Reports and standard reports in psychology"
 metadata(codebook_data)$creator <- "Anne Scheel, Mitchell Schijen, Daniël Lakens"
 metadata(codebook_data)$temporalCoverage <- "Winter 2018"
 
