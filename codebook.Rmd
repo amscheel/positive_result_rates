@@ -1,0 +1,95 @@
+---
+title: "Codebook"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    latex_engine: xelatex
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  warning = TRUE, # show warnings during codebook generation
+  message = TRUE, # show messages during codebook generation
+  error = TRUE, # do not interrupt codebook generation in case of errors,
+                # usually better for debugging
+  echo = TRUE  # show R code
+)
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+```
+
+```{r prepare_codebook}
+library(codebook)
+library(readxl)
+library(here)
+library(rio)
+
+codebook_data <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", n_max = 243)
+#Read codebook from second sheet in excel file.
+dict <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", sheet = "codebook")
+
+#Add variable labels to data
+var_label(codebook_data) <- dict_to_list(dict)
+val_labels(codebook_data$include_in_analysis) <- c("excluded" = 0, "included" = 1)
+val_labels(codebook_data$is_RR) <- c("CR" = 0, "RR"= 1)
+val_labels(codebook_data$support_binary) <- c("no support" = 0, "partial or full support" = 1)
+val_labels(codebook_data$is_replication) <- c("is not a replication" = 0, "is a replication" = 1)
+val_labels(codebook_data$contains_replic) <- c("does not contain 'replic'" = 0, "contains 'replic'" = 1)
+val_labels(codebook_data$hyp_from_fulltext) <- c("hypothesis from abstract alone" = 0, "hypothesis from full text" = 1)
+val_labels(codebook_data$result_from_fulltext) <- c("result from abstract alone" = 0, "result from full text" = 1)
+val_labels(codebook_data$coding_round) <- c("RR pilot" = 0,
+                                            "main coding round" = 1,
+                                            "CR replacements and late RR additions" = 2,
+                                            "second CR replacement" = 3)
+val_labels(codebook_data$uses_AS_coding) <- c("uses MS coding" = 0, "uses AS coding" = 1)
+val_labels(codebook_data$coded_by_MS) <- c("not coded by MS" = 0, "coded by MS" = 1)
+val_labels(codebook_data$evaluation_certainty_MS) <- c("not certain" = 1,
+                                                       2,
+                                                       3,
+                                                       4,
+                                                       "very certain" = 5)
+val_labels(codebook_data$hypothesis_from_fulltext_MS) <- c("hypothesis from abstract alone" = 0, "hypothesis from full text" = 1)
+val_labels(codebook_data$result_from_fulltext_MS) <- c("result from abstract alone" = 0, "result from full text" = 1)
+val_labels(codebook_data$fulltext_available_MS) <- c("full text not available" = 0, "full text available" = 1)
+val_labels(codebook_data$is_replication_old_MS) <- c("does not contain a replication" = 0, "contains a replication" = 1)
+val_labels(codebook_data$is_original_old_MS) <- c("does not contain original work" = 0, "contains original work" = 1)
+val_labels(codebook_data$coded_by_AS) <- c("not coded by AS" = 0, "coded by AS" = 1)
+val_labels(codebook_data$evaluation_certainty_AS) <- c("not certain" = 1,
+                                                       2,
+                                                       3,
+                                                       4,
+                                                       "very certain" = 5)
+val_labels(codebook_data$hypothesis_from_fulltext_AS) <- c("hypothesis from abstract alone" = 0, "hypothesis from full text" = 1)
+val_labels(codebook_data$result_from_fulltext_AS) <- c("result from abstract alone" = 0, "result from full text" = 1)
+val_labels(codebook_data$fulltext_available_AS) <- c("full text not available" = 0, "full text available" = 1)
+val_labels(codebook_data$is_replication_old_AS) <- c("does not contain a replication" = 0, "contains a replication" = 1)
+val_labels(codebook_data$is_original_old_AS) <- c("does not contain original work" = 0, "contains original work" = 1)
+val_labels(codebook_data$is_replication_new_coded_by_AS) <- c("replication status not coded by AS" = 0, "replication status coded by AS" = 1)
+val_labels(codebook_data$is_replication_new_AS) <- c("is not a replication" = 0, "is a replication" = 1)
+val_labels(codebook_data$is_replication_new_coded_by_DL) <- c("replication status not coded by DL" = 0, "replication status coded by DL" = 1)
+val_labels(codebook_data$is_replication_new_DL) <- c("is not a replication" = 0, "is a replication" = 1)
+val_labels(codebook_data$is_replication_special_issue) <- c("not part of replication special issue" = 0, "part of replication special issue" = 1)
+val_labels(codebook_data$hypothesis_intro_contains_replic) <- c("hypothesis intro does not contain 'replic'" = 0, "hypothesis intro contains 'replic'" = 1)
+
+
+#Add meta data
+metadata(codebook_data)$name <- "Positive Results in Registered Reports in Psychology"
+metadata(codebook_data)$description <- "Coded variables to compare the proportion of papers that find support for their first tested hypothesis between Registered Reports and conventional reports in psychology"
+metadata(codebook_data)$creator <- "Anne Scheel, Mitchell Schijen, Daniël Lakens"
+metadata(codebook_data)$temporalCoverage <- "Winter 2018"
+
+#Export codebook
+rio::export(codebook_data, "positive_results_in_registered_reports_codebook.rds") # to R data structure file
+
+```
+
+```{r codebook}
+codebook(codebook_data)
+```
