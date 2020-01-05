@@ -1,0 +1,1296 @@
+---
+title             : "Positive Results in Registered Reports"
+shorttitle        : "Positive Results in Registered Reports"
+
+author: 
+  - name          : "Anne Scheel"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Den Dolech 1, Atlas 9.417, 5600 MB, Eindhoven, The Netherlands"
+    email         : "a.m.scheel@tue.nl"
+  - name          : "Mitchell Schijen"
+    affiliation   : "1"
+  - name          : "Daniël Lakens"
+    affiliation   : "1"
+
+affiliation:
+  - id            : "1"
+    institution   : "Eindhoven University of Technology"
+    
+note: "\\clearpage"
+
+author_note: 
+
+abstract: >
+  XXXXXXXXXXXXXXXXXXX
+  
+keywords          : "keyword 1, keyword 2, keyword 3"
+wordcount         : "XXX"
+
+header-includes:
+  - \usepackage{float}
+  - \usepackage{framed}
+  - \usepackage{caption}
+  - \usepackage{setspace}
+  - \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
+  - \newfloat{textbox}{thp}{lop}
+  - \floatname{textbox}{Box}
+
+bibliography      : ["prr.bib","prr_software.bib"]
+
+figsintext        : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+lang              : "en-UK"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r include = FALSE}
+library("papaja")
+library("bookdown")
+library("rmarkdown")
+library("knitr")
+library("TOSTER")
+library("purrr")
+library("lattice")
+library("ggplot2")
+library("dplyr")
+library("stringr")
+library("reshape2")
+```
+
+## Analysis
+We planned to test our hypothesis in the following way (quoting directly from our preregistration, [https://osf.io/sy927](https://osf.io/sy927), point 9): 
+
+> A one-sided proportion test with an alpha level of $5\%$ will be performed to test whether the positive result rate (full or partial support) of Registered Reports in psychology is statistically lower than the positive result rate of conventional reports in psychology. 
+> In addition to testing if there is a statistically significant difference between RRs and conventional reports, we will test if the difference is smaller than our smallest effect size of interest using an equivalence test for proportion tests with an alpha level of $5\%$ [@Lakens2018a].
+> We determined our smallest effect size of interest to be the difference between the positive result rate in psychology ($91.5\%$) and the positive result rate in general social sciences ($85.5\%$) as reported by @Fanelli2010, i.e. a difference of $91.5\% - 85.5\% = 6\%$. 
+> The rationale for choosing general social sciences as a comparison is that this discipline had the lowest positive result rate amongst the "soft" sciences [@Fanelli2010]. 
+> The exact percentage for general social sciences was extracted from Figure 1 in @Fanelli2010 using the software WebPlotDigitizer [@Rohatgi2018].
+
+We would accept our hypothesis that RRs have a lower positive result rate than SRs if we found a negative difference between RRs and SRs that was significantly different from 0 *and* not statistically equivalent to a range from $-6\%$ to $+6\%$ (both at $\alpha = 5\%$). 
+
+
+# Results
+
+## Confirmatory Analyses
+```{r include=FALSE}
+#source("analysis.R")
+# load the dataset from RDS created with codebook
+alldata <- readRDS("positive_results_in_registered_reports_codebook.rds")
+# alldata <- readRDS("C:/Users/20176208/surfdrive/Documents/_projects/_positiveresults/_data/positive_results_in_registered_reports_codebook.rds")
+# alldata <- readRDS("~/surfdrive/Documents/_projects/_positiveresults/_data/positive_results_in_registered_reports_codebook.rds")
+
+# remove excluded papers
+included <- alldata[alldata$include_in_analysis==1,]
+
+## 3. Run main preregistered analysis: the proportion of SRs with supported
+## hypothesis compared to the proportion of RRs with supported hypothesis
+
+# number of included SRs = 152
+n.SR <- length(which(included$is_RR == 0))
+# number of included RRs = 71
+n.RR <- length(which(included$is_RR == 1))
+
+# number of SRs with support = 146
+n.support.SR <- length(which(included$is_RR == 0 & included$support_binary == 1))
+# number of RRs with support = 31
+n.support.RR <- length(which(included$is_RR == 1 & included$support_binary == 1))
+
+# Positive result rate of SRs (proportion of SRs with support) = .9605
+prop.support.SR <- n.support.SR/n.SR
+# Positive result rate of RRs (proportion of RRs with support) = .4366
+prop.support.RR <- n.support.RR/n.RR
+
+## 3.1 Proportions test to test if RRs have a *lower* positive
+## result rate than SRs (i.e., one-sided test)
+
+proptestresult <- prop.test(c(n.support.SR, n.support.RR), c(n.SR, n.RR), alternative = "greater")
+
+
+## 3.2 Equivalence test to test if the difference is larger than 6%
+# Equivalence bounds/smallest effect size of interest (SESOI):
+# As preregistered, we used the difference between the positive result
+# rate in Psychology and in the lowest-scoring 'soft' science in 
+# Fanelli (2010) as our SESOI. The lowest-scoring 'soft' science
+# was General Social Sciences with a positive result rate of 85.5%
+# (this number is not explicitly given in the text, so we extracted it
+# from Figure 1 using WebPlotDigitizer). The positive result rate in 
+# Psychology was 91.5%.
+# Hence our SESOI is 91.5%-85.5% = 6%:
+
+SESOI <- abs(91.5 - 85.5)/100
+
+## Run proportions test and equivalence test using the TOSTER function
+## TOSTtwo.prop:
+tostresult <- TOSTtwo.prop(prop1 = prop.support.SR, 
+                           prop2 = prop.support.RR, 
+                           n1 = n.SR, 
+                           n2 = n.RR, 
+                           low_eqbound = -SESOI, 
+                           high_eqbound = SESOI,
+                           alpha = 0.05)
+
+## Calculate confidence intervals for SR and RR PRR separately
+SR.binom <- binom.test(x = prop.support.SR*n.SR, n = n.SR)
+RR.binom <- binom.test(x = prop.support.RR*n.RR, n = n.RR)
+```
+`r n.support.SR` out of `r n.SR` SRs and `r n.support.RR` out of `r n.RR` RRs had positive results, meaning that the positive result rate was $`r printnum(prop.support.SR*100)` \%$ for SRs ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]) and $`r printnum(prop.support.RR*100)` \%$ for RRs ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]; see Fig. 1). 
+The preregistered one-sided proportions test with an alpha level of $5\%$ showed that this difference of $-`r printnum((prop.support.SR-prop.support.RR)*100)`\%$ was statistically significant, $\chi^2 = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
+Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ at $\alpha = 5\%$, $z = `r printnum(min(tostresult$TOST_z1, tostresult$TOST_z2))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
+We thus accept our hypothesis that the positive result rate in RRs is lower than in SRs.
+
+```{r echo=FALSE, warning=FALSE, fig.width=4, fig.height=3, fig.cap="Positive result rates for standard reports and Registered Reports. Error bars indicate 95% confidence intervals around the observed positive result rate."}
+
+## 5. Create a plot for the main analysis
+
+# Create a data frame to use for plotting the main result
+mainplot.df <- data.frame(is_RR = c("SR", "SR", "RR", "RR"), 
+                          support = c("supported", "not supported", 
+                                   "supported", "not supported"),
+                          value = c(prop.support.SR*100, (1-prop.support.SR)*100, 
+                                    prop.support.RR*100, (1-prop.support.RR)*100),
+                          lower = c(min(SR.binom$conf.int)*100, NA,
+                                    min(RR.binom$conf.int)*100, NA),
+                          upper = c(max(SR.binom$conf.int)*100, NA,
+                                    max(RR.binom$conf.int)*100, NA))
+
+# Plot the main result (positive result rate in SRs vs RRs)
+ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
+                  geom_bar(stat = "identity", 
+                           width = 0.5) +
+  scale_fill_manual(values= c("#bcbddc", "#756bb1"),
+                    name="first hypothesis") +
+  annotate("text", label = "n = 152", x = 1, y = 105) +
+  annotate("text", label = "n = 71", x = 2, y = 105) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.05, size = 0.5) +
+  scale_x_discrete(breaks = waiver(), 
+                   labels = c("SR" = "Standard\nReports (SRs)",
+                              "RR" = "Registered\nReports (RRs)"), name = NULL)+ 
+  scale_y_continuous(lim=c(0,110), breaks = c(seq(0, 100, 10)),
+                     minor_breaks = c(seq(0, 100, 5)),
+                     name = "% of papers", expand = c(0, 0))+
+  theme_minimal()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        legend.margin = margin(0,0,0,-5))
+```
+
+
+## Exploratory Analyses
+```{r include=FALSE}
+## 4. Run exploratory analysis: the proportion of replication 
+## studies with supported hypothesis compared to the proportion 
+## of original studies with supported hypothesis
+
+# total number of replication studies = 46
+n.rep.total <- length(which(included$is_replication == 1))
+
+# number of replication SRs = 4
+n.rep.SR <- length(which(included$is_RR == 0 & 
+                           included$is_replication == 1))
+# proportion of replications among all SRs = 2.63%
+prop.rep.SR <- n.rep.SR/n.SR
+
+# number of replication RRs = 42
+n.rep.RR <- length(which(included$is_RR == 1 & 
+                           included$is_replication == 1))
+# proportion of replications among all RRs = 59.15%
+prop.rep.RR <- n.rep.RR/n.RR
+
+# Positive result rate of *replication* SRs = 1
+prop.rep.support.SR <- length(which(included$is_RR == 0 & 
+                                    included$support_binary == 1 &
+                                    included$is_replication == 1))/n.rep.SR
+# Positive result rate of *original* SRs = .9595
+prop.orig.support.SR <- length(which(included$is_RR == 0 & 
+                                     included$support_binary == 1 &
+                                     included$is_replication == 0))/(n.SR - n.rep.SR)
+
+# Positive result rate of *replication* RRs = .4048
+prop.rep.support.RR <- length(which(included$is_RR == 1 & 
+                                    included$support_binary == 1 &
+                                    included$is_replication == 1))/n.rep.RR
+# Positive result rate of *original* RRs = .4828
+prop.orig.support.RR <- length(which(included$is_RR == 1 & 
+                                     included$support_binary == 1 &
+                                     included$is_replication == 0))/(n.RR - n.rep.RR)
+
+
+
+## Calculate confidence intervals for original vs 
+## replication SRs and RRs
+SR.orig.binom <- binom.test(x = prop.orig.support.SR*(n.SR-n.rep.SR), n = n.SR-n.rep.SR)
+SR.rep.binom <- binom.test(x = prop.rep.support.SR*n.rep.SR, n = n.rep.SR)
+RR.orig.binom <- binom.test(x = prop.orig.support.RR*(n.RR-n.rep.RR), n = n.RR-n.rep.RR)
+RR.rep.binom <- binom.test(x = prop.rep.support.RR*n.rep.RR, n = n.rep.RR)
+
+## 4.1 Proportions test to test if *original* RRs still have a lower 
+## positive result rate than *original* SRs (i.e., one-sided test)
+repproptest <- prop.test(c(prop.orig.support.SR*(n.SR-n.rep.SR), 
+                           prop.orig.support.RR*(n.RR-n.rep.RR)), 
+                         c(n.SR-n.rep.SR, n.RR-n.rep.RR), alternative = "greater")
+
+## 4.2 Equivalence test to test if the difference is larger than 6%
+# Equivalence bounds/smallest effect size of interest (SESOI):
+# same as for main hypothesis test (6%)
+
+SESOI <- abs(91.5 - 85.5)/100
+
+## Run proportions test and equivalence test using the TOSTER function
+## TOSTtwo.prop:
+reptost <- TOSTtwo.prop(prop1 = prop.orig.support.SR, 
+                        prop2 = prop.orig.support.RR, 
+                        n1 = n.SR-n.rep.SR, 
+                        n2 = n.RR-n.rep.RR, 
+                        low_eqbound = -SESOI, 
+                        high_eqbound = SESOI,
+                        alpha = 0.05)
+
+## 4.3 Create a table showing the positive result rate for replications vs
+## original studies in RRs vs SRs
+rep.table <- data.frame(group = c("SRs", "RRs"),
+                        n.original = c(n.SR-n.rep.SR, n.RR-n.rep.RR),
+                        pos.original = c(prop.orig.support.SR*(n.SR-n.rep.SR), 
+                                         prop.orig.support.RR*(n.RR-n.rep.RR)),
+                        percent.pos.original = c(prop.orig.support.SR*100,
+                                                 prop.orig.support.RR*100), 
+                        CI.original = c(paste(printnum(min(SR.orig.binom$conf.int)*100),
+                                              printnum(max(SR.orig.binom$conf.int)*100), 
+                                              sep = "; "),
+                                        paste(printnum(min(RR.orig.binom$conf.int)*100),
+                                              printnum(max(RR.orig.binom$conf.int)*100), 
+                                              sep = "; ")),
+                        n.rep = c(n.rep.SR, n.rep.RR),
+                        pos.rep = c(prop.rep.support.SR*n.rep.SR, prop.rep.support.RR*n.rep.RR),
+                        percent.pos.rep = c(prop.rep.support.SR*100, prop.rep.support.RR*100), 
+                        CI.rep = c(paste(printnum(min(SR.rep.binom$conf.int)*100),
+                                         printnum(max(SR.rep.binom$conf.int)*100), sep = "; "),
+                                   paste(printnum(min(RR.rep.binom$conf.int)*100),
+                                         printnum(max(RR.rep.binom$conf.int)*100), sep = "; ")))
+
+
+```
+As expected, direct replications were much more common among RRs than SRs: `r n.rep.RR` out of `r n.RR` RRs ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` SRs ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
+However, this difference cannot account for the stark overall difference between SRs and RRs described above: 
+Although replication RRs in our sample indeed had a lower positive result rate than original RRs (see Table 1), the difference between original SRs and original RRs -- $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$ -- was still significantly different from 0 ($\chi^2 = `r printnum(repproptest$statistic)`$, $p `r printp(repproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(reptost$TOST_z1, reptost$TOST_z2))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
+```{r echo = FALSE, results = 'asis'}
+apa_table(
+  rep.table
+  , digits = c(0, 0, 0, 2, 0, 0, 0, 2, 0)
+  , col.names = c("", "n", "supported", "\\%", "95\\% CI", "n", "supported", "\\%", "95\\% CI")
+  , align = c("l", rep("r", 8))
+  , caption = "Positive results in original studies vs replication studies"
+  , note = "SRs = standard reports, RRs = Registered Reports"
+  , added_stub_head = "Variables"
+  , col_spanners = list(`original studies` = c(2, 5), `replication studies` = c(6, 9))
+)
+```
+
+```{r include=FALSE}
+## 5. Run exploratory analysis: compare SRs to Fanelli (2010)
+
+# Number of Psychology papers in Fanelli (2010, from Fig. 1)
+n.Fanelli <- 141
+# Fanelli (2010) reports the positive result rate for Psychiatry&Psychology as
+# 91.5% (p. 3). This is likely a rounded number since 141*0.915 = 129.015. For
+# a more precise analysis, we assume that 129 out of 141 papers in Fanelli's 
+# sample had positive results, giving a positive result rate of 129/141 = 0.9148936.
+# In the following, we'll use this more precise number (129/141) in place of the
+# 91.5% reported in the paper.
+prop.support.Fanelli <- 129/141
+
+## 5.1 Proportions test to test if the positive result rate of Psychology
+## papers in Fanelli (2010) is different from SRs in our study
+
+Fanelliproptest <- prop.test(c(prop.support.Fanelli*n.Fanelli,
+                               prop.support.SR*n.SR),
+                             c(n.Fanelli, n.SR), alternative = "two.sided")
+
+## 5.2 Equivalence test to test if the difference is larger than +/-6%
+# Equivalence bounds/smallest effect size of interest (SESOI):
+# same as for main hypothesis test (6%)
+
+SESOI <- abs(91.5 - 85.5)/100
+
+## Run proportions test and equivalence test using the TOSTER function
+## TOSTtwo.prop:
+Fanellitost <- TOSTtwo.prop(prop1 = prop.support.Fanelli, 
+                            prop2 = prop.support.SR, 
+                            n1 = n.Fanelli, 
+                            n2 = n.SR, 
+                            low_eqbound = -SESOI, 
+                            high_eqbound = SESOI,
+                            alpha = 0.05)
+```
+Since our SR sample represents a direct replication of @Fanelli2010 for the discipline Psychiatry & Psychology, another interesting question to ask is how our results compare to Fanelli's.
+The difference between the positive result rate for SRs in our sample ($`r printnum(prop.support.SR*100)`\%$) and Fanelli's ($`r printnum(prop.support.Fanelli*100)`\%$) is $`r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$. This difference is not significantly different from 0 in a two-sided proportions test ($\chi^2 = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(Fanellitost$TOST_z1, Fanellitost$TOST_z2))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
+In other words, we can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least $\pm `r SESOI*100`\%$ between them. 
+The data are inconclusive.
+
+
+```{r include=FALSE}
+## 6. Analyse the phrases used to introduce hypotheses in RRs
+
+## 6.1 Check how many RRs would have been discovered with the search
+## phrase "test* the hypothes*"
+
+# Create a new variable that indicates if the *title* contains 
+# the phrase "test* the hypothes*" (TRUE vs FALSE)
+included$searchphrase.in.title <- sapply(included$title, grepl, 
+                                         pattern = "test\\w* the hypothes")
+# Create a new variable that indicates if the *keywords* contain 
+# the phrase "test* the hypothes*" (TRUE vs FALSE)
+included$searchphrase.in.keywords <- sapply(included$keywords, grepl, 
+                                            pattern = "test\\w* the hypothes")
+# Create a new variable that indicates if the *abstract* contains 
+# the phrase "test* the hypothes*" (TRUE vs FALSE)
+included$searchphrase.in.abstract <- sapply(included$abstract, grepl, 
+                                            pattern = "test\\w* the hypothes")
+
+# Calculate the number of RRs that contain the search phrase in their abstract,
+# title, or keywords: 2 RRs
+testthehypothes.RR <- length(which(included$is_RR == 1 & 
+                                     (included$searchphrase.in.abstract == TRUE |
+                                        included$searchphrase.in.keywords == TRUE |
+                                        included$searchphrase.in.title == TRUE)))
+```
+
+```{r include=FALSE}
+## 6.2 Analyse the introduction phrases and create clusters of five "core words"
+hypintros <- included[which(included$is_RR==1), c("id",
+                                                  "support_binary",
+                                                  "is_replication",
+                                                  "hyp_from_fulltext",
+                                                  "RR_hyp_intro_abstract", 
+                                                  "RR_hyp_intro_fulltext")]
+
+hypintros <- as.data.frame(hypintros)
+
+hypintros$abstract.count <- ifelse(is.na(str_count(hypintros$RR_hyp_intro_abstract, ";")), 0, 
+                                   str_count(hypintros$RR_hyp_intro_abstract, ";") + 1)
+hypintros$fulltext.count <- ifelse(is.na(str_count(hypintros$RR_hyp_intro_fulltext, ";")), 0, 
+                                   str_count(hypintros$RR_hyp_intro_fulltext, ";") + 1)
+
+hypintros$introabstract.1 <- sapply(strsplit(hypintros$RR_hyp_intro_abstract, "; "), "[", 1)
+hypintros$introabstract.2 <- sapply(strsplit(hypintros$RR_hyp_intro_abstract, "; "), "[", 2)
+hypintros$introfulltext.1 <- sapply(strsplit(hypintros$RR_hyp_intro_fulltext, "; "), "[", 1)
+hypintros$introfulltext.2 <- sapply(strsplit(hypintros$RR_hyp_intro_fulltext, "; "), "[", 2)
+hypintros$introfulltext.3 <- sapply(strsplit(hypintros$RR_hyp_intro_fulltext, "; "), "[", 3)
+
+# Determine how many replication RRs have more than 1 hypothesis introduction phrase: 10
+length(which((hypintros$abstract.count+hypintros$fulltext.count)>1 & hypintros$is_replication==1))
+
+# Determine how many original RRs have more than 1 hypothesis introduction phrase: 11
+length(which((hypintros$abstract.count+hypintros$fulltext.count)>1 & hypintros$is_replication==0))
+
+intros.long <- melt(hypintros, 
+                    id.vars = c("id", "is_replication", "hyp_from_fulltext", 
+                                "abstract.count", "fulltext.count"), 
+                    measure.vars = c("introabstract.1", "introabstract.2", 
+                                     "introfulltext.1", "introfulltext.2", "introfulltext.3"),
+                    variable.name = "origin", value.name = "phrase", na.rm = TRUE)
+
+intros.long$origin <- ifelse(sapply(intros.long$origin, grepl, pattern = "abstract"), "abstract", "fulltext")
+
+# clean up: some phrases had "\n" at the end, remove that
+intros.long$phrase <- sapply(strsplit(intros.long$phrase, "\n"), "[", 1)
+
+intros.long$test <- sapply(intros.long$phrase, grepl, pattern = "test")
+intros.long$hypothes <- sapply(intros.long$phrase, grepl, pattern = "hypothes", ignore.case = TRUE)
+intros.long$replicat <- sapply(intros.long$phrase, grepl, pattern = "replicat")
+intros.long$predict <- sapply(intros.long$phrase, grepl, pattern = "predict")
+intros.long$examin <- sapply(intros.long$phrase, grepl, pattern = "examin")
+
+uniquephrases <- unique(intros.long$phrase)
+uniquewords <- unique(unlist(sapply(strsplit(uniquephrases, " "), unique)))
+uniquewords <- uniquewords[order(uniquewords)]
+
+wordstems.cleaned <- c("according", "aim", "assume", "attempt", 
+                       "conduct", "critically", "establish", "examine", 
+                       "expect", "experiment", "H1", "hypothes", 
+                       "if",  "investigate", "performed", "predication", 
+                       "predict", "present", "registered", "replicat", 
+                       "report", "reproduce", "sought", "suggests", 
+                       "test", "then")
+
+wordoccurrences.df <- data.frame(word = wordstems.cleaned, count = NA)
+for (i in 1:length(wordstems.cleaned)) {
+  wordoccurrences.df$count[i] <- sum(sapply(grepl(wordstems.cleaned[i], 
+                                            intros.long$phrase, 
+                                            ignore.case = TRUE), sum))
+}
+wordoccurrences.df <- wordoccurrences.df[order(-wordoccurrences.df$count),]
+
+# number of times "test*" and "hypothes*" co-occur
+test.and.hypothes <- sum(grepl("test", intros.long$phrase) & grepl("hypothes", 
+                                                intros.long$phrase,
+                                                ignore.case = TRUE))
+
+# number of hyp intros that contain either "test*" OR "hypothes*"
+test.or.hypothes <- sum(grepl("test", intros.long$phrase) | grepl("hypothes", 
+                                              intros.long$phrase,
+                                              ignore.case = TRUE))
+
+## HERE COME THE TABLES OF DEATH -- EXPAND AT YOUR OWN RISK ##
+#######################################################################################
+### MAKE TABLE FOR ORIGINAL HYPOTHESIS INTROS ###
+### Original hypothesis intros have 7 categories:
+# 1: hypothes*, test*
+# 2: hypothes*
+# 3: test*, predict*
+# 4: test*
+# 5: predict*
+# 6: examin*
+# 7: (other)
+
+##*****************************************#
+## PART 1: hypothes*, test*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == TRUE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
+auxrow <- c("hypothes*, test*", "", 
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+            
+auxtable <- data.frame(core = rep(NA, length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                    & intros.long$origin == "abstract"
+                                    & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                    & intros.long$origin == "fulltext"
+                                    & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+ }
+
+phrasetable.orig <- rbind(auxrow, auxtable)
+
+##*****************************************#
+## PART 2: hypothes*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+auxrow <- c("hypothes*", "", 
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
+
+##*****************************************#
+## PART 3: test*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == TRUE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+auxrow <- c("test*", "", 
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == TRUE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == TRUE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == TRUE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
+
+##*****************************************#
+## PART 4: test*, predict*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == TRUE &
+                                                intros.long$predict == TRUE &
+                                                intros.long$examin == FALSE)])
+
+auxtable <- data.frame(core = "test*, predict*", phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.orig <- rbind(phrasetable.orig, auxtable)
+
+##*****************************************#
+## PART 5: predict*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$predict == TRUE &
+                                                intros.long$examin == FALSE)])
+auxrow <- c("predict*", "", 
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == TRUE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == TRUE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == TRUE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
+
+##*****************************************#
+## PART 6: examin*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == TRUE)])
+auxrow <- c("examin*", "", 
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == TRUE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == TRUE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == TRUE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
+
+##*****************************************#
+## PART 7: (other)
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+auxrow <- c("(other)", "", 
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 0 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 0))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 0))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
+
+phrasetable.orig$core[which(is.na(phrasetable.orig$core))] <- ""
+## THAT'S IT THE TABLE WITH ORIGINAL HYP INTROS IS DONE, SORRY FOR THE UGLY CODE ##
+
+#######################################################################################
+### MAKE TABLE FOR *REPLICATION* HYPOTHESIS INTROS ###
+### Replication hypothesis intros have 10 categories:
+# 1: hypothes*, test*
+# 2: hypothes*, predict*
+# 3: hypothes*, examin*
+# 4: hypothes*
+# 5: test*
+# 6: replicat*
+# 7: replicat*, examine*
+# 8: predict*
+# 9: examin*
+#10: (other)
+
+##*****************************************#
+## PART 1: hypothes*, test*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == TRUE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
+auxrow <- c("hypothes*, test*", "", 
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep(NA, length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(auxrow, auxtable)
+
+##*****************************************#
+## PART 2: hypothes*, predict*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == TRUE &
+                                                intros.long$examin == FALSE)])
+
+auxtable <- data.frame(core = "hypothes*, predict*", phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxtable)
+
+##*****************************************#
+## PART 3: hypothes*, examin*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == TRUE)])
+
+auxtable <- data.frame(core = "hypothes*, examin*", phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxtable)
+
+##*****************************************#
+## PART 4: hypothes*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
+auxrow <- c("hypothes*", "", 
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$hypothes == TRUE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
+
+##*****************************************#
+## PART 5: test*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == TRUE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
+auxrow <- c("test*", "", 
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == TRUE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
+
+##*****************************************#
+## PART 6: replicat*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == TRUE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
+auxrow <- c("replicat*", "", 
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == TRUE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == TRUE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == TRUE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
+
+##*****************************************#
+## PART 7: replicat*, examine*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == TRUE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == TRUE)])
+
+auxtable <- data.frame(core = "replicat*, examin*", phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxtable)
+
+##*****************************************#
+## PART 8: predict*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == TRUE &
+                                                intros.long$examin == FALSE)])
+
+auxtable <- data.frame(core = "predict*", phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxtable)
+
+##*****************************************#
+## PART 9: examin*
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == TRUE)])
+
+auxtable <- data.frame(core = "examin*", phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+
+phrasetable.rep <- rbind(phrasetable.rep, auxtable)
+
+##*****************************************#
+## PART 10: (other)
+##*****************************************#
+phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
+                                                intros.long$hypothes == FALSE &
+                                                intros.long$test == FALSE &
+                                                intros.long$replicat == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
+auxrow <- c("(other)", "", 
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "abstract" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$origin == "fulltext" &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)),
+            length(which(intros.long$is_replication == 1 &
+                           intros.long$hypothes == FALSE &
+                           intros.long$test == FALSE &
+                           intros.long$replicat == FALSE &
+                           intros.long$predict == FALSE &
+                           intros.long$examin == FALSE)))
+
+auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
+                       count.abstract = NA, count.fulltext = NA, count.total = NA)
+
+for (i in 1:length(phraselist)) {
+  auxtable$phrase[i] <- phraselist[i]
+  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "abstract"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
+                                             & intros.long$origin == "fulltext"
+                                             & intros.long$is_replication == 1))
+  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
+                                          & intros.long$is_replication == 1))
+  
+  auxtable <- auxtable[order(auxtable$phrase),]
+}
+phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
+
+phrasetable.rep$core[which(is.na(phrasetable.rep$core))] <- ""
+## THAT'S IT FOR REPLICATION HYP INTROS, I'M REALLY SO SORRY!  ##
+###################################################################################
+```
+Finally, we analysed the language that was used to introduce or signal hypotheses in RRs.
+Does Fanelli's search phrase "test$^\ast$ the hypothes$^\ast$" capture hypothesis-testing RRs reasonably well? 
+The answer is a resounding "no":
+Searching the abstracts, titles, and keywords of the RR sample showed that only `r testthehypothes.RR`/`r n.RR` RRs would have been detected with this search phrase. 
+Which analogous hypothesis-introduction phrases are used in RRs, and can they be summarised in a convenient way? 
+To get an overview, we stripped the hypothesis quotes of RRs from all content-specific information and extracted "minimal" phrases that most distinctively indicated that a hypothesis was being described.
+For example, from the hypothesis quote "(f)or Study 1, we predicted that participants reading about academic (vs. social) behaviors would show a better anagram performance" we extracted the hypothesis-introduction phrase "predicted that". 
+
+For the majority of RRs (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==1))`), we identified one hypothesis-introduction phrase; the remaining ones used two (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==2))` RRs), three (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==3))` RRs), or four (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==4))` RR) different phrases or had no identifiable hypothesis introduction (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==0))` RR).
+In this total set of `r nrow(intros.long)` hypothesis introductions, we found `r length(uniquephrases)` unique phrases, showing substantial linguistic variation (see Tables 2 and 3).
+In order to condense the information further, we listed all unique word stems (e.g., the word stem "hypothes$^\ast$" captures the words "hypothesis", "hypotheses", "hypothesize", "hypothesized", and so on) and analysed their frequency among all hypothesis introductions.
+Excluding words that are common but too unspecific by themselves, such as "that", "to", or "whether", the five most frequent word stems were "hypothes$^\ast$" (`r wordoccurrences.df[1,2]` occurrences), "replicat$^\ast$" (`r wordoccurrences.df[2,2]`), "test$^\ast$" (`r wordoccurrences.df[3,2]`), "examine$^\ast$" (`r wordoccurrences.df[4,2]`), and "predict$^\ast$" (`r wordoccurrences.df[5,2]`). 
+Clearly "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 ($`r printnum(30/43*100)`\%$) hypothesis introductions found in original RRs contained either "test$^\ast$" or "hypothes$^\ast$" or both, while only 16 out of 54 ($`r printnum(16/54*100)`\%$) hypothesis introductions in direct replication RRs did.
+
+We noticed that direct replication RRs generally tended to use different language to describe their hypothesis (or rather their goal). As the high frequency of the word stem "replicat$^\ast$" suggests, these studies were often not framed as new tests of a previously tested hypothesis, but as attempts to replicate a previously documented effect or to repeat a previously conducted experiment. 
+Tables 2 and 3 list all unique hypothesis introductions and their frequency for original RRs and direct replication RRs, respectively, grouped by the five most frequent word stems ("hypothes$^\ast$", "replicat$^\ast$", "test$^\ast$", "examine$^\ast$", "predict$^\ast$"). 
+Using five as a cutoff value is an arbitrary decision, but we believe that it strikes a reasonable balance between condensing the information and doing the variance of the data justice. 
+
+```{r echo = FALSE, results = 'asis'}
+apa_table(
+  phrasetable.orig
+  , digits = c(0, 0, 0, 0, 0)
+  , col.names = c("core word(s)", "introduction phrase", "abstract", 
+                  "full text", "total")
+  , align = c("l", "l", rep("r", 3))
+  , caption = "Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)"
+  , note = "This table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, 9 papers contributed two each, one contributed three, and one contributed four."
+  , added_stub_head = "Variables"
+  , col_spanners = list(`source` = c(3, 5))
+  , midrules = c(6, 16, 22, 23, 27, 32)
+  , landscape = FALSE
+  , font_size = "footnotesize"
+  , escape = TRUE
+)
+```
+
+```{r echo = FALSE, results = 'asis'}
+apa_table(
+  phrasetable.rep
+  , digits = c(0, 0, 0, 0, 0)
+  , col.names = c("core word(s)", "introduction phrase", "abstract", 
+                  "full text", "total")
+  , align = c("l", "l", rep("r", 3))
+  , caption = "Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)"
+  , note = "This table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no codeable hypothesis introduction. 30 papers contributed one phrase each, 7 papers contributed two each, and three contributed three each."
+  , added_stub_head = "Variables"
+  , col_spanners = list(`source` = c(3, 5))
+  , midrules = c(4, 5, 6, 12, 16, 33, 34, 35, 36)
+  , landscape = FALSE
+  , font_size = "footnotesize"
+  , escape = TRUE
+)
+```
+
+# Discussion
+```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3, fig.cap=" "}
+# Inferring the likely proportion of true hypotheses studied in the literature
+# and statistical power based on the observed proportion of significant results
+
+# t = proportion of true hypotheses
+# a = alpha
+# b = beta; i.e. 1-b = power
+# PRR = positive result rate (proportion of significant results in the literature)
+truehyps <- function(PRR, a, pwr){-(PRR - a)/((1-pwr) + a - 1)}
+pwrfun <- function(t, a, PRR){(a*t+PRR-a)/(t)}
+
+a <- 0.05
+
+### 3 groups: original SRs, original RRs, all RRs
+
+pwrprior.df <-  data.frame(t=c(1:1000)/1000)
+pwrprior.df$group <- "all RRs (PRR = .4366, N = 71)"
+pwrprior.df$lower <- pwrfun(t = pwrprior.df$t, a = a, PRR = min(RR.binom$conf.int))
+pwrprior.df$estimate <- pwrfun(t = pwrprior.df$t, a = a, PRR = prop.support.RR)
+pwrprior.df$upper <- pwrfun(t = pwrprior.df$t, a = a, PRR = max(RR.binom$conf.int))   
+
+pwrprior.origRR <- data.frame(t=c(1:1000)/1000)
+pwrprior.origRR$group <- "original RRs (PRR = .5, n = 30)"
+pwrprior.origRR$lower <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = min(RR.orig.binom$conf.int))
+pwrprior.origRR$estimate <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = prop.orig.support.RR)
+pwrprior.origRR$upper <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = max(RR.orig.binom$conf.int))   
+
+pwrprior.origSR <- data.frame(t=c(1:1000)/1000)
+pwrprior.origSR$group <- "original SRs (PRR = .9595, n = 148)"
+pwrprior.origSR$lower <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = min(SR.orig.binom$conf.int))
+pwrprior.origSR$estimate <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = prop.orig.support.SR)
+pwrprior.origSR$upper <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = max(SR.orig.binom$conf.int))   
+
+pwrprior.df <- rbind(pwrprior.df, pwrprior.origRR, pwrprior.origSR)
+
+pwrprior.df$lower[pwrprior.df$lower > 1 & pwrprior.df$upper > 1] <- NA
+pwrprior.df$lower[pwrprior.df$lower > 1] <- 1
+pwrprior.df$upper[pwrprior.df$upper > 1] <- 1
+
+pwrprior.df$group <- factor(pwrprior.df$group, 
+                            levels = c("original SRs (PRR = .9595, n = 148)",
+                                       "original RRs (PRR = .5, n = 30)", 
+                                       "all RRs (PRR = .4366, N = 71)"))
+
+ggplot(pwrprior.df, aes(x = t, y = estimate, colour = group, fill = group,
+                        linetype = group)) +
+  geom_line(aes(y = estimate), size = 1) + 
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = .42, linetype = "blank") +
+  scale_x_continuous(name="proportion of true hypotheses", 
+                     limits=c(0.25, 1), 
+                     breaks = c(seq(0.3, 1, 0.1)),
+                     expand = c(0, 0)) +
+  scale_y_continuous(name="statistical power", 
+                     limits=c(0.25, 1), 
+                     breaks = c(seq(0.3, 1, 0.1)),
+                     expand = c(0, 0)) +
+  scale_colour_manual(values = c("#0073C0", "#ED443F", "#2D132C"), name = NULL) +
+  scale_fill_manual(values = c("#0073C0", "#ED443F", "#2D132C"), name = NULL) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted"), name = NULL) +
+  theme_bw()
+```
+
+
+# References
+
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
