@@ -63,6 +63,166 @@ library("stringr")
 library("reshape2")
 ```
 
+If the scientific literature were a faithful representation of the research scientists conduct, a cumulative science would be a powerful tool to infer what is true about the world. 
+When random error is the only threat to the accuracy of individual findings, aggregating across many findings allows inferences about the presence and size of effects with a certain reliability. 
+However, when published findings are systematically biased, cumulative science breaks down: 
+Unlike random error, bias does not cancel out when aggregating across studies -- in the worst case it accumulates, leading us away from the truth rather than towards it.
+Unfortunately there are good reasons to believe that the psychology literature is not a faithful representation of all research psychologists conduct. 
+For more than half a century, scientists have repeatedly noticed a suspiciously high 'success' rate in psychology:
+Studying 362 empirical articles published in four psychology journals in 1955/56, @Sterling1959 found that a whopping $97.28\%$ of the studies that used significance tests rejected the null hypothesis. 
+A replication of this study performed on articles published in 1986/87 reported $95.56\%$ statistically significant results [@Sterling1995]. 
+Similarly, a seminal study by @Fanelli2010 compared the literatures of 20 disciplines and found that $91.5\%$ of papers published in psychology reported support for their first or main hypothesis, the highest number of all disciplines in the study. 
+For these percentages to be a realistic representation of the research that psychologists perform, both statistical power and the proportion of true hypotheses (i.e., the prior probability that the null hypothesis is false) that are tested must exceed $90\%$. 
+In other words: nearly all predictions researchers make must be correct, and either the studied effect sizes or the used sample sizes must consistently be very high (given the same study design).
+
+## A biased literature
+@Sterling1959 already suspected a selection process behind the numbers he found: 
+"(...) for psychological journals a policy exists under which the vast majority of published articles satisfy a minimum criterion of [statistical] significance" (p. 31). 
+This selection process is one of several kinds of biases that will lead to an inflation of positive results in the literature. 
+We can distinguish two broad categories of bias: "publication bias" and "questionable research practices". 
+Publication bias describes publishing behaviours that give manuscripts that find support for their tested hypotheses a higher chance of being published than manuscripts that do not find support for their tested hypotheses. 
+These include editors and reviewers selectively rejecting manuscripts with negative results ["reviewer bias", @Mahoney1977; @Greenwald1975] and researchers deciding not to submit studies with negative results for publication ["file-drawering"; @Rosenthal1979]. 
+Questionable research practices (QRPs) describe research behaviours that make the evidence in favour of a certain conclusion look stronger than it is [typically, though not always, leading to an inflated type-I error rate, see also @Lakens2019b]. 
+These include presenting unexpected results as having been predicted a priori [HARKing, short for "hypothesising after results are known"; @Kerr1998] and exploiting flexibility in data analysis to obtain statistically significant results ["p-hacking"; @Simmons2011]. 
+Evidence for both categories of bias exist: 
+Publication bias has been shown in peer review [@Mahoney1977; @Atkinson1982] and in longitudinal data from an NSF grant programme that found a file-drawering effect for studies with negative results [@Franco2014; @Franco2016]; and QRPs have been admitted by scientists in several survey studies [@John2012; @Fiedler2016; @Agnoli2017].
+
+Some have argued that selecting for statistically significant results is defensible -- desirable, even -- because because it weeds out  low-quality research that would only pollute the literature [@Winter2013; but see @vanAssen2014]. 
+How problematic selective publishing is in practice remains an empirical question: 
+If most negative results that are currently missing from the literature are the result of immature ideas or poorly conducted studies, we should expect that a literature in which studies are selected based on their quality but not based on their results  would contain a similar proportion of positive results as the current one. 
+But how many positive results would such an unbiased literature contain in reality? 
+We set out to explore this question by comparing the rate of positive results in a sample from the current psychology literature to a set of studies that were published in a new format created to minimise QRPs and publication bias: Registered Reports. 
+
+## Methods to mitigate bias
+An increasingly popular proposal to reduce bias is preregistration, where authors register a time-stamped protocol of their hypotheses, planned method, and analysis plan before data collection [for a historical overview, see @Wiseman2019]. 
+Preregistration is thought to mitigate QRPs by preventing HARKing (hypotheses must be stated before the results are known) and by reducing the risk of p-hacking via restricted flexibility in data analysis. 
+However, preregistration does not prevent file-drawering or reviewer bias and may thus be toothless in fighting publication bias. 
+A more effective safeguard against both publication bias and QRPs is promised by Registered Reports [@Chambers2013; @Nosek2014; @Chambers2015; @Jonas2016]. 
+Registered Reports (RRs) are a new publication format with a restructured submission timeline: 
+Before collecting data, authors submit a study protocol containing their hypotheses, planned procedures, and analysis pipeline to a journal. 
+The protocol undergoes peer review, and, if successful, receives "in-principle acceptance", meaning that the journal commits to publishing the final article following data collection regardless of the statistical significance of the results. 
+The authors then collect and analyse the data and write up the final report. 
+The final report undergoes another round of peer review, but this time only to check if the authors adhered to the plan outlined in their protocol (and, if applicable, if the data passes pre-specified quality checks). 
+RRs thus combine an antidote to QRPs (preregistration) with an antidote to publication bias, because studies are selected for publication before their results are known. 
+Since its introduction at the journal Cortex in 2013, the format has rapidly gained popularity and is offered by 207 journals at the time of writing (http://cos.io/rr).
+
+In addition to bias protection, RRs promise high-quality research: Stage-1 peer review (pre data) increases the likelihood that methodological flaws and immature or misguided ideas will be spotted and fixed (or weeded out) before a study is conducted, and authors typically have to include outcome-neutral control conditions that allow verifying data quality once results are in (studies failing these quality checks may be rejected). 
+Many journals offering RRs also require that planned hypothesis tests are based on a power analysis that ensures a high probability of finding a statistically significant result if there is a true effect of the expected size (e.g., $90\%$ power for a given effect size of interest). 
+
+Assuming a constant alpha level, the rate of positive results in a literature is influenced by three factors: the proportion of true hypotheses among all tested hypotheses, statistical power, and bias. 
+The RR format combines powerful safeguards against publication bias and QRPs with standards for research quality that are at least equal to ordinary peer review, and often include statistical power requirements that likely exceed those in the standard literature [see e.g., @Maxwell2004; @Szucs2017]. 
+Therefore, if the emerging RR literature in psychology contains fewer positive results than the standard literature, the cause must be either the difference in bias or a lower proportion of true hypotheses tested in RRs (or a combination of the two). 
+At this time, we have good reasons to believe in a difference in bias, but little reason to believe in a difference in the proportion of true hypotheses (at least regarding original hypotheses, see below), which would make bias a more plausible explanation of a potential difference in the positive result rate (i.e., the proportion of supported hypotheses among all tested hypotheses). 
+Considering the high standards for research quality in RRs, a large difference in positive results between RRs and the standard literature would also mean that publication bias is not a desirable filter for poorly conducted studies, but that we should worry about the high-quality negative results we are missing because of it.
+
+## The current study
+The goal of our study was to test if RRs in psychology show a lower positive result rate than articles published in the traditional way (henceforth referred to as "standard reports", SRs), and to estimate the size of this potential difference. 
+We set out to replicate a study by @Fanelli2010 on a new sample of standard reports in psychology and compared them to all published Registered Reports in psychology. 
+Fanelli searched for articles containing the phrase "test$^\ast$ the hypothes$^\ast$", drew a random sample of 150 articles per discipline, and for each of these coded if the first hypothesis mentioned in the abstract or full text had been supported or not. 
+For standard reports we used the same sampling method (restricted to the psychology discipline), and for RRs we relied on a database curated by the Center for Open Science (COS). 
+We chose Fanelli's method because Fanelli's -@Fanelli2010 and -@Fanelli2012 studies (both use the same coding method) have been highly influential, and his method can easily be applied to a large set of studies. 
+We additionally coded if studies were replications or original work because many published RRs are replications. 
+If replications are motivated by scepticism of the original results, the prior probability of hypotheses tested in these studies may be lower than in original studies, and a higher proportion of replications among RRs than standard reports could therefore introduce a confound.
+
+In a recent commentary on benefits and challenges of open-science practices for early-career researchers, @Allen2019 conducted a similar investigation: 
+They coded the proportion of null results in the 127 biomedical and psychology RRs listed in the COS database as of September 2018. 
+We were not aware of their parallel efforts when we planned our study in September and October 2018. 
+Allen and Mehler used a self-developed method to code the percentage of unsupported hypotheses in RRs (counting all hypotheses in each paper) and found $60.5\%$ unsupported hypotheses across all included RRs, $66\%$ for replication attempts, and $54.5\%$ for novel research. 
+They compared these numbers to an estimate of $5-20\%$ null results in the standard literature. 
+This $5-20\%$ estimate is based on data from @Fanelli2012, who coded only the first hypothesis of each paper [identical to @Fanelli2010], and @Cristea2018], who coded the percentage of statistically significant results in figures and tables of articles published in Nature, Science, and PNAS. 
+
+A major advantage of our study is that it allows us to draw a more meaningful comparison between RRs and the standard literature because we apply a previously used method [@Fanelli2010; @Fanelli2012] to both groups. 
+In addition, we replicate @Fanelli2010 and provide data to evaluate his method: The search term "test$^\ast$ the hypothes$^\ast$" might introduce selection effects, meaning that results obtained this way may not generalise to hypothesis-testing studies that do not use this phrase. 
+Therefore we also coded the phrases used to introduce hypotheses in RRs, analysed how many of them would have been detected with Fanelli's search term, and compiled a list of alternative search terms to test the generalisability of Fanelli's results in the future. 
+Finally, we share a rich dataset containing the exact quotes of hypotheses and conclusions on which we based our judgments, as well as detailed descriptions of our sampling and coding procedure (see Appendix). 
+This allows others to verify (or contest) our results and provides an interesting resource for future meta-scientific research.
+
+# Methods
+After conducting a pilot to test the planned procedure we preregistered our study (https://osf.io/s8e97). 
+Methods and analyses described here were preregistered unless otherwise noted. 
+A detailed comparison of our preregistration and the eventual procedure is provided in the supplement. 
+We report how we determined our sample size, all data exclusions, and all measures in the study.
+
+## Sample
+We used the same method as @Fanelli2010 to obtain a new sample of standard reports, but restricted year of publication to 2013-2018 to match the sample to the RR population. 
+We excluded papers if they were not complete, published, non-retracted articles (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision. 
+An overview of the sampling process and all exclusions are shown in Figure 1. 
+
+For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase "test$^\ast$ the hypothes$^\ast$" and the ISSNs of all journals listed in the ESI Psychiatry/Psychology category. 
+Using the same sample size as @Fanelli2010, we randomly selected 150 papers from the 1919 search results using the sample() function in R and the seed "20190120" (not specified in our preregistration, but no other seeds were tried).
+We initially excluded eight papers and replaced them (the decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had erroneously been excluded, leading to a final sample size of 152 rather than 150 (see Fig. 1). 
+
+
+```{r echo=FALSE, warning=FALSE, fig.cap="XXX ADD CAPTION", out.width = "\\textwidth"}
+
+knitr::include_graphics("Sampling_exclusions_and_resampling.pdf")
+```
+
+For Registered Reports we aimed to include all published RRs in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase "test$^\ast$ the hypothes$^\ast$". 
+We downloaded a database of published RRs curated by the Center for Open Science[^1] (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than "Psychiatry/Psychology" or "Multidisciplinary" in the ESI. 
+[^1]: https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9 
+Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 RRs published in Cortex because the ESI counts this journal towards the separate category "Neuroscience and Behavior". 
+Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., Royal Society Open Science) were hand-coded by AS. 
+This deviates from our preregistration insofar as we had not specified how discipline membership would be determined.
+Following these exclusions, we verified the RR status of all remaining papers in our sample. 
+Papers were counted as RRs if they were labelled as such by the journal itself and the journal submission guidelines made it clear that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with https://cos.io/rr). 
+For papers not clearly labelled as RRs we consulted relevant editorial publications (e.g., for special issues) or contacted the respective editors directly. 
+Of the 151 entries in the COS RR database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because they were not certainly RRs, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 RRs for the final analysis (see Fig. 1). 
+Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing [@RRRwebsite].
+
+## Measures and coding procedure
+The main dependent variable was whether or not the first hypothesis was supported or not, as reported by the authors.
+We tried to follow Fanelli's [-@Fanelli2010] coding procedure as closely as possible, which he describes as follows: 
+
+> By examining the abstract and/or full- text, it was determined whether the authors of each paper had concluded to have found a positive (full or partial) or negative (null or negative) support. 
+> If more than one hypothesis was being tested, only the first one to appear in the text was considered. 
+> We excluded meeting abstracts and papers that either did not test a hypothesis or for which we lacked sufficient information to determine the outcome. (p. 8) 
+
+Like @Fanelli2010, we coded hypotheses as having received "support", "partial support", or "no support", which was recoded into a binary "support" (full or partial) vs "no support" variable for the analysis. 
+Coding disagreements between full and partial support were deemed minor since they would not affect the final results, thus only disagreements affecting the binary support/no support classification were treated as major and resolved through discussion.
+
+Before preregistering our study, we conducted a pilot to assess if we could employ Fanelli's method successfully.
+Originally we had planned to first reproduce his results on the same sample of Psychiatry/Psychology articles used in @Fanelli2010. 
+Unfortunately the author refused to share the original data (or even a list of the coded articles) with us. 
+Instead, we received an excerpt which contained data for 11 records from the original sample, but no reference information of the coded articles (personal communication, 5th October 2018). 
+We were able to find these 11 articles based on the hypothesis quotes that had been coded, and used them as a pilot sample along with 10 randomly selected RRs. 
+MS and AS independently coded all 21 pilot articles with only one major disagreement in each group. 
+In the SR group, this disagreement was also the only case of major disagreement with Fanelli's original coding, which we deemed satisfying to proceed. 
+
+```{r include=FALSE}
+source("interrater_agreement.R")
+```
+
+
+Based on our experiences during the pilot, we added one coding criterion: 
+If the first hypothesis mentioned in a paper was not explicitly tested but subsequently divided into sub-hypotheses that were tested, we would code the first tested hypothesis rather than the first hypothesis mentioned in the text. 
+In RRs we coded the first preregistered hypothesis, thus excluding unregistered pilot studies. 
+MS coded all papers in the sample, AS double-coded all papers MS had found difficult to code or could not code ($`r sum(included$coded_by_AS & included$is_RR==1)`$ RRs $= `r printnum(sum(included$coded_by_AS & included$is_RR==1)/sum(included$is_RR==1)*100)`\%$ and $`r sum(included$coded_by_AS & included$is_RR==0)`$ SRs $= `r printnum(sum(included$coded_by_AS & included$is_RR==0)/sum(included$is_RR==0)*100)` \%$). 
+Only `r support.disagreement.major` disagreements were major (Cohen's kappa = `r printp(kappa.support)`) and subsequently resolved by discussion; `r support.disagreement.minor` were minor (disagreement between "support" and "partial support"). 
+We preregistered that AS would additionally code a random subset of both groups, but decided against it because the number of double-coded papers seemed sufficient after double-coding only the difficult cases.
+
+### Hypothesis introductions
+Selecting papers that use the phrase "test$^\ast$ the hypothes$^\ast$" might yield different results than alternative search phrases. 
+Getting a better overview of "natural" descriptions of hypotheses would be useful for future investigations of the generalisability of Fanelli's [-@Fanelli2010] results and could inspire new research questions. 
+We therefore extracted the phrase used to introduce the hypothesis from the coded hypothesis quotes for all RRs and tried to identify clusters of similar expressions which may be used to create alternative search phrases. 
+If MS and AS had coded different hypothesis quotes for a paper, MS's coding was used, unless disagreement resolution of the "hypothesis support" variable lead to AS's coding overruling MS's. 
+
+### Replication status
+We also wanted to code if a study was a replication of a previously published one: 
+We expected a much larger proportion of RRs to be direct replications, many of which may have been motivated by scepticism of the original study. 
+A lower positive result rate in RRs could then be an effect of failed replications rather than an effect of safeguards against QRPs and publication bias. 
+After an initial coding attempt with ill-defined coding criteria lead to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered): 
+We searched the full texts of all papers for the string "replic$^\ast$" [cf. @Makel2012; @Kohler2019; @Mueller-Langer2019; @Pridemore2018], and for those that did contain it determined whether the first hypothesis was a close or direct replication of previously published work. 
+Conceptual replications and internal replications were not counted as replications in this narrow sense: 
+The reason to code replication status in the first place was the idea that direct replications of previous work may be motivated by replicators' scepticism in the hypothesis and thus have a low prior probability, whereas conceptual replications are usually considered as building on previous work rather than verifying it. 
+AS coded all papers, DL double-coded `r rep.RR.coded.DL` RRs ($`r printnum(rep.RR.coded.DL/sum(included$is_RR)*100)` \%$) and `r rep.SR.coded.DL` SRs ($`r printnum(rep.RR.coded.DL/sum(included$is_RR==0)*100)` \%$). 
+There were `r rep.disagreements` disagreements (Cohen's kappa = `r printp(kappa.rep)`), all were resolved by discussion. 
+
+### Additional measures
+All additional measures we collected but have not described thus far were either auxiliary variables to facilitate the coding process or earlier versions of the variables discussed above. 
+All of these are documented in the Appendix and our shared dataset and codebook.
+
+
 ## Analysis
 We planned to test our hypothesis in the following way (quoting directly from our preregistration, [https://osf.io/sy927](https://osf.io/sy927), point 9): 
 
@@ -76,206 +236,27 @@ We would accept our hypothesis that RRs have a lower positive result rate than S
 
 
 # Results
+```{r include=FALSE}
+source("quantitative_analyses.R")
+```
 
 ## Confirmatory Analyses
-```{r include=FALSE}
-#source("analysis.R")
-# load the dataset from RDS created with codebook
-alldata <- readRDS("positive_results_in_registered_reports_codebook.rds")
-# alldata <- readRDS("C:/Users/20176208/surfdrive/Documents/_projects/_positiveresults/_data/positive_results_in_registered_reports_codebook.rds")
-# alldata <- readRDS("~/surfdrive/Documents/_projects/_positiveresults/_data/positive_results_in_registered_reports_codebook.rds")
 
-# remove excluded papers
-included <- alldata[alldata$include_in_analysis==1,]
-
-## 3. Run main preregistered analysis: the proportion of SRs with supported
-## hypothesis compared to the proportion of RRs with supported hypothesis
-
-# number of included SRs = 152
-n.SR <- length(which(included$is_RR == 0))
-# number of included RRs = 71
-n.RR <- length(which(included$is_RR == 1))
-
-# number of SRs with support = 146
-n.support.SR <- length(which(included$is_RR == 0 & included$support_binary == 1))
-# number of RRs with support = 31
-n.support.RR <- length(which(included$is_RR == 1 & included$support_binary == 1))
-
-# Positive result rate of SRs (proportion of SRs with support) = .9605
-prop.support.SR <- n.support.SR/n.SR
-# Positive result rate of RRs (proportion of RRs with support) = .4366
-prop.support.RR <- n.support.RR/n.RR
-
-## 3.1 Proportions test to test if RRs have a *lower* positive
-## result rate than SRs (i.e., one-sided test)
-
-proptestresult <- prop.test(c(n.support.SR, n.support.RR), c(n.SR, n.RR), alternative = "greater")
-
-
-## 3.2 Equivalence test to test if the difference is larger than 6%
-# Equivalence bounds/smallest effect size of interest (SESOI):
-# As preregistered, we used the difference between the positive result
-# rate in Psychology and in the lowest-scoring 'soft' science in 
-# Fanelli (2010) as our SESOI. The lowest-scoring 'soft' science
-# was General Social Sciences with a positive result rate of 85.5%
-# (this number is not explicitly given in the text, so we extracted it
-# from Figure 1 using WebPlotDigitizer). The positive result rate in 
-# Psychology was 91.5%.
-# Hence our SESOI is 91.5%-85.5% = 6%:
-
-SESOI <- abs(91.5 - 85.5)/100
-
-## Run proportions test and equivalence test using the TOSTER function
-## TOSTtwo.prop:
-tostresult <- TOSTtwo.prop(prop1 = prop.support.SR, 
-                           prop2 = prop.support.RR, 
-                           n1 = n.SR, 
-                           n2 = n.RR, 
-                           low_eqbound = -SESOI, 
-                           high_eqbound = SESOI,
-                           alpha = 0.05)
-
-## Calculate confidence intervals for SR and RR PRR separately
-SR.binom <- binom.test(x = prop.support.SR*n.SR, n = n.SR)
-RR.binom <- binom.test(x = prop.support.RR*n.RR, n = n.RR)
-```
 `r n.support.SR` out of `r n.SR` SRs and `r n.support.RR` out of `r n.RR` RRs had positive results, meaning that the positive result rate was $`r printnum(prop.support.SR*100)` \%$ for SRs ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]) and $`r printnum(prop.support.RR*100)` \%$ for RRs ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]; see Fig. 1). 
-The preregistered one-sided proportions test with an alpha level of $5\%$ showed that this difference of $-`r printnum((prop.support.SR-prop.support.RR)*100)`\%$ was statistically significant, $\chi^2 = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
-Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ at $\alpha = 5\%$, $z = `r printnum(min(tostresult$TOST_z1, tostresult$TOST_z2))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
+The preregistered one-sided proportions test with an alpha level of $5\%$ showed that this difference of $-`r printnum((prop.support.SR-prop.support.RR)*100)` \%$ was statistically significant, $\chi^2 = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
+Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100` \%$ and $`r SESOI*100` \%$ at $\alpha = 5\%$, $z = `r printnum(min(tostresult$TOST_z1, tostresult$TOST_z2))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
 We thus accept our hypothesis that the positive result rate in RRs is lower than in SRs.
 
 ```{r echo=FALSE, warning=FALSE, fig.width=4, fig.height=3, fig.cap="Positive result rates for standard reports and Registered Reports. Error bars indicate 95% confidence intervals around the observed positive result rate."}
-
-## 5. Create a plot for the main analysis
-
-# Create a data frame to use for plotting the main result
-mainplot.df <- data.frame(is_RR = c("SR", "SR", "RR", "RR"), 
-                          support = c("supported", "not supported", 
-                                   "supported", "not supported"),
-                          value = c(prop.support.SR*100, (1-prop.support.SR)*100, 
-                                    prop.support.RR*100, (1-prop.support.RR)*100),
-                          lower = c(min(SR.binom$conf.int)*100, NA,
-                                    min(RR.binom$conf.int)*100, NA),
-                          upper = c(max(SR.binom$conf.int)*100, NA,
-                                    max(RR.binom$conf.int)*100, NA))
-
-# Plot the main result (positive result rate in SRs vs RRs)
-ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
-                  geom_bar(stat = "identity", 
-                           width = 0.5) +
-  scale_fill_manual(values= c("#bcbddc", "#756bb1"),
-                    name="first hypothesis") +
-  annotate("text", label = "n = 152", x = 1, y = 105) +
-  annotate("text", label = "n = 71", x = 2, y = 105) +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.05, size = 0.5) +
-  scale_x_discrete(breaks = waiver(), 
-                   labels = c("SR" = "Standard\nReports (SRs)",
-                              "RR" = "Registered\nReports (RRs)"), name = NULL)+ 
-  scale_y_continuous(lim=c(0,110), breaks = c(seq(0, 100, 10)),
-                     minor_breaks = c(seq(0, 100, 5)),
-                     name = "% of papers", expand = c(0, 0))+
-  theme_minimal()+
-  theme(panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        legend.margin = margin(0,0,0,-5))
+mainplot
 ```
 
 
 ## Exploratory Analyses
-```{r include=FALSE}
-## 4. Run exploratory analysis: the proportion of replication 
-## studies with supported hypothesis compared to the proportion 
-## of original studies with supported hypothesis
-
-# total number of replication studies = 46
-n.rep.total <- length(which(included$is_replication == 1))
-
-# number of replication SRs = 4
-n.rep.SR <- length(which(included$is_RR == 0 & 
-                           included$is_replication == 1))
-# proportion of replications among all SRs = 2.63%
-prop.rep.SR <- n.rep.SR/n.SR
-
-# number of replication RRs = 42
-n.rep.RR <- length(which(included$is_RR == 1 & 
-                           included$is_replication == 1))
-# proportion of replications among all RRs = 59.15%
-prop.rep.RR <- n.rep.RR/n.RR
-
-# Positive result rate of *replication* SRs = 1
-prop.rep.support.SR <- length(which(included$is_RR == 0 & 
-                                    included$support_binary == 1 &
-                                    included$is_replication == 1))/n.rep.SR
-# Positive result rate of *original* SRs = .9595
-prop.orig.support.SR <- length(which(included$is_RR == 0 & 
-                                     included$support_binary == 1 &
-                                     included$is_replication == 0))/(n.SR - n.rep.SR)
-
-# Positive result rate of *replication* RRs = .4048
-prop.rep.support.RR <- length(which(included$is_RR == 1 & 
-                                    included$support_binary == 1 &
-                                    included$is_replication == 1))/n.rep.RR
-# Positive result rate of *original* RRs = .4828
-prop.orig.support.RR <- length(which(included$is_RR == 1 & 
-                                     included$support_binary == 1 &
-                                     included$is_replication == 0))/(n.RR - n.rep.RR)
-
-
-
-## Calculate confidence intervals for original vs 
-## replication SRs and RRs
-SR.orig.binom <- binom.test(x = prop.orig.support.SR*(n.SR-n.rep.SR), n = n.SR-n.rep.SR)
-SR.rep.binom <- binom.test(x = prop.rep.support.SR*n.rep.SR, n = n.rep.SR)
-RR.orig.binom <- binom.test(x = prop.orig.support.RR*(n.RR-n.rep.RR), n = n.RR-n.rep.RR)
-RR.rep.binom <- binom.test(x = prop.rep.support.RR*n.rep.RR, n = n.rep.RR)
-
-## 4.1 Proportions test to test if *original* RRs still have a lower 
-## positive result rate than *original* SRs (i.e., one-sided test)
-repproptest <- prop.test(c(prop.orig.support.SR*(n.SR-n.rep.SR), 
-                           prop.orig.support.RR*(n.RR-n.rep.RR)), 
-                         c(n.SR-n.rep.SR, n.RR-n.rep.RR), alternative = "greater")
-
-## 4.2 Equivalence test to test if the difference is larger than 6%
-# Equivalence bounds/smallest effect size of interest (SESOI):
-# same as for main hypothesis test (6%)
-
-SESOI <- abs(91.5 - 85.5)/100
-
-## Run proportions test and equivalence test using the TOSTER function
-## TOSTtwo.prop:
-reptost <- TOSTtwo.prop(prop1 = prop.orig.support.SR, 
-                        prop2 = prop.orig.support.RR, 
-                        n1 = n.SR-n.rep.SR, 
-                        n2 = n.RR-n.rep.RR, 
-                        low_eqbound = -SESOI, 
-                        high_eqbound = SESOI,
-                        alpha = 0.05)
-
-## 4.3 Create a table showing the positive result rate for replications vs
-## original studies in RRs vs SRs
-rep.table <- data.frame(group = c("SRs", "RRs"),
-                        n.original = c(n.SR-n.rep.SR, n.RR-n.rep.RR),
-                        pos.original = c(prop.orig.support.SR*(n.SR-n.rep.SR), 
-                                         prop.orig.support.RR*(n.RR-n.rep.RR)),
-                        percent.pos.original = c(prop.orig.support.SR*100,
-                                                 prop.orig.support.RR*100), 
-                        CI.original = c(paste(printnum(min(SR.orig.binom$conf.int)*100),
-                                              printnum(max(SR.orig.binom$conf.int)*100), 
-                                              sep = "; "),
-                                        paste(printnum(min(RR.orig.binom$conf.int)*100),
-                                              printnum(max(RR.orig.binom$conf.int)*100), 
-                                              sep = "; ")),
-                        n.rep = c(n.rep.SR, n.rep.RR),
-                        pos.rep = c(prop.rep.support.SR*n.rep.SR, prop.rep.support.RR*n.rep.RR),
-                        percent.pos.rep = c(prop.rep.support.SR*100, prop.rep.support.RR*100), 
-                        CI.rep = c(paste(printnum(min(SR.rep.binom$conf.int)*100),
-                                         printnum(max(SR.rep.binom$conf.int)*100), sep = "; "),
-                                   paste(printnum(min(RR.rep.binom$conf.int)*100),
-                                         printnum(max(RR.rep.binom$conf.int)*100), sep = "; ")))
-
-
-```
-As expected, direct replications were much more common among RRs than SRs: `r n.rep.RR` out of `r n.RR` RRs ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` SRs ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
+As described in the Method section, we only classified close or direct replications of previously published work as replications. 
+This means that our non-replication category also contains some conceptual replications and "internal" replications (where original and replication are published in the same paper). 
+For ease of communication we will nonetheless refer to this category as "original" studies.
+As expected, direct replications were much more common among Registered Reports than standard reports: `r n.rep.RR` out of `r n.RR` RRs ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` SRs ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
 However, this difference cannot account for the stark overall difference between SRs and RRs described above: 
 Although replication RRs in our sample indeed had a lower positive result rate than original RRs (see Table 1), the difference between original SRs and original RRs -- $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$ -- was still significantly different from 0 ($\chi^2 = `r printnum(repproptest$statistic)`$, $p `r printp(repproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(reptost$TOST_z1, reptost$TOST_z2))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
 ```{r echo = FALSE, results = 'asis'}
@@ -291,901 +272,30 @@ apa_table(
 )
 ```
 
-```{r include=FALSE}
-## 5. Run exploratory analysis: compare SRs to Fanelli (2010)
-
-# Number of Psychology papers in Fanelli (2010, from Fig. 1)
-n.Fanelli <- 141
-# Fanelli (2010) reports the positive result rate for Psychiatry&Psychology as
-# 91.5% (p. 3). This is likely a rounded number since 141*0.915 = 129.015. For
-# a more precise analysis, we assume that 129 out of 141 papers in Fanelli's 
-# sample had positive results, giving a positive result rate of 129/141 = 0.9148936.
-# In the following, we'll use this more precise number (129/141) in place of the
-# 91.5% reported in the paper.
-prop.support.Fanelli <- 129/141
-
-## 5.1 Proportions test to test if the positive result rate of Psychology
-## papers in Fanelli (2010) is different from SRs in our study
-
-Fanelliproptest <- prop.test(c(prop.support.Fanelli*n.Fanelli,
-                               prop.support.SR*n.SR),
-                             c(n.Fanelli, n.SR), alternative = "two.sided")
-
-## 5.2 Equivalence test to test if the difference is larger than +/-6%
-# Equivalence bounds/smallest effect size of interest (SESOI):
-# same as for main hypothesis test (6%)
-
-SESOI <- abs(91.5 - 85.5)/100
-
-## Run proportions test and equivalence test using the TOSTER function
-## TOSTtwo.prop:
-Fanellitost <- TOSTtwo.prop(prop1 = prop.support.Fanelli, 
-                            prop2 = prop.support.SR, 
-                            n1 = n.Fanelli, 
-                            n2 = n.SR, 
-                            low_eqbound = -SESOI, 
-                            high_eqbound = SESOI,
-                            alpha = 0.05)
-```
 Since our SR sample represents a direct replication of @Fanelli2010 for the discipline Psychiatry & Psychology, another interesting question to ask is how our results compare to Fanelli's.
 The difference between the positive result rate for SRs in our sample ($`r printnum(prop.support.SR*100)`\%$) and Fanelli's ($`r printnum(prop.support.Fanelli*100)`\%$) is $`r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$. This difference is not significantly different from 0 in a two-sided proportions test ($\chi^2 = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(Fanellitost$TOST_z1, Fanellitost$TOST_z2))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
 In other words, we can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least $\pm `r SESOI*100`\%$ between them. 
 The data are inconclusive.
 
 
-```{r include=FALSE}
-## 6. Analyse the phrases used to introduce hypotheses in RRs
-
-## 6.1 Check how many RRs would have been discovered with the search
-## phrase "test* the hypothes*"
-
-# Create a new variable that indicates if the *title* contains 
-# the phrase "test* the hypothes*" (TRUE vs FALSE)
-included$searchphrase.in.title <- sapply(included$title, grepl, 
-                                         pattern = "test\\w* the hypothes")
-# Create a new variable that indicates if the *keywords* contain 
-# the phrase "test* the hypothes*" (TRUE vs FALSE)
-included$searchphrase.in.keywords <- sapply(included$keywords, grepl, 
-                                            pattern = "test\\w* the hypothes")
-# Create a new variable that indicates if the *abstract* contains 
-# the phrase "test* the hypothes*" (TRUE vs FALSE)
-included$searchphrase.in.abstract <- sapply(included$abstract, grepl, 
-                                            pattern = "test\\w* the hypothes")
-
-# Calculate the number of RRs that contain the search phrase in their abstract,
-# title, or keywords: 2 RRs
-testthehypothes.RR <- length(which(included$is_RR == 1 & 
-                                     (included$searchphrase.in.abstract == TRUE |
-                                        included$searchphrase.in.keywords == TRUE |
-                                        included$searchphrase.in.title == TRUE)))
-```
 
 ```{r include=FALSE}
-## 6.2 Analyse the introduction phrases and create clusters of five "core words"
-hypintros <- included[which(included$is_RR==1), c("id",
-                                                  "support_binary",
-                                                  "is_replication",
-                                                  "hyp_from_fulltext",
-                                                  "RR_hyp_intro_abstract", 
-                                                  "RR_hyp_intro_fulltext")]
-
-hypintros <- as.data.frame(hypintros)
-
-hypintros$abstract.count <- ifelse(is.na(str_count(hypintros$RR_hyp_intro_abstract, ";")), 0, 
-                                   str_count(hypintros$RR_hyp_intro_abstract, ";") + 1)
-hypintros$fulltext.count <- ifelse(is.na(str_count(hypintros$RR_hyp_intro_fulltext, ";")), 0, 
-                                   str_count(hypintros$RR_hyp_intro_fulltext, ";") + 1)
-
-hypintros$introabstract.1 <- sapply(strsplit(hypintros$RR_hyp_intro_abstract, "; "), "[", 1)
-hypintros$introabstract.2 <- sapply(strsplit(hypintros$RR_hyp_intro_abstract, "; "), "[", 2)
-hypintros$introfulltext.1 <- sapply(strsplit(hypintros$RR_hyp_intro_fulltext, "; "), "[", 1)
-hypintros$introfulltext.2 <- sapply(strsplit(hypintros$RR_hyp_intro_fulltext, "; "), "[", 2)
-hypintros$introfulltext.3 <- sapply(strsplit(hypintros$RR_hyp_intro_fulltext, "; "), "[", 3)
-
-# Determine how many replication RRs have more than 1 hypothesis introduction phrase: 10
-length(which((hypintros$abstract.count+hypintros$fulltext.count)>1 & hypintros$is_replication==1))
-
-# Determine how many original RRs have more than 1 hypothesis introduction phrase: 11
-length(which((hypintros$abstract.count+hypintros$fulltext.count)>1 & hypintros$is_replication==0))
-
-intros.long <- melt(hypintros, 
-                    id.vars = c("id", "is_replication", "hyp_from_fulltext", 
-                                "abstract.count", "fulltext.count"), 
-                    measure.vars = c("introabstract.1", "introabstract.2", 
-                                     "introfulltext.1", "introfulltext.2", "introfulltext.3"),
-                    variable.name = "origin", value.name = "phrase", na.rm = TRUE)
-
-intros.long$origin <- ifelse(sapply(intros.long$origin, grepl, pattern = "abstract"), "abstract", "fulltext")
-
-# clean up: some phrases had "\n" at the end, remove that
-intros.long$phrase <- sapply(strsplit(intros.long$phrase, "\n"), "[", 1)
-
-intros.long$test <- sapply(intros.long$phrase, grepl, pattern = "test")
-intros.long$hypothes <- sapply(intros.long$phrase, grepl, pattern = "hypothes", ignore.case = TRUE)
-intros.long$replicat <- sapply(intros.long$phrase, grepl, pattern = "replicat")
-intros.long$predict <- sapply(intros.long$phrase, grepl, pattern = "predict")
-intros.long$examin <- sapply(intros.long$phrase, grepl, pattern = "examin")
-
-uniquephrases <- unique(intros.long$phrase)
-uniquewords <- unique(unlist(sapply(strsplit(uniquephrases, " "), unique)))
-uniquewords <- uniquewords[order(uniquewords)]
-
-wordstems.cleaned <- c("according", "aim", "assume", "attempt", 
-                       "conduct", "critically", "establish", "examine", 
-                       "expect", "experiment", "H1", "hypothes", 
-                       "if",  "investigate", "performed", "predication", 
-                       "predict", "present", "registered", "replicat", 
-                       "report", "reproduce", "sought", "suggests", 
-                       "test", "then")
-
-wordoccurrences.df <- data.frame(word = wordstems.cleaned, count = NA)
-for (i in 1:length(wordstems.cleaned)) {
-  wordoccurrences.df$count[i] <- sum(sapply(grepl(wordstems.cleaned[i], 
-                                            intros.long$phrase, 
-                                            ignore.case = TRUE), sum))
-}
-wordoccurrences.df <- wordoccurrences.df[order(-wordoccurrences.df$count),]
-
-# number of times "test*" and "hypothes*" co-occur
-test.and.hypothes <- sum(grepl("test", intros.long$phrase) & grepl("hypothes", 
-                                                intros.long$phrase,
-                                                ignore.case = TRUE))
-
-# number of hyp intros that contain either "test*" OR "hypothes*"
-test.or.hypothes <- sum(grepl("test", intros.long$phrase) | grepl("hypothes", 
-                                              intros.long$phrase,
-                                              ignore.case = TRUE))
-
-## HERE COME THE TABLES OF DEATH -- EXPAND AT YOUR OWN RISK ##
-#######################################################################################
-### MAKE TABLE FOR ORIGINAL HYPOTHESIS INTROS ###
-### Original hypothesis intros have 7 categories:
-# 1: hypothes*, test*
-# 2: hypothes*
-# 3: test*, predict*
-# 4: test*
-# 5: predict*
-# 6: examin*
-# 7: (other)
-
-##*****************************************#
-## PART 1: hypothes*, test*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == TRUE &
-                                                intros.long$test == TRUE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-
-auxrow <- c("hypothes*, test*", "", 
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-            
-auxtable <- data.frame(core = rep(NA, length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                    & intros.long$origin == "abstract"
-                                    & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                    & intros.long$origin == "fulltext"
-                                    & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
- }
-
-phrasetable.orig <- rbind(auxrow, auxtable)
-
-##*****************************************#
-## PART 2: hypothes*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == TRUE &
-                                                intros.long$test == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-auxrow <- c("hypothes*", "", 
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
-
-##*****************************************#
-## PART 3: test*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == TRUE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-auxrow <- c("test*", "", 
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == TRUE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == TRUE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == TRUE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
-
-##*****************************************#
-## PART 4: test*, predict*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == TRUE &
-                                                intros.long$predict == TRUE &
-                                                intros.long$examin == FALSE)])
-
-auxtable <- data.frame(core = "test*, predict*", phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.orig <- rbind(phrasetable.orig, auxtable)
-
-##*****************************************#
-## PART 5: predict*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$predict == TRUE &
-                                                intros.long$examin == FALSE)])
-auxrow <- c("predict*", "", 
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == TRUE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == TRUE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == TRUE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
-
-##*****************************************#
-## PART 6: examin*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == TRUE)])
-auxrow <- c("examin*", "", 
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == TRUE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == TRUE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == TRUE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
-
-##*****************************************#
-## PART 7: (other)
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 0 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-auxrow <- c("(other)", "", 
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 0 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 0))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 0))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.orig <- rbind(phrasetable.orig, auxrow, auxtable)
-
-phrasetable.orig$core[which(is.na(phrasetable.orig$core))] <- ""
-## THAT'S IT THE TABLE WITH ORIGINAL HYP INTROS IS DONE, SORRY FOR THE UGLY CODE ##
-
-#######################################################################################
-### MAKE TABLE FOR *REPLICATION* HYPOTHESIS INTROS ###
-### Replication hypothesis intros have 10 categories:
-# 1: hypothes*, test*
-# 2: hypothes*, predict*
-# 3: hypothes*, examin*
-# 4: hypothes*
-# 5: test*
-# 6: replicat*
-# 7: replicat*, examine*
-# 8: predict*
-# 9: examin*
-#10: (other)
-
-##*****************************************#
-## PART 1: hypothes*, test*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == TRUE &
-                                                intros.long$test == TRUE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-
-auxrow <- c("hypothes*, test*", "", 
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep(NA, length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(auxrow, auxtable)
-
-##*****************************************#
-## PART 2: hypothes*, predict*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == TRUE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == TRUE &
-                                                intros.long$examin == FALSE)])
-
-auxtable <- data.frame(core = "hypothes*, predict*", phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxtable)
-
-##*****************************************#
-## PART 3: hypothes*, examin*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == TRUE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == TRUE)])
-
-auxtable <- data.frame(core = "hypothes*, examin*", phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxtable)
-
-##*****************************************#
-## PART 4: hypothes*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == TRUE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-
-auxrow <- c("hypothes*", "", 
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$hypothes == TRUE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
-
-##*****************************************#
-## PART 5: test*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == TRUE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-
-auxrow <- c("test*", "", 
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == TRUE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
-
-##*****************************************#
-## PART 6: replicat*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == TRUE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-
-auxrow <- c("replicat*", "", 
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == TRUE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == TRUE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == TRUE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
-
-##*****************************************#
-## PART 7: replicat*, examine*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == TRUE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == TRUE)])
-
-auxtable <- data.frame(core = "replicat*, examin*", phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxtable)
-
-##*****************************************#
-## PART 8: predict*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == TRUE &
-                                                intros.long$examin == FALSE)])
-
-auxtable <- data.frame(core = "predict*", phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxtable)
-
-##*****************************************#
-## PART 9: examin*
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == TRUE)])
-
-auxtable <- data.frame(core = "examin*", phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-
-phrasetable.rep <- rbind(phrasetable.rep, auxtable)
-
-##*****************************************#
-## PART 10: (other)
-##*****************************************#
-phraselist <- unique(intros.long$phrase[which(intros.long$is_replication == 1 &
-                                                intros.long$hypothes == FALSE &
-                                                intros.long$test == FALSE &
-                                                intros.long$replicat == FALSE &
-                                                intros.long$predict == FALSE &
-                                                intros.long$examin == FALSE)])
-
-auxrow <- c("(other)", "", 
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "abstract" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$origin == "fulltext" &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)),
-            length(which(intros.long$is_replication == 1 &
-                           intros.long$hypothes == FALSE &
-                           intros.long$test == FALSE &
-                           intros.long$replicat == FALSE &
-                           intros.long$predict == FALSE &
-                           intros.long$examin == FALSE)))
-
-auxtable <- data.frame(core = rep("", length(phraselist)), phrase = NA, 
-                       count.abstract = NA, count.fulltext = NA, count.total = NA)
-
-for (i in 1:length(phraselist)) {
-  auxtable$phrase[i] <- phraselist[i]
-  auxtable$count.abstract[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "abstract"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.fulltext[i] <- length(which(intros.long$phrase == phraselist[i]
-                                             & intros.long$origin == "fulltext"
-                                             & intros.long$is_replication == 1))
-  auxtable$count.total[i] <- length(which(intros.long$phrase == phraselist[i]
-                                          & intros.long$is_replication == 1))
-  
-  auxtable <- auxtable[order(auxtable$phrase),]
-}
-phrasetable.rep <- rbind(phrasetable.rep, auxrow, auxtable)
-
-phrasetable.rep$core[which(is.na(phrasetable.rep$core))] <- ""
-## THAT'S IT FOR REPLICATION HYP INTROS, I'M REALLY SO SORRY!  ##
-###################################################################################
+source("hypothesis_introduction_analyses.R")
 ```
-Finally, we analysed the language that was used to introduce or signal hypotheses in RRs.
-Does Fanelli's search phrase "test$^\ast$ the hypothes$^\ast$" capture hypothesis-testing RRs reasonably well? 
-The answer is a resounding "no":
+Finally, we analysed the language that was used to introduce or refer to hypotheses in RRs.
+We were interested in whether the search phrase "test$^\ast$ the hypothes$^\ast$" used by Fanelli captured the way researchers write about hypothesis tests reasonably well. The answer is a resounding "no":
 Searching the abstracts, titles, and keywords of the RR sample showed that only `r testthehypothes.RR`/`r n.RR` RRs would have been detected with this search phrase. 
-Which analogous hypothesis-introduction phrases are used in RRs, and can they be summarised in a convenient way? 
-To get an overview, we stripped the hypothesis quotes of RRs from all content-specific information and extracted "minimal" phrases that most distinctively indicated that a hypothesis was being described.
+To get an overview of analogous hypothesis-introduction phrases researchers used in RRs, we stripped the hypothesis quotes of RRs from all content-specific information and extracted "minimal" phrases that most distinctively indicated that a hypothesis was being described.
 For example, from the hypothesis quote "(f)or Study 1, we predicted that participants reading about academic (vs. social) behaviors would show a better anagram performance" we extracted the hypothesis-introduction phrase "predicted that". 
 
 For the majority of RRs (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==1))`), we identified one hypothesis-introduction phrase; the remaining ones used two (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==2))` RRs), three (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==3))` RRs), or four (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==4))` RR) different phrases or had no identifiable hypothesis introduction (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==0))` RR).
 In this total set of `r nrow(intros.long)` hypothesis introductions, we found `r length(uniquephrases)` unique phrases, showing substantial linguistic variation (see Tables 2 and 3).
-In order to condense the information further, we listed all unique word stems (e.g., the word stem "hypothes$^\ast$" captures the words "hypothesis", "hypotheses", "hypothesize", "hypothesized", and so on) and analysed their frequency among all hypothesis introductions.
+In order to condense the information, we listed all unique word stems (e.g., the word stem "hypothes$^\ast$" captures the words "hypothesis", "hypotheses", "hypothesize", "hypothesized", and so on) and analysed their frequency among all hypothesis introductions.
 Excluding words that are common but too unspecific by themselves, such as "that", "to", or "whether", the five most frequent word stems were "hypothes$^\ast$" (`r wordoccurrences.df[1,2]` occurrences), "replicat$^\ast$" (`r wordoccurrences.df[2,2]`), "test$^\ast$" (`r wordoccurrences.df[3,2]`), "examine$^\ast$" (`r wordoccurrences.df[4,2]`), and "predict$^\ast$" (`r wordoccurrences.df[5,2]`). 
 Clearly "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 ($`r printnum(30/43*100)`\%$) hypothesis introductions found in original RRs contained either "test$^\ast$" or "hypothes$^\ast$" or both, while only 16 out of 54 ($`r printnum(16/54*100)`\%$) hypothesis introductions in direct replication RRs did.
 
-We noticed that direct replication RRs generally tended to use different language to describe their hypothesis (or rather their goal). As the high frequency of the word stem "replicat$^\ast$" suggests, these studies were often not framed as new tests of a previously tested hypothesis, but as attempts to replicate a previously documented effect or to repeat a previously conducted experiment. 
+We noticed that direct replication RRs generally tended to use different language to describe their hypothesis. As the high frequency of the word stem "replicat$^\ast$" suggests, these studies were often not framed as new tests of a previously tested hypothesis, but as attempts to replicate a previously documented effect or to repeat a previously conducted experiment. 
+Authors thus seemed to have focussed more on the goal to replicate a previous finding than to test a hypothesis.
 Tables 2 and 3 list all unique hypothesis introductions and their frequency for original RRs and direct replication RRs, respectively, grouped by the five most frequent word stems ("hypothes$^\ast$", "replicat$^\ast$", "test$^\ast$", "examine$^\ast$", "predict$^\ast$"). 
 Using five as a cutoff value is an arbitrary decision, but we believe that it strikes a reasonable balance between condensing the information and doing the variance of the data justice. 
 
@@ -1225,68 +335,76 @@ apa_table(
 )
 ```
 
+It is important to keep in mind that not all hypotheses could be coded from the abstract: For `r n.hypintro.fulltext.only` RRs, the hypothesis introduction phrases analysed above came only from the full text, which means that search terms extracted from them may not be useful in literature searches focussed only on titles, abstracts, and keywords. 
+Therefore we additionally tested how many of the RRs would have been detected in a regular search using our five most frequent word stems. 
+We searched their titles, abstracts, and keywords for "hypothes$^\ast$" OR "replicat$^\ast$" OR "test$^\ast$" OR "examine$^\ast$" OR "predict$^\ast$" and found that $`r n.hypintros.fivewords.RR`/`r n.RR`$ RRs ($`r printnum(n.hypintros.fivewords.RR/n.RR*100)` \%$) would have been detected this way. 
+We do not know how well these search terms represent the population of hypothesis-testing studies in psychology, but a structured investigation of this question would be very useful for future meta-research.
+
 # Discussion
-```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3, fig.cap=" "}
-# Inferring the likely proportion of true hypotheses studied in the literature
-# and statistical power based on the observed proportion of significant results
+We examined the proportion of psychology articles that find support for their first tested hypothesis and found a large difference ($`r printnum(prop.support.SR*100)` \%$ vs $`r printnum(prop.support.RR*100)` \%$) between a random sample of standard reports and the full population of Registered Reports (at the time of data analysis). 
+More than half of the analysed RRs tested hypotheses based on direct replications, but the difference between standard reports and Registered Reports was still large when all direct replications were excluded from the analysis ($`r printnum(prop.orig.support.SR*100)` \%$ vs $`r printnum(prop.orig.support.RR*100)` \%$). 
+The introduction of Registered Reports has clearly led to a much larger proportion of null results appearing in the published literature compared to standard reports. 
 
-# t = proportion of true hypotheses
-# a = alpha
-# b = beta; i.e. 1-b = power
-# PRR = positive result rate (proportion of significant results in the literature)
-truehyps <- function(PRR, a, pwr){-(PRR - a)/((1-pwr) + a - 1)}
-pwrfun <- function(t, a, PRR){(a*t+PRR-a)/(t)}
+The positive result rate we found in standard reports ($`r printnum(prop.support.SR*100)` \%$) is slightly higher than the $91.5\%$ reported by @Fanelli2010, although this difference was not statistically significant. 
+Our replication in a more recent sample of the psychology literature thus yielded a comparably high estimate of supported hypotheses, but we cannot rule out that the positive result rate in the population has increased since 2010 [cf. @Fanelli2012].
+Furthermore, our estimate of the positive result rate for Registered Reports ($`r printnum(prop.support.RR*100)` \%$) is comparable to the $39.5\%$ reported by @Allen2019, despite some differences in method and studied population.
 
-a <- 0.05
+To explain the $`r printnum((prop.support.SR - prop.support.RR)*100)` \%$ gap between standard reports and Registered Reports, we must assume some combination of differences in bias, statistical power, or the proportion of true hypotheses researchers choose to examine. 
+Figure 3 visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased. 
+For example, if we assume no publication bias and no QRPs, more than $90\%$ of the hypotheses authors of standard reports study must be true and study designs must have more than $90\%$ power for the true effect size. 
+This is highly unlikely, meaning that the standard literature is unlikely to reflect reality. 
+As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high, or higher, than in standard reports, leaving the rate of true hypotheses and bias as remaining explanations.
 
-### 3 groups: original SRs, original RRs, all RRs
-
-pwrprior.df <-  data.frame(t=c(1:1000)/1000)
-pwrprior.df$group <- "all RRs (PRR = .4366, N = 71)"
-pwrprior.df$lower <- pwrfun(t = pwrprior.df$t, a = a, PRR = min(RR.binom$conf.int))
-pwrprior.df$estimate <- pwrfun(t = pwrprior.df$t, a = a, PRR = prop.support.RR)
-pwrprior.df$upper <- pwrfun(t = pwrprior.df$t, a = a, PRR = max(RR.binom$conf.int))   
-
-pwrprior.origRR <- data.frame(t=c(1:1000)/1000)
-pwrprior.origRR$group <- "original RRs (PRR = .5, n = 30)"
-pwrprior.origRR$lower <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = min(RR.orig.binom$conf.int))
-pwrprior.origRR$estimate <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = prop.orig.support.RR)
-pwrprior.origRR$upper <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = max(RR.orig.binom$conf.int))   
-
-pwrprior.origSR <- data.frame(t=c(1:1000)/1000)
-pwrprior.origSR$group <- "original SRs (PRR = .9595, n = 148)"
-pwrprior.origSR$lower <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = min(SR.orig.binom$conf.int))
-pwrprior.origSR$estimate <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = prop.orig.support.SR)
-pwrprior.origSR$upper <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = max(SR.orig.binom$conf.int))   
-
-pwrprior.df <- rbind(pwrprior.df, pwrprior.origRR, pwrprior.origSR)
-
-pwrprior.df$lower[pwrprior.df$lower > 1 & pwrprior.df$upper > 1] <- NA
-pwrprior.df$lower[pwrprior.df$lower > 1] <- 1
-pwrprior.df$upper[pwrprior.df$upper > 1] <- 1
-
-pwrprior.df$group <- factor(pwrprior.df$group, 
-                            levels = c("original SRs (PRR = .9595, n = 148)",
-                                       "original RRs (PRR = .5, n = 30)", 
-                                       "all RRs (PRR = .4366, N = 71)"))
-
-ggplot(pwrprior.df, aes(x = t, y = estimate, colour = group, fill = group,
-                        linetype = group)) +
-  geom_line(aes(y = estimate), size = 1) + 
-  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = .42, linetype = "blank") +
-  scale_x_continuous(name="proportion of true hypotheses", 
-                     limits=c(0.25, 1), 
-                     breaks = c(seq(0.3, 1, 0.1)),
-                     expand = c(0, 0)) +
-  scale_y_continuous(name="statistical power", 
-                     limits=c(0.25, 1), 
-                     breaks = c(seq(0.3, 1, 0.1)),
-                     expand = c(0, 0)) +
-  scale_colour_manual(values = c("#0073C0", "#ED443F", "#2D132C"), name = NULL) +
-  scale_fill_manual(values = c("#0073C0", "#ED443F", "#2D132C"), name = NULL) +
-  scale_linetype_manual(values = c("solid", "dashed", "dotted"), name = NULL) +
-  theme_bw()
+```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3, fig.cap="XXX ADD CAPTION"}
+source("power_baserate_plot.R")
+power.baserate.plot
 ```
+
+
+
+It is a-priori plausible that Registered Reports are currently used for a population of hypotheses that are less likely to be true: 
+For example, authors may use the format strategically for studies they expect to yield negative results (which would be difficult to publish otherwise). 
+However, assuming over $90\%$ true hypotheses in the standard literature is neither realistic, nor would it be desirable for a science that wants to advance knowledge beyond trivial facts. 
+We thus believe that this factor alone is not sufficient to explain the gap between the positive result rates in Registered Reports and standard reports. 
+Rather, the numbers strongly suggest a reduction of publication bias and/or Type-1 error inflation in the Registered Reports literature.
+
+## Limitations
+We compared hypotheses tested in Registered Reports with hypotheses tested in standard reports. 
+Because neither hypotheses, authors, nor editors are randomly assigned to each publication format we cannot draw firm conclusions about the causes that lead to a difference in the proportion of supported hypotheses. 
+Although it seems plausible that selective reporting and QRPs are reduced in Registered Reports, we do not know by how much, nor if this reduction would be of comparable size in a randomised experiment. 
+As mentioned above, it is a-priori plausible that the Registered Reports format is used selectively for particularly risky hypotheses. 
+This means that the proportion of true hypotheses in Registered Reports does not necessarily generalise to the entire population of hypotheses that are tested in psychology. 
+It is also important to note that our results do not warrant the conclusion that Registered Reports are effective at reducing all forms of bias. 
+Authors self-select to submit Registered Reports, and the format may be particularly popular among those who try to minimise the risk of inflated error rates regardless of the report format they use. 
+This would lead to less bias in the Registered Reports literature even if the format's safeguards against certain QRPs were actually ineffective. 
+
+A second limitation of the current study [and of @Fanelli2010] is that standard reports were selected using the search term "test$^\ast$ the hypothes$^\ast$". 
+As our results show, this phrase was virtually absent in the Registered Report population. 
+The wide variety of ways to introduce a hypothesis we observed in Registered Reports suggests that a search for "test$^\ast$ the hypothes$^\ast$" will miss most of the hypothesis-testing studies in the psychological literature. 
+Results based on this search phrase may not generalise to all published studies. 
+For example, it is possible that authors are more likely to describe their research explicitly as a hypothesis test when they found positive results, but prefer more vague language for unsupported hypotheses (e.g., "we examined the role of ..."). 
+If this were true, using other strategies to select standard reports might yield lower estimates for the positive result rate. 
+However, this does not seem to be the case: 
+Studies using different selection criteria for articles and hypotheses have found very similar rates of supported hypotheses. 
+For example, the positive result rates in @Sterling1959, @Sterling1995, and the original studies included in the Reproducibility Project: Psychology [@OSC2015] were $97.28\%$, $95.56\%$, and $97\%$, respectively. 
+@Motyl2017 report $89.17\%$ and $92.01\%$ significant results for "critical" hypothesis tests in papers published in 2003-2004 and 2013-2014, respectively. 
+Therefore, although the search term used to find standard reports might limit the generalisability of our results, this search strategy seems to yield comparable estimates as the selection strategies used in different studies. 
+
+A final limitation is the decision to code only the first reported hypothesis. 
+The first hypothesis test may not be representative for all hypothesis tests reported in a paper, and the order of reporting may differ between standard reports and Registered Reports. 
+Perhaps Registered Report authors are more likely to present their hypotheses in "chronological" order, whereas standard report authors tend to rearrange the order in which hypotheses are reported based on their outcomes, and present supported hypotheses first. 
+Here again, the converging estimates from the four studies cited above (none of which use the first-hypothesis rule) make it seem unlikely that our result is an artefact of this decision. 
+Regardless of which hypothesis one chooses to analyse across a set of papers -- the first, the last, or the "critical" one -- the positive result rate turns out to be higher than what can be expected based on realistic estimates of the proportion of true hypotheses researchers study and the statistical power of their tests. 
+
+## Conclusion
+Our study presents a systematic comparison of positive results in Registered Reports and the standard literature. 
+The much lower positive result rate in Registered Reports compared to standard reports suggests that an unbiased literature would look very different from the published research we are used to. 
+Standard publication formats seem to lead scientists to miss out on many high-quality studies with negative results, which are available in the Registered Reports literature. 
+The absence of negative results is a serious threat to a cumulative science. 
+Reliable protection against questionable research practices and publication bias is crucial to ensure the integrity of the literature. 
+The Registered Reports format is a promising candidate for bias protection, but we are only at the beginning of understanding its effectiveness and robustness in different contexts and scientific disciplines.
+
+
 
 
 # References
@@ -1294,3 +412,5 @@ ggplot(pwrprior.df, aes(x = t, y = estimate, colour = group, fill = group,
 
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{0.5in}
+
+
