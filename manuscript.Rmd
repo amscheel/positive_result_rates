@@ -168,7 +168,7 @@ Following these exclusions, we verified the RR status of all remaining papers in
 Papers were counted as RRs if they were labelled as such by the journal itself and the journal submission guidelines made it clear that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with https://cos.io/rr). 
 For papers not clearly labelled as RRs we consulted relevant editorial publications (e.g., for special issues) or contacted the respective editors directly. 
 Of the 151 entries in the COS RR database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because they were not certainly RRs, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 RRs for the final analysis (see Fig. 1). 
-Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing [@RRRwebsite].
+Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing [@RRRwebsite; decision was not preregistered].
 
 ## Measures and coding procedure
 The main dependent variable was whether or not the first hypothesis was supported or not, as reported by the authors.
