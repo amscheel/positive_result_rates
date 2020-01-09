@@ -1,18 +1,88 @@
+#########################################################
+#####                                               #####
+##### Script 4: Calculate and plot power and the    #####
+#####           rate of true hypotheses for the     #####
+#####           observed positive result rates in   #####
+#####           the absence of bias                 #####
+#####                                               #####
+#####-----------------------------------------------#####
+#####                                               #####
+##### Content:                                      #####
+#####  * 1: Setup                                   #####
+#####  * 2: Functions to calculate power and rate   #####
+#####       of true hypotheses                      #####
+#####  * 3: Plot functions with observed positive   #####
+#####       result rates as input                   #####
+#####                                               #####
+##### Note:                                         #####
+#####   RR = Registered Report                      #####
+#####   SR = standard report                        #####
+#####   PRR = positive result rate                  #####
+#####                                               #####
+#########################################################
+
+##==============================================================================##
+## 1. Setup: load packages and data 
+##==============================================================================##
+
+# The ggplot2 packages is needed to create the plot. Install it, if needed, by 
+# uncommenting the following line:
+# install.packages("ggplot2")
+
+# Load ggplot2:
 library(ggplot2)
 
-# Inferring the likely proportion of true hypotheses studied in the literature
-# and statistical power based on the observed proportion of significant results
+# Load data: Creating the plot requires input from the main analysis script
+# (quantitative_analyses.R). In the RMarkdown file for the manuscript, this
+# script is already loaded when the code below is run. The respective variables
+# are *not* hard-coded or recalculated here to avoid errors or inconsistencies
+# if any changes to the data or main analysis script should be made in the future.
+# Therefore, if you wish to run this script outside of the RMarkdown environment 
+# of the manuscript, you first need to load the main analysis script (and with it,
+# the data). Adjust the code to load the script if necessary.
+source("quantitative_analyses.R")
 
-# t = proportion of true hypotheses
-# a = alpha
-# b = beta; i.e. 1-b = power
-# PRR = positive result rate (proportion of significant results in the literature)
-truehyps <- function(PRR, a, pwr){-(PRR - a)/((1-pwr) + a - 1)}
-pwrfun <- function(t, a, PRR){(a*t+PRR-a)/(t)}
 
+##==============================================================================##
+## 2. Functions to calculate power and rate of true hypotheses 
+##    Inferring the proportion of true hypotheses studied in the literature
+##    and statistical power based on the observed proportion of 
+##    positive results
+##==============================================================================##
+
+# The functions calculated below are based on the following equation:
+# PPR = a*(1-t) + (1-b)*t, with
+# PRR: the positive result rate (the proportion of positive results in the literature),
+# t: the proportion of true hypotheses in the literature,
+# a: alpha (the probability of a positive result when testing a false hypothesis), and
+# 1-b: power (the probability of a positive result when testing a true hypothesis)
+# 
+# Solving for t gives
+# t = (a - PRR)/(a + b - 1)
+# As a function:
+truehyps <- function(PRR, a, b){(a - PRR)/(a + b - 1)}
+
+# Solving the same equation for 1-b gives
+# 1-b = (PRR - a + a*t)/t
+# As a function:
+pwrfun <- function(t, a, PRR){(PRR -a + a*t)/t}
+
+# We will assume a fixed alpha level of 5% for all of the following:
 a <- 0.05
 
-### 3 groups: original SRs, original RRs, all RRs
+##==============================================================================##
+## 3. Plot functions with observed positive result rates as input
+##    The main comparison of interest is *original* standard reports versus
+##    *original* Registered Reports (based on the suspicion that replication
+##    RRs might have a lower base rate of true hypotheses), but we will plot
+##    the values for all RRs (original and replications) as well because it
+##    may be of general interest.
+##    We thus have 3 groups:
+##    * original SRs (n = 148)
+##    * original RRs (n = 30)
+##    * all RRs (n = 71)
+##==============================================================================##
+
 
 pwrprior.df <-  data.frame(t=c(1:1000)/1000)
 pwrprior.df$group <- "all RRs (PRR = .4366, N = 71)"
