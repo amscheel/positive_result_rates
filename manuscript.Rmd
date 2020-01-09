@@ -258,7 +258,7 @@ This means that our non-replication category also contains some conceptual repli
 For ease of communication we will nonetheless refer to this category as "original" studies.
 As expected, direct replications were much more common among Registered Reports than standard reports: `r n.rep.RR` out of `r n.RR` RRs ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` SRs ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
 However, this difference cannot account for the stark overall difference between SRs and RRs described above: 
-Although replication RRs in our sample indeed had a lower positive result rate than original RRs (see Table 1), the difference between original SRs and original RRs -- $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$ -- was still significantly different from 0 ($\chi^2 = `r printnum(repproptest$statistic)`$, $p `r printp(repproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(reptost$TOST_z1, reptost$TOST_z2))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
+Although replication RRs in our sample indeed had a lower positive result rate than original RRs (see Table 1), the difference between original SRs and original RRs -- $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$ -- was still significantly different from 0 ($\chi^2 = `r printnum(origproptest$statistic)`$, $p `r printp(origproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(reptost$TOST_z1, reptost$TOST_z2))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
 ```{r echo = FALSE, results = 'asis'}
 apa_table(
   rep.table
@@ -307,10 +307,10 @@ apa_table(
                   "full text", "total")
   , align = c("l", "l", rep("r", 3))
   , caption = "Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)"
-  , note = "This table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, 9 papers contributed two each, one contributed three, and one contributed four."
+  , note = "This table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, nine papers contributed two each, one contributed three, and one contributed four."
   , added_stub_head = "Variables"
   , col_spanners = list(`source` = c(3, 5))
-  , midrules = c(6, 16, 22, 23, 27, 32)
+  , midrules = c(10, 16, 22, 23, 28, 32)
   , landscape = FALSE
   , font_size = "footnotesize"
   , escape = TRUE
@@ -320,17 +320,17 @@ apa_table(
 ```{r echo = FALSE, results = 'asis'}
 apa_table(
   phrasetable.rep
-  , digits = c(0, 0, 0, 0, 0)
-  , col.names = c("core word(s)", "introduction phrase", "abstract", 
-                  "full text", "total")
-  , align = c("l", "l", rep("r", 3))
+  , digits = c(0, 0, 0, 0, 0, 0, 0)
+  , col.names = c("", "core word(s)", "introduction phrase", "abstract", 
+                  "full text", "total", "")
+  , align = c("l", "l", "l", rep("r", 4))
   , caption = "Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)"
-  , note = "This table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no codeable hypothesis introduction. 30 papers contributed one phrase each, 7 papers contributed two each, and three contributed three each."
+  , note = "Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each."
   , added_stub_head = "Variables"
-  , col_spanners = list(`source` = c(3, 5))
-  , midrules = c(4, 5, 6, 12, 16, 33, 34, 35, 36)
+  , col_spanners = list(`source` = c(4, 6))
+  , midrules = c(6, 10, 11, 12, 29, 30, 34, 35, 36)
   , landscape = FALSE
-  , font_size = "footnotesize"
+  , font_size = "scriptsize"
   , escape = TRUE
 )
 ```

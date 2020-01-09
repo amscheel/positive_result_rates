@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6400 64-bit) (preloaded format=pdflatex 2017.10.16)  7 JAN 2020 20:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6400 64-bit) (preloaded format=pdflatex 2017.10.16)  9 JAN 2020 20:14
 entering extended mode
 **./manuscript.tex
 (manuscript.tex
@@ -1236,10 +1236,10 @@ e 225.
 [10]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11 <./Sampling_exclusions_and_resampling.pdf>] [12] [13]
+[11 <./Sampling_exclusions_and_resampling.pdf>] [12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[14] [15]
+[13] [14] [15]
 <manuscript_files/figure-latex/unnamed-chunk-5-1.pdf, id=120, pagebox=cropbox, 
 289.08pt x 216.81pt>
 File: manuscript_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pd
@@ -1262,9 +1262,6 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 388.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 388.
-
-LaTeX Warning: Float too large for page by 99.7823pt on input line 508.
-
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1520,7 +1517,7 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 819.
 Here is how much of TeX's memory you used:
  17089 strings out of 493318
  248959 string characters out of 3138988
- 393371 words of memory out of 3000000
+ 396371 words of memory out of 3000000
  20103 multiletter control sequences out of 15000+200000
  78124 words of font info for 118 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1536,7 +1533,7 @@ rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.
 pfb>
-Output written on manuscript.pdf (35 pages, 385753 bytes).
+Output written on manuscript.pdf (35 pages, 392916 bytes).
 PDF statistics:
  474 PDF objects out of 1000 (max. 8388607)
  120 named destinations out of 1000 (max. 500000)
