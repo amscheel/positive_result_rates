@@ -57,12 +57,7 @@ source("quantitative_analyses.R")
 # a: alpha (the probability of a positive result when testing a false hypothesis), and
 # 1-b: power (the probability of a positive result when testing a true hypothesis)
 # 
-# Solving for t gives
-# t = (a - PRR)/(a + b - 1)
-# As a function:
-truehyps <- function(PRR, a, b){(a - PRR)/(a + b - 1)}
-
-# Solving the same equation for 1-b gives
+# Solving for 1-b gives
 # 1-b = (PRR - a + a*t)/t
 # As a function:
 pwrfun <- function(t, a, PRR){(PRR -a + a*t)/t}
@@ -83,36 +78,66 @@ a <- 0.05
 ##    * all RRs (n = 71)
 ##==============================================================================##
 
+## 3.1 Create a dataframe for each group and fill it with calculated power
+##     and baserate values
 
-pwrprior.df <-  data.frame(t=c(1:1000)/1000)
-pwrprior.df$group <- "all RRs (PRR = .4366, N = 71)"
-pwrprior.df$lower <- pwrfun(t = pwrprior.df$t, a = a, PRR = min(RR.binom$conf.int))
-pwrprior.df$estimate <- pwrfun(t = pwrprior.df$t, a = a, PRR = prop.support.RR)
-pwrprior.df$upper <- pwrfun(t = pwrprior.df$t, a = a, PRR = max(RR.binom$conf.int))   
+# Create dataframe for original SRs
+pwrprior.origSR <- data.frame(t=c(1:1000)/1000) # Enter values for t from .001 - 1
+pwrprior.origSR$group <- "original SRs (PRR = .9595, n = 148)" # group label (later used for plot)
 
-pwrprior.origRR <- data.frame(t=c(1:1000)/1000)
-pwrprior.origRR$group <- "original RRs (PRR = .5, n = 30)"
-pwrprior.origRR$lower <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = min(RR.orig.binom$conf.int))
-pwrprior.origRR$estimate <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = prop.orig.support.RR)
-pwrprior.origRR$upper <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = max(RR.orig.binom$conf.int))   
-
-pwrprior.origSR <- data.frame(t=c(1:1000)/1000)
-pwrprior.origSR$group <- "original SRs (PRR = .9595, n = 148)"
+# Calculate values for power (1-b) for all values of t and:
+# - for the lower end of the 95% CI for the positive result rate
+# - for the positive result rate estimate
+# - for the upper end of the 95% CI for the positive result rate
 pwrprior.origSR$lower <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = min(SR.orig.binom$conf.int))
 pwrprior.origSR$estimate <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = prop.orig.support.SR)
 pwrprior.origSR$upper <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = max(SR.orig.binom$conf.int))   
 
-pwrprior.df <- rbind(pwrprior.df, pwrprior.origRR, pwrprior.origSR)
 
+# Create dataframe for original RRs
+pwrprior.origRR <- data.frame(t=c(1:1000)/1000) # Enter values for t from .001 - 1
+pwrprior.origRR$group <- "original RRs (PRR = .5, n = 30)" # group label (later used for plot)
+
+# Calculate values for power (1-b) for all values of t and:
+# - for the lower end of the 95% CI for the positive result rate
+# - for the positive result rate estimate
+# - for the upper end of the 95% CI for the positive result rate
+pwrprior.origRR$lower <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = min(RR.orig.binom$conf.int))
+pwrprior.origRR$estimate <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = prop.orig.support.RR)
+pwrprior.origRR$upper <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = max(RR.orig.binom$conf.int))   
+
+
+# Create dataframe for all RRs
+pwrprior.allRRs <-  data.frame(t=c(1:1000)/1000) # Enter values for t from .001 - 1
+pwrprior.allRRs$group <- "all RRs (PRR = .4366, N = 71)" # group label (later used for plot)
+
+# Calculate values for power (1-b) for all values of t and:
+# - for the lower end of the 95% CI for the positive result rate
+# - for the positive result rate estimate
+# - for the upper end of the 95% CI for the positive result rate
+pwrprior.allRRs$lower <- pwrfun(t = pwrprior.allRRs$t, a = a, PRR = min(RR.binom$conf.int))
+pwrprior.allRRs$estimate <- pwrfun(t = pwrprior.allRRs$t, a = a, PRR = prop.support.RR)
+pwrprior.allRRs$upper <- pwrfun(t = pwrprior.allRRs$t, a = a, PRR = max(RR.binom$conf.int))   
+
+
+## 3.2 prepare the plot
+
+# Combine all three dataframes into one:
+pwrprior.df <- rbind(pwrprior.allRRs, pwrprior.origRR, pwrprior.origSR)
+
+# Truncate power at 1 (the function does not know that power can't
+# exceed 100% and it causes problems during plotting)
 pwrprior.df$lower[pwrprior.df$lower > 1 & pwrprior.df$upper > 1] <- NA
 pwrprior.df$lower[pwrprior.df$lower > 1] <- 1
 pwrprior.df$upper[pwrprior.df$upper > 1] <- 1
 
+# Turn the group labels into factors and make sure they're listed in the correct order
 pwrprior.df$group <- factor(pwrprior.df$group, 
                             levels = c("original SRs (PRR = .9595, n = 148)",
                                        "original RRs (PRR = .5, n = 30)", 
                                        "all RRs (PRR = .4366, N = 71)"))
 
+## 3.3 Create the plot
 power.baserate.plot <- ggplot(pwrprior.df, aes(x = t, y = estimate, colour = group, 
                                                fill = group, linetype = group)) +
                               geom_line(aes(y = estimate), size = 1) + 
