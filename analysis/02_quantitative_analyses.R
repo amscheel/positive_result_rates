@@ -146,10 +146,11 @@ mainplot <- ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
                     scale_fill_manual(values= c("#bcbddc", "#756bb1"),
                                       name="first hypothesis") +
                     annotate("text", label = paste("N =", n.SR), 
-                             x = 1, y = 105, size = 5) +
+                             x = 1, y = 105) +
                     annotate("text", label = paste("N =", n.RR), 
-                             x = 2, y = 105, size = 5) +
-                    geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.05, size = 0.5) +
+                             x = 2, y = 105) +
+                    geom_errorbar(aes(ymin = lower, ymax = upper), 
+                                  width = 0.05, size = 0.5) +
                     scale_x_discrete(breaks = waiver(), 
                                      labels = c("SR" = "Standard\nReports",
                                                 "RR" = "Registered\nReports"), 
@@ -157,7 +158,7 @@ mainplot <- ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
                     scale_y_continuous(lim=c(0,110), breaks = c(seq(0, 100, 10)),
                                        minor_breaks = c(seq(0, 100, 5)),
                                        name = "% of papers", expand = c(0, 0))+
-                    theme_minimal(base_size = 20)+
+                    theme_minimal()+
                     theme(panel.grid.major.x = element_blank(),
                           panel.grid.minor.x = element_blank(),
                           legend.margin = margin(0,0,0,-5.5)) +
