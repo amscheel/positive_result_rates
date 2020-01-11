@@ -32,9 +32,11 @@ header-includes:
   - \usepackage{framed}
   - \usepackage{caption}
   - \usepackage{setspace}
+  - \captionsetup[figure]{font={stretch=1, footnotesize}}
   - \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
   - \newfloat{textbox}{thp}{lop}
   - \floatname{textbox}{Box}
+
 
 bibliography      : ["prr.bib","prr_software.bib"]
 
@@ -147,29 +149,29 @@ We report how we determined our sample size, all data exclusions, and all measur
 ## Sample
 We used the same method as @Fanelli2010 to obtain a new sample of standard reports, but restricted year of publication to 2013-2018 to match the sample to the RR population. 
 We excluded papers if they were not complete, published, non-retracted articles (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision. 
-An overview of the sampling process and all exclusions are shown in Figure 1. 
+An overview of the sampling process and all exclusions are shown in Figure\ \@ref(fig:sampling). 
 
 For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase "test$^\ast$ the hypothes$^\ast$" and the ISSNs of all journals listed in the ESI Psychiatry/Psychology category. 
 Using the same sample size as @Fanelli2010, we randomly selected 150 papers from the 1919 search results using the sample() function in R and the seed "20190120" (not specified in our preregistration, but no other seeds were tried).
-We initially excluded eight papers and replaced them (the decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had erroneously been excluded, leading to a final sample size of 152 rather than 150 (see Fig. 1). 
+We initially excluded eight papers and replaced them (the decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had erroneously been excluded, leading to a final sample size of 152 rather than 150 (see Fig.\ \@ref(fig:sampling)). 
 
+(ref:sampling) Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. "Preregistered": study had been preregistered but was not a full RR; "results-blind review": article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); "ambiguous": Four of these had been treated as RRs but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance. We chose to exclude these cases to be conservative.
 
-```{r echo=FALSE, warning=FALSE, fig.cap="XXX ADD CAPTION", out.width = "\\textwidth"}
+```{r sampling, echo=FALSE, warning=FALSE, fig.cap = "(ref:sampling)", out.width = "\\textwidth"}
 
-knitr::include_graphics("Sampling_exclusions_and_resampling.pdf")
+knitr::include_graphics("Sampling_exclusions_and_resampling.png")
 ```
 
 For Registered Reports we aimed to include all published RRs in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase "test$^\ast$ the hypothes$^\ast$". 
-We downloaded a database of published RRs curated by the Center for Open Science[^1] (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than "Psychiatry/Psychology" or "Multidisciplinary" in the ESI. 
-[^1]: https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9 
+We downloaded a database of published RRs curated by the Center for Open Science^[https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than "Psychiatry/Psychology" or "Multidisciplinary" in the ESI. 
 Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 RRs published in Cortex because the ESI counts this journal towards the separate category "Neuroscience and Behavior". 
 Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., Royal Society Open Science) were hand-coded by AS. 
 This deviates from our preregistration insofar as we had not specified how discipline membership would be determined.
 Following these exclusions, we verified the RR status of all remaining papers in our sample. 
 Papers were counted as RRs if they were labelled as such by the journal itself and the journal submission guidelines made it clear that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with https://cos.io/rr). 
 For papers not clearly labelled as RRs we consulted relevant editorial publications (e.g., for special issues) or contacted the respective editors directly. 
-Of the 151 entries in the COS RR database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because they were not certainly RRs, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 RRs for the final analysis (see Fig. 1). 
-Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing [@RRRwebsite; decision was not preregistered].
+Of the 151 entries in the COS RR database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because they were not certainly RRs, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 RRs for the final analysis (see Fig.\ \@ref(fig:sampling)). 
+Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing [@RRRwebsite, decision was not preregistered].
 
 ## Measures and coding procedure
 The main dependent variable was whether or not the first hypothesis was supported or not, as reported by the authors.
@@ -242,12 +244,14 @@ source(here("analysis", "quantitative_analyses.R"))
 
 ## Confirmatory Analyses
 
-`r n.support.SR` out of `r n.SR` SRs and `r n.support.RR` out of `r n.RR` RRs had positive results, meaning that the positive result rate was $`r printnum(prop.support.SR*100)` \%$ for SRs ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]) and $`r printnum(prop.support.RR*100)` \%$ for RRs ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]; see Fig. 1). 
+`r n.support.SR` out of `r n.SR` SRs and `r n.support.RR` out of `r n.RR` RRs had positive results, meaning that the positive result rate was $`r printnum(prop.support.SR*100)` \%$ for SRs ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]) and $`r printnum(prop.support.RR*100)` \%$ for RRs ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]; see Fig.\ \@ref(fig:mainplot)). 
 The preregistered one-sided proportions test with an alpha level of $5\%$ showed that this difference of $-`r printnum((prop.support.SR-prop.support.RR)*100)` \%$ was statistically significant, $\chi^2 = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
 Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100` \%$ and $`r SESOI*100` \%$ at $\alpha = 5\%$, $z = `r printnum(min(tostresult$TOST_z1, tostresult$TOST_z2))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
 We thus accept our hypothesis that the positive result rate in RRs is lower than in SRs.
 
-```{r echo=FALSE, warning=FALSE, fig.width=4, fig.height=3, fig.cap="Positive result rates for standard reports and Registered Reports. Error bars indicate 95% confidence intervals around the observed positive result rate."}
+(ref:mainplot) Positive result rates for standard reports and Registered Reports. Error bars indicate $95 \%$ confidence intervals around the observed positive result rate.
+
+```{r mainplot, echo=FALSE, warning=FALSE, fig.width=4, fig.height=3, fig.cap="(ref:mainplot)"}
 mainplot
 ```
 
@@ -259,13 +263,16 @@ For ease of communication we will nonetheless refer to this category as "origina
 As expected, direct replications were much more common among Registered Reports than standard reports: `r n.rep.RR` out of `r n.RR` RRs ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` SRs ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
 However, this difference cannot account for the stark overall difference between SRs and RRs described above: 
 Although replication RRs in our sample indeed had a lower positive result rate than original RRs (see Table 1), the difference between original SRs and original RRs -- $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$ -- was still significantly different from 0 ($\chi^2 = `r printnum(origproptest$statistic)`$, $p `r printp(origproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(reptost$TOST_z1, reptost$TOST_z2))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
+
+(ref:table1) Positive results in original studies vs replication studies
+
 ```{r echo = FALSE, results = 'asis'}
 apa_table(
   rep.table
   , digits = c(0, 0, 0, 2, 0, 0, 0, 2, 0)
   , col.names = c("", "n", "supported", "\\%", "95\\% CI", "n", "supported", "\\%", "95\\% CI")
   , align = c("l", rep("r", 8))
-  , caption = "Positive results in original studies vs replication studies"
+  , caption = "(ref:table1)"
   , note = "SRs = standard reports, RRs = Registered Reports"
   , added_stub_head = "Variables"
   , col_spanners = list(`original studies` = c(2, 5), `replication studies` = c(6, 9))
@@ -276,7 +283,6 @@ Since our SR sample represents a direct replication of @Fanelli2010 for the disc
 The difference between the positive result rate for SRs in our sample ($`r printnum(prop.support.SR*100)`\%$) and Fanelli's ($`r printnum(prop.support.Fanelli*100)`\%$) is $`r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$. This difference is not significantly different from 0 in a two-sided proportions test ($\chi^2 = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(Fanellitost$TOST_z1, Fanellitost$TOST_z2))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
 In other words, we can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least $\pm `r SESOI*100`\%$ between them. 
 The data are inconclusive.
-
 
 
 ```{r include=FALSE}
@@ -299,6 +305,8 @@ Authors thus seemed to have focussed more on the goal to replicate a previous fi
 Tables 2 and 3 list all unique hypothesis introductions and their frequency for original RRs and direct replication RRs, respectively, grouped by the five most frequent word stems ("hypothes$^\ast$", "replicat$^\ast$", "test$^\ast$", "examine$^\ast$", "predict$^\ast$"). 
 Using five as a cutoff value is an arbitrary decision, but we believe that it strikes a reasonable balance between condensing the information and doing the variance of the data justice. 
 
+(ref:table2) Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)
+
 ```{r echo = FALSE, results = 'asis'}
 apa_table(
   phrasetable.orig
@@ -306,8 +314,8 @@ apa_table(
   , col.names = c("core word(s)", "introduction phrase", "abstract", 
                   "full text", "total")
   , align = c("l", "l", rep("r", 3))
-  , caption = "Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)"
-  , note = "This table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, nine papers contributed two each, one contributed three, and one contributed four."
+  , caption = "(ref:table2)"
+  , note = "Table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, nine papers contributed two each, one contributed three, and one contributed four."
   , added_stub_head = "Variables"
   , col_spanners = list(`source` = c(3, 5))
   , midrules = c(10, 16, 22, 23, 28, 32)
@@ -317,6 +325,8 @@ apa_table(
 )
 ```
 
+(ref:table3) Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)
+
 ```{r echo = FALSE, results = 'asis'}
 apa_table(
   phrasetable.rep
@@ -324,7 +334,7 @@ apa_table(
   , col.names = c("", "core word(s)", "introduction phrase", "abstract", 
                   "full text", "total", "")
   , align = c("l", "l", "l", rep("r", 4))
-  , caption = "Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)"
+  , caption = "(ref:table3)"
   , note = "Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each."
   , added_stub_head = "Variables"
   , col_spanners = list(`source` = c(4, 6))
@@ -350,12 +360,14 @@ Our replication in a more recent sample of the psychology literature thus yielde
 Furthermore, our estimate of the positive result rate for Registered Reports ($`r printnum(prop.support.RR*100)` \%$) is comparable to the $39.5\%$ reported by @Allen2019, despite some differences in method and studied population.
 
 To explain the $`r printnum((prop.support.SR - prop.support.RR)*100)` \%$ gap between standard reports and Registered Reports, we must assume some combination of differences in bias, statistical power, or the proportion of true hypotheses researchers choose to examine. 
-Figure 3 visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased. 
+Figure\ \@ref(fig:powerbaserate) visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased. 
 For example, if we assume no publication bias and no QRPs, more than $90\%$ of the hypotheses authors of standard reports study must be true and study designs must have more than $90\%$ power for the true effect size. 
 This is highly unlikely, meaning that the standard literature is unlikely to reflect reality. 
 As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high, or higher, than in standard reports, leaving the rate of true hypotheses and bias as remaining explanations.
 
-```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3, fig.cap="XXX ADD CAPTION"}
+(ref:powerbaserate) Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given $\alpha = 5 \%$ and no bias. Shaded areas indicate $95\%$ confidence intervals. SRs = standard reports, RRs = Registered Reports, PRR = positive result rate. The curve for all SRs (i.e, including replications; $`r printnum(prop.support.SR*100)` \%$ positive results, $N = `r n.SR`$) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation $PRR = \alpha*(1-t) + (1-\beta)*t$; with $PRR =$ positive result rate, $\alpha =$ probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), $1-\beta =$ probability of obtaining a positive result when testing a true hypothesis (power), and $t =$ proportion of true hypotheses; and solving for $t$ and $1-\beta$, respectively.
+
+```{r powerbaserate, echo=FALSE, warning=FALSE, fig.width=6, fig.height=3, fig.cap="(ref:powerbaserate"}
 source(here("analysis", "power_baserate_plot.R"))
 power.baserate.plot
 ```

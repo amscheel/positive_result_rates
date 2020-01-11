@@ -1,49 +1,40 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[
-  british,
-  ,man,floatsintext]{apa6}
+\documentclass[british,,man,floatsintext]{apa6}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
-% Use upquote if available, for straight quotes in verbatim environments
+% use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
 \hypersetup{
-  pdftitle={Positive Results in Registered Reports},
-  pdfauthor={Anne Scheel, Mitchell Schijen, \& Daniël Lakens},
-  pdflang={en-UK},
-  pdfkeywords={keyword 1, keyword 2, keyword 3},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+            pdftitle={Positive Results in Registered Reports},
+            pdfauthor={Anne Scheel, Mitchell Schijen, \& Daniël Lakens},
+            pdfkeywords={keyword 1, keyword 2, keyword 3},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -53,14 +44,25 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
 \shorttitle{Positive Results in Registered Reports}
 \affiliation{
 \vspace{0.5cm}
@@ -93,15 +95,16 @@
 \usepackage{framed}
 \usepackage{caption}
 \usepackage{setspace}
+\captionsetup[figure]{font={stretch=1, footnotesize}}
 \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
 \newfloat{textbox}{thp}{lop}
 \floatname{textbox}{Box}
-\ifxetex
-  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=british]{babel}
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
   \usepackage{polyglossia}
   \setmainlanguage[variant=british]{english}
-\else
-  \usepackage[shorthands=off,main=british]{babel}
 \fi
 
 \title{Positive Results in Registered Reports}
@@ -138,7 +141,7 @@ In other words: nearly all predictions researchers make must be correct, and eit
 \subsection{A biased literature}\label{a-biased-literature}}
 
 Sterling (1959) already suspected a selection process behind the numbers he found:
-\enquote{(\ldots) for psychological journals a policy exists under which the vast majority of published articles satisfy a minimum criterion of {[}statistical{]} significance} (p.~31).
+\enquote{(\ldots{}) for psychological journals a policy exists under which the vast majority of published articles satisfy a minimum criterion of {[}statistical{]} significance} (p.~31).
 This selection process is one of several kinds of biases that will lead to an inflation of positive results in the literature.
 We can distinguish two broad categories of bias: \enquote{publication bias} and \enquote{questionable research practices}.
 Publication bias describes publishing behaviours that give manuscripts that find support for their tested hypotheses a higher chance of being published than manuscripts that do not find support for their tested hypotheses.
@@ -215,27 +218,28 @@ We report how we determined our sample size, all data exclusions, and all measur
 
 We used the same method as Fanelli (2010) to obtain a new sample of standard reports, but restricted year of publication to 2013-2018 to match the sample to the RR population.
 We excluded papers if they were not complete, published, non-retracted articles (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision.
-An overview of the sampling process and all exclusions are shown in Figure 1.
+An overview of the sampling process and all exclusions are shown in Figure~\ref{fig:sampling}.
 
 For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)} and the ISSNs of all journals listed in the ESI Psychiatry/Psychology category.
 Using the same sample size as Fanelli (2010), we randomly selected 150 papers from the 1919 search results using the sample() function in R and the seed \enquote{20190120} (not specified in our preregistration, but no other seeds were tried).
-We initially excluded eight papers and replaced them (the decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had erroneously been excluded, leading to a final sample size of 152 rather than 150 (see Fig. 1).
+We initially excluded eight papers and replaced them (the decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had erroneously been excluded, leading to a final sample size of 152 rather than 150 (see Fig.~\ref{fig:sampling}).
+
+
 
 \begin{figure}
-\includegraphics[width=\textwidth]{Sampling_exclusions_and_resampling} \caption{XXX ADD CAPTION}\label{fig:unnamed-chunk-2}
+\includegraphics[width=\textwidth]{Sampling_exclusions_and_resampling} \caption{Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. \enquote{Preregistered}: study had been preregistered but was not a full RR; \enquote{results-blind review}: article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); \enquote{ambiguous}: Four of these had been treated as RRs but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance. We chose to exclude these cases to be conservative.}\label{fig:sampling}
 \end{figure}
 
 For Registered Reports we aimed to include all published RRs in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)}.
-We downloaded a database of published RRs curated by the Center for Open Science{[}\^{}1{]} (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than \enquote{Psychiatry/Psychology} or \enquote{Multidisciplinary} in the ESI.
-{[}\^{}1{]}: \url{https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9}
+We downloaded a database of published RRs curated by the Center for Open Science\footnote{\url{https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9}} (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than \enquote{Psychiatry/Psychology} or \enquote{Multidisciplinary} in the ESI.
 Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 RRs published in Cortex because the ESI counts this journal towards the separate category \enquote{Neuroscience and Behavior}.
 Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., Royal Society Open Science) were hand-coded by AS.
 This deviates from our preregistration insofar as we had not specified how discipline membership would be determined.
 Following these exclusions, we verified the RR status of all remaining papers in our sample.
 Papers were counted as RRs if they were labelled as such by the journal itself and the journal submission guidelines made it clear that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with \url{https://cos.io/rr}).
 For papers not clearly labelled as RRs we consulted relevant editorial publications (e.g., for special issues) or contacted the respective editors directly.
-Of the 151 entries in the COS RR database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because they were not certainly RRs, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 RRs for the final analysis (see Fig. 1).
-Note that we excluded all eight \enquote{Registered Replication Reports} (RRRs; Simons, Holcombe, \& Spellman, 2014; Simons, 2018) in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing {[}(``Registered Replication Reports,'' n.d.); decision was not preregistered{]}.
+Of the 151 entries in the COS RR database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because they were not certainly RRs, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 RRs for the final analysis (see Fig.~\ref{fig:sampling}).
+Note that we excluded all eight \enquote{Registered Replication Reports} (RRRs; Simons, Holcombe, \& Spellman, 2014; Simons, 2018) in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing (``Registered Replication Reports,'' n.d., decision was not preregistered).
 
 \hypertarget{measures-and-coding-procedure}{%
 \subsection{Measures and coding procedure}\label{measures-and-coding-procedure}}
@@ -281,7 +285,7 @@ We also wanted to code if a study was a replication of a previously published on
 We expected a much larger proportion of RRs to be direct replications, many of which may have been motivated by scepticism of the original study.
 A lower positive result rate in RRs could then be an effect of failed replications rather than an effect of safeguards against QRPs and publication bias.
 After an initial coding attempt with ill-defined coding criteria lead to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered):
-We searched the full texts of all papers for the string \enquote{replic\(^\ast\)} (cf.~Makel, Plucker, \& Hegarty, 2012; Köhler \& Cortina, 2019; Mueller-Langer, Fecher, Harhoff, \& Wagner, 2019; Pridemore, Makel, \& Plucker, 2018), and for those that did contain it determined whether the first hypothesis was a close or direct replication of previously published work.
+We searched the full texts of all papers for the string \enquote{replic\(^\ast\)} (cf. Makel, Plucker, \& Hegarty, 2012; Köhler \& Cortina, 2019; Mueller-Langer, Fecher, Harhoff, \& Wagner, 2019; Pridemore, Makel, \& Plucker, 2018), and for those that did contain it determined whether the first hypothesis was a close or direct replication of previously published work.
 Conceptual replications and internal replications were not counted as replications in this narrow sense:
 The reason to code replication status in the first place was the idea that direct replications of previous work may be motivated by replicators' scepticism in the hypothesis and thus have a low prior probability, whereas conceptual replications are usually considered as building on previous work rather than verifying it.
 AS coded all papers, DL double-coded 32 RRs (\(45.07 \%\)) and 99 SRs (\(21.05 \%\)).
@@ -314,15 +318,17 @@ We would accept our hypothesis that RRs have a lower positive result rate than S
 \hypertarget{confirmatory-analyses}{%
 \subsection{Confirmatory Analyses}\label{confirmatory-analyses}}
 
-146 out of 152 SRs and 31 out of 71 RRs had positive results, meaning that the positive result rate was \(96.05 \%\) for SRs (\(95 \%\) CI {[}91.61, 98.54{]}) and \(43.66 \%\) for RRs (\(95 \%\) CI {[}31.91, 55.95{]}; see Fig. 1).
+146 out of 152 SRs and 31 out of 71 RRs had positive results, meaning that the positive result rate was \(96.05 \%\) for SRs (\(95 \%\) CI {[}91.61, 98.54{]}) and \(43.66 \%\) for RRs (\(95 \%\) CI {[}31.91, 55.95{]}; see Fig.~\ref{fig:mainplot}).
 The preregistered one-sided proportions test with an alpha level of \(5\%\) showed that this difference of \(-52.39 \%\) was statistically significant, \(\chi^2 = 77.96\), \(p < .001\).
 Unsurprisingly, the difference was not statistically equivalent to a range between \(-6 \%\) and \(6 \%\) at \(\alpha = 5\%\), \(z = 7.61\), \(p > .999\), meaning that we cannot reject differences more extreme than \(6\%\).
 We thus accept our hypothesis that the positive result rate in RRs is lower than in SRs.
 
+
+
 \begin{figure}
 \centering
-\includegraphics{manuscript_files/figure-latex/unnamed-chunk-5-1.pdf}
-\caption{\label{fig:unnamed-chunk-5}Positive result rates for standard reports and Registered Reports. Error bars indicate 95\% confidence intervals around the observed positive result rate.}
+\includegraphics{manuscript_files/figure-latex/mainplot-1.pdf}
+\caption{\label{fig:mainplot}Positive result rates for standard reports and Registered Reports. Error bars indicate \(95 \%\) confidence intervals around the observed positive result rate.}
 \end{figure}
 
 \hypertarget{exploratory-analyses}{%
@@ -335,10 +341,12 @@ As expected, direct replications were much more common among Registered Reports 
 However, this difference cannot account for the stark overall difference between SRs and RRs described above:
 Although replication RRs in our sample indeed had a lower positive result rate than original RRs (see Table 1), the difference between original SRs and original RRs -- \(45.95\%\) -- was still significantly different from 0 (\(\chi^2 = 46.28\), \(p < .001\)) and not statistically equivalent to a range between \(-6\%\) and \(6\%\) (\(z = 4.31\), \(p > .999\)), both at \(\alpha = 5\%\).
 
+
+
 \begin{table}[tbp]
 \begin{center}
 \begin{threeparttable}
-\caption{\label{tab:unnamed-chunk-6}Positive results in original studies vs replication studies}
+\caption{\label{tab:unnamed-chunk-4}Positive results in original studies vs replication studies}
 \begin{tabular}{lrrrrrrrr}
 \toprule
  & \multicolumn{4}{c}{original studies} & \multicolumn{4}{c}{replication studies} \\
@@ -379,10 +387,12 @@ Authors thus seemed to have focussed more on the goal to replicate a previous fi
 Tables 2 and 3 list all unique hypothesis introductions and their frequency for original RRs and direct replication RRs, respectively, grouped by the five most frequent word stems (\enquote{hypothes\(^\ast\)}, \enquote{replicat\(^\ast\)}, \enquote{test\(^\ast\)}, \enquote{examine\(^\ast\)}, \enquote{predict\(^\ast\)}).
 Using five as a cutoff value is an arbitrary decision, but we believe that it strikes a reasonable balance between condensing the information and doing the variance of the data justice.
 
+
+
 \begin{table}[tbp]
 \begin{center}
 \begin{threeparttable}
-\caption{\label{tab:unnamed-chunk-8}Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)}
+\caption{\label{tab:unnamed-chunk-6}Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)}
 \footnotesize{
 \begin{tabular}{llrrr}
 \toprule
@@ -433,16 +443,18 @@ predict* &  & 4 & 0 & 4\\
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} This table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, nine papers contributed two each, one contributed three, and one contributed four.}
+\normalsize{\textit{Note.} Table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, nine papers contributed two each, one contributed three, and one contributed four.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
 \end{table}
 
+
+
 \begin{table}[tbp]
 \begin{center}
 \begin{threeparttable}
-\caption{\label{tab:unnamed-chunk-9}Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)}
+\caption{\label{tab:unnamed-chunk-7}Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)}
 \scriptsize{
 \begin{tabular}{lllrrrr}
 \toprule
@@ -519,19 +531,21 @@ More than half of the analysed RRs tested hypotheses based on direct replication
 The introduction of Registered Reports has clearly led to a much larger proportion of null results appearing in the published literature compared to standard reports.
 
 The positive result rate we found in standard reports (\(96.05 \%\)) is slightly higher than the \(91.5\%\) reported by Fanelli (2010), although this difference was not statistically significant.
-Our replication in a more recent sample of the psychology literature thus yielded a comparably high estimate of supported hypotheses, but we cannot rule out that the positive result rate in the population has increased since 2010 (cf.~Fanelli, 2012).
+Our replication in a more recent sample of the psychology literature thus yielded a comparably high estimate of supported hypotheses, but we cannot rule out that the positive result rate in the population has increased since 2010 (cf. Fanelli, 2012).
 Furthermore, our estimate of the positive result rate for Registered Reports (\(43.66 \%\)) is comparable to the \(39.5\%\) reported by Allen \& Mehler (2019), despite some differences in method and studied population.
 
 To explain the \(52.39 \%\) gap between standard reports and Registered Reports, we must assume some combination of differences in bias, statistical power, or the proportion of true hypotheses researchers choose to examine.
-Figure 3 visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased.
+Figure~\ref{fig:powerbaserate} visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased.
 For example, if we assume no publication bias and no QRPs, more than \(90\%\) of the hypotheses authors of standard reports study must be true and study designs must have more than \(90\%\) power for the true effect size.
 This is highly unlikely, meaning that the standard literature is unlikely to reflect reality.
 As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high, or higher, than in standard reports, leaving the rate of true hypotheses and bias as remaining explanations.
 
+
+
 \begin{figure}
 \centering
-\includegraphics{manuscript_files/figure-latex/unnamed-chunk-10-1.pdf}
-\caption{\label{fig:unnamed-chunk-10}XXX ADD CAPTION}
+\includegraphics{manuscript_files/figure-latex/powerbaserate-1.pdf}
+\caption{\label{fig:powerbaserate}(ref:powerbaserate}
 \end{figure}
 
 It is a-priori plausible that Registered Reports are currently used for a population of hypotheses that are less likely to be true:
@@ -597,10 +611,10 @@ Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tip
 Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. doi:\href{https://doi.org/10.1037/0022-0167.29.2.189}{10.1037/0022-0167.29.2.189}
 
 \leavevmode\hypertarget{ref-Chambers2013}{}%
-Chambers, C. D. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
+Chambers, C. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
 
 \leavevmode\hypertarget{ref-Chambers2015}{}%
-Chambers, C. D., Dienes, Z., McIntosh, R. D., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. doi:\href{https://doi.org/10.1016/j.cortex.2015.03.022}{10.1016/j.cortex.2015.03.022}
+Chambers, C., Dienes, Z., McIntosh, R., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. doi:\href{https://doi.org/10.1016/j.cortex.2015.03.022}{10.1016/j.cortex.2015.03.022}
 
 \leavevmode\hypertarget{ref-OSC2015}{}%
 Collaboration, O. S. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. doi:\href{https://doi.org/10.1126/science.aac4716}{10.1126/science.aac4716}
@@ -711,10 +725,10 @@ Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tip
 Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. doi:\href{https://doi.org/10.1037/0022-0167.29.2.189}{10.1037/0022-0167.29.2.189}
 
 \leavevmode\hypertarget{ref-Chambers2013}{}%
-Chambers, C. D. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
+Chambers, C. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
 
 \leavevmode\hypertarget{ref-Chambers2015}{}%
-Chambers, C. D., Dienes, Z., McIntosh, R. D., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. doi:\href{https://doi.org/10.1016/j.cortex.2015.03.022}{10.1016/j.cortex.2015.03.022}
+Chambers, C., Dienes, Z., McIntosh, R., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. doi:\href{https://doi.org/10.1016/j.cortex.2015.03.022}{10.1016/j.cortex.2015.03.022}
 
 \leavevmode\hypertarget{ref-OSC2015}{}%
 Collaboration, O. S. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. doi:\href{https://doi.org/10.1126/science.aac4716}{10.1126/science.aac4716}
