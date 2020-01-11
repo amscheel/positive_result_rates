@@ -1,7 +1,7 @@
 \PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[british,,jou,floatsintext]{apa6}
+\documentclass[british,,man,floatsintext]{apa6}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -124,9 +124,9 @@
 Correspondence concerning this article should be addressed to Anne Scheel, Den Dolech 1, Atlas 9.417, 5600 MB, Eindhoven, The Netherlands. E-mail: a.m.scheel@tue.nl}
 \note{\textbackslash{}clearpage}
 \keywords{keyword 1, keyword 2, keyword 3\newline\indent Word count: XXX}
-\usepackage{dblfloatfix}
+\usepackage{lineno}
 
-
+\linenumbers
 \usepackage{float}
 \usepackage{framed}
 \usepackage{caption}
@@ -176,7 +176,7 @@ We can distinguish two broad categories of bias: \enquote{publication bias} and 
 Publication bias describes publishing behaviours that give manuscripts that find support for their tested hypotheses a higher chance of being published than manuscripts that do not find support for their tested hypotheses.
 These include editors and reviewers selectively rejecting manuscripts with negative results (``reviewer bias'', Mahoney, 1977; Greenwald, 1975) and researchers deciding not to submit studies with negative results for publication (``file-drawering''; Rosenthal, 1979).
 Questionable research practices (QRPs) describe research behaviours that make the evidence in favour of a certain conclusion look stronger than it is (typically, though not always, leading to an inflated type-I error rate, see also Lakens, n.d.).
-These include presenting unexpected results as having been predicted a priori (HARKing, short for ``hypothesising after results are known''; Kerr, 1998) and exploiting flexibility in data analysis to obtain statistically significant results (``p-hacking''; Simmons, Nelson, \& Simonsohn, 2011).
+These include presenting unexpected results as having been predicted a priori (HARKing, short for ``hypothesising after results are known''; Kerr, 1998) and exploiting flexibility in data analysis to obtain statistically significant results (``\emph{p}-hacking''; Simmons, Nelson, \& Simonsohn, 2011).
 Evidence for both categories of bias exist:
 Publication bias has been shown in peer review (Atkinson, Furlong, \& Wampold, 1982; Mahoney, 1977) and in longitudinal data from an NSF grant programme that found a file-drawering effect for studies with negative results (Franco, Malhotra, \& Simonovits, 2014, 2016); and QRPs have been admitted by scientists in several survey studies (Agnoli, Wicherts, Veldkamp, Albiero, \& Cubelli, 2017; Fiedler \& Schwarz, 2016; John, Loewenstein, \& Prelec, 2012).
 
@@ -255,9 +255,9 @@ We initially excluded eight papers and replaced them (the decision to replace ex
 
 
 
-\begin{figure*}
+\begin{figure}
 \includegraphics[width=\textwidth]{Sampling_exclusions_and_resampling} \caption{Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. \enquote{Preregistered}: study had been preregistered but was not a full RR; \enquote{results-blind review}: article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); \enquote{ambiguous}: Four of these had been treated as RRs but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance. We chose to exclude these cases to be conservative.}\label{fig:sampling}
-\end{figure*}
+\end{figure}
 
 For Registered Reports we aimed to include all published RRs in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)}.
 We downloaded a database of published RRs curated by the Center for Open Science\footnote{\url{https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9}} (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than \enquote{Psychiatry/Psychology} or \enquote{Multidisciplinary} in the ESI.
@@ -372,7 +372,7 @@ Although replication RRs in our sample indeed had a lower positive result rate t
 
 
 
-\begin{table*}[tbp]
+\begin{table}[tbp]
 
 \begin{center}
 \begin{threeparttable}
@@ -398,7 +398,7 @@ RRs & 30 & 15 & 50.00 & 31.30; 68.70 & 41 & 16 & 39.02 & 24.20; 55.50\\
 \end{threeparttable}
 \end{center}
 
-\end{table*}
+\end{table}
 
 Since our SR sample represents a direct replication of Fanelli (2010) for the discipline Psychiatry \& Psychology, another interesting question to ask is how our results compare to Fanelli's.
 The difference between the positive result rate for SRs in our sample (\(96.05\%\)) and Fanelli's (\(91.49\%\)) is \(4.56\%\). This difference is not significantly different from 0 in a two-sided proportions test (\(\chi^2 = 1.91\), \(p= .167\)) but also not statistically equivalent to a range between \(-6\%\) and \(6\%\) (\(z = -3.73\), \(p= .306\)), both at \(\alpha = 5\%\).
@@ -424,7 +424,7 @@ Using five as a cutoff value is an arbitrary decision, but we believe that it st
 
 
 
-\begin{table*}[tbp]
+\begin{table}[tbp]
 
 \begin{center}
 \begin{threeparttable}
@@ -490,18 +490,18 @@ predict* &  & 4 & 0 & 4\\
 \end{threeparttable}
 \end{center}
 
-\end{table*}
+\end{table}
 
 
 
-\begin{table*}[tbp]
+\begin{table}[tbp]
 
 \begin{center}
 \begin{threeparttable}
 
 \caption{\label{tab:unnamed-chunk-7}Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)}
 
-\footnotesize{
+\scriptsize{
 
 \begin{tabular}{lllrrrr}
 \toprule
@@ -567,7 +567,7 @@ predict* &  & 4 & 0 & 4\\
 \end{threeparttable}
 \end{center}
 
-\end{table*}
+\end{table}
 
 It is important to keep in mind that not all hypotheses could be coded from the abstract: For 21 RRs, the hypothesis introduction phrases analysed above came only from the full text, which means that search terms extracted from them may not be useful in literature searches focussed only on titles, abstracts, and keywords.
 Therefore we additionally tested how many of the RRs would have been detected in a regular search using our five most frequent word stems.
@@ -593,14 +593,14 @@ As we noted above, there is good reason to assume that methodological rigour and
 
 
 
-\begin{figure*}
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\textwidth]{manuscript_files/figure-latex/powerbaserate-1} 
+{\centering \includegraphics[width=0.8\textwidth]{manuscript_files/figure-latex/powerbaserate-1} 
 
 }
 
 \caption{Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given \(\alpha = 5 \%\) and no bias. Shaded areas indicate \(95\%\) confidence intervals. SRs = standard reports, RRs = Registered Reports. The curve for all SRs (i.e, including replications; \(96.05 \%\) positive results, \(N = 152\)) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation \(PRR = \alpha*(1-t) + (1-\beta)*t\); with \(PRR =\) positive result rate, \(\alpha =\) probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), \(1-\beta =\) probability of obtaining a positive result when testing a true hypothesis (power), and \(t =\) proportion of true hypotheses; and solving for \(t\) and \(1-\beta\), respectively.}\label{fig:powerbaserate}
-\end{figure*}
+\end{figure}
 
 It is a-priori plausible that Registered Reports are currently used for a population of hypotheses that are less likely to be true:
 For example, authors may use the format strategically for studies they expect to yield negative results (which would be difficult to publish otherwise).
@@ -648,6 +648,29 @@ The absence of negative results is a serious threat to a cumulative science.
 Reliable protection against questionable research practices and publication bias is crucial to ensure the integrity of the literature.
 The Registered Reports format is a promising candidate for bias protection, but we are only at the beginning of understanding its effectiveness and robustness in different contexts and scientific disciplines.
 
+\hypertarget{disclosures}{%
+\subsection{Disclosures}\label{disclosures}}
+
+\hypertarget{data-materials-and-online-resources}{%
+\subsubsection{Data, materials, and online resources}\label{data-materials-and-online-resources}}
+
+The data and code necessary to reproduce all analyses reported here, as well as additional supplementary information, is available at \url{https://osf.io/dbhgr}. The manuscript, including the figures and statistical analyses, was created using RStudio (1.2.5019, RStudio Team, 2019) and R (Version 3.6.0; R Core Team, 2019) and the R-packages \emph{bookdown} (Version 0.17; Xie, 2016), \emph{codebook} (Version 0.8.1; Arslan, 2018), \emph{ggplot2} (Version 3.1.1; Wickham, 2016), \emph{here} (Version 0.1; Müller, 2017), \emph{knitr} (Version 1.26; Xie, 2015), \emph{papaja} (Version 0.1.0.9842; Aust \& Barth, 2018), \emph{reshape2} (Version 1.4.3; Wickham, 2007), \emph{rmarkdown} (Version 2.0; Xie, Allaire, \& Grolemund, 2018), \emph{stringr} (Version 1.4.0; Wickham, 2019), and \emph{TOSTER} (Version 0.3.4; Lakens, 2017).
+
+\hypertarget{conflicts-of-interest}{%
+\subsubsection{Conflicts of Interest}\label{conflicts-of-interest}}
+
+The authors declare that they have no conflicts of interest with respect to the authorship or the publication of this article.
+
+\hypertarget{author-contributions}{%
+\subsubsection{Author Contributions}\label{author-contributions}}
+
+Conceptualisation: A.S. and D.L.; data curation, formal analysis, and software: A.S. and M.S.; investigation, methodology, and validation: A.S., M.S., and D.L; supervision: A.S and D.L.; visualisation and writing -- original draft: A.S; writing -- review and editing: A.S., M.S., and D.L.
+
+\hypertarget{acknowledgments}{%
+\subsubsection{Acknowledgments}\label{acknowledgments}}
+
+This work was funded by VIDI grant 452-17-013. We would like to thank Stuart Ritchie for valuable comments that helped improve this manuscript.
+
 \hypertarget{references}{%
 \section{References}\label{references}}
 
@@ -661,8 +684,14 @@ Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (20
 \leavevmode\hypertarget{ref-Allen2019}{}%
 Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tips in early career and beyond. \emph{PLOS Biology}, \emph{17}(5), e3000246. \url{https://doi.org/10.1371/journal.pbio.3000246}
 
+\leavevmode\hypertarget{ref-R-codebook}{}%
+Arslan, R. C. (2018). How to automatically generate rich codebooks from study metadata. PsyArxiv. \url{https://doi.org/10.31234/osf.io/5qc6h}
+
 \leavevmode\hypertarget{ref-Atkinson1982}{}%
 Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. \url{https://doi.org/10.1037/0022-0167.29.2.189}
+
+\leavevmode\hypertarget{ref-R-papaja}{}%
+Aust, F., \& Barth, M. (2018). \emph{papaja: Create APA manuscripts with R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
 
 \leavevmode\hypertarget{ref-Chambers2013}{}%
 Chambers, C. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
@@ -706,6 +735,9 @@ Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. \emph{Pe
 \leavevmode\hypertarget{ref-Kohler2019}{}%
 Köhler, T., \& Cortina, J. M. (2019). Play It Again, Sam! An Analysis of Constructive Replication in the Organizational Sciences. \emph{Journal of Management}, 014920631984398. \url{https://doi.org/10.1177/0149206319843985}
 
+\leavevmode\hypertarget{ref-R-TOSTER}{}%
+Lakens, D. (2017). Equivalence tests: A practical primer for t-tests, correlations, and meta-analyses. \emph{Social Psychological and Personality Science}, \emph{1}, 1--8. \url{https://doi.org/10.1177/1948550617697177}
+
 \leavevmode\hypertarget{ref-Lakens2019b}{}%
 Lakens, D. (n.d.). The Value of Preregistration for Psychological Science: A Conceptual Analysis. \url{https://doi.org/10.31234/osf.io/jbh4w}
 
@@ -727,11 +759,17 @@ Motyl, M., Demos, A. P., Carsel, T. S., Hanson, B. E., Melton, Z. J., Mueller, A
 \leavevmode\hypertarget{ref-Mueller-Langer2019}{}%
 Mueller-Langer, F., Fecher, B., Harhoff, D., \& Wagner, G. G. (2019). Replication studies in economics---How many and which papers are chosen for replication, and why? \emph{Research Policy}, \emph{48}(1), 62--83. \url{https://doi.org/10.1016/j.respol.2018.07.019}
 
+\leavevmode\hypertarget{ref-R-here}{}%
+Müller, K. (2017). \emph{Here: A simpler way to find your files}. Retrieved from \url{https://CRAN.R-project.org/package=here}
+
 \leavevmode\hypertarget{ref-Nosek2014}{}%
 Nosek, B. A., \& Lakens, D. (2014). Registered Reports: A Method to Increase the Credibility of Published Results. \emph{Social Psychology}, \emph{45}(3), 137--141. \url{https://doi.org/10.1027/1864-9335/a000192}
 
 \leavevmode\hypertarget{ref-Pridemore2018}{}%
 Pridemore, W. A., Makel, M. C., \& Plucker, J. A. (2018). Replication in Criminology and the Social Sciences. \emph{Annual Review of Criminology}, \emph{1}(1), 19--38. \url{https://doi.org/10.1146/annurev-criminol-032317-091849}
+
+\leavevmode\hypertarget{ref-R-base}{}%
+R Core Team. (2019). \emph{R: A language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
 
 \leavevmode\hypertarget{ref-RRRwebsite}{}%
 Registered Replication Reports. (n.d.). Retrieved December 28, 2019, from \url{https://www.psychologicalscience.org/publications/replication}
@@ -741,6 +779,9 @@ Rohatgi, A. (2018). \emph{WebPlotDigitizer - Web Based Plot Digitizer}. Austin, 
 
 \leavevmode\hypertarget{ref-Rosenthal1979}{}%
 Rosenthal, R. (1979). The file drawer problem and tolerance for null results. \emph{Psychological Bulletin}, \emph{86}(3), 638--641. \url{https://doi.org/10.1037/0033-2909.86.3.638}
+
+\leavevmode\hypertarget{ref-RStudioTeam2019}{}%
+RStudio Team. (2019). \emph{RStudio: Integrated development environment for r}. Boston, MA: RStudio, Inc. Retrieved from \url{http://www.rstudio.com/}
 
 \leavevmode\hypertarget{ref-Simmons2011}{}%
 Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. \emph{Psychological Science}, \emph{22}(11), 1359--1366. \url{https://doi.org/10.1177/0956797611417632}
@@ -763,11 +804,29 @@ Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effe
 \leavevmode\hypertarget{ref-vanAssen2014}{}%
 van Assen, M. A. L. M., van Aert, R. C. M., Nuijten, M. B., \& Wicherts, J. M. (2014). Why Publishing Everything Is More Effective than Selective Publishing of Statistically Significant Results. \emph{PLOS ONE}, \emph{9}(1), e84896. \url{https://doi.org/10.1371/journal.pone.0084896}
 
+\leavevmode\hypertarget{ref-R-reshape2}{}%
+Wickham, H. (2007). Reshaping data with the reshape package. \emph{Journal of Statistical Software}, \emph{21}(12), 1--20. Retrieved from \url{http://www.jstatsoft.org/v21/i12/}
+
+\leavevmode\hypertarget{ref-R-ggplot2}{}%
+Wickham, H. (2016). \emph{Ggplot2: Elegant graphics for data analysis}. Springer-Verlag New York. Retrieved from \url{https://ggplot2.tidyverse.org}
+
+\leavevmode\hypertarget{ref-R-stringr}{}%
+Wickham, H. (2019). \emph{Stringr: Simple, consistent wrappers for common string operations}. Retrieved from \url{https://CRAN.R-project.org/package=stringr}
+
 \leavevmode\hypertarget{ref-Winter2013}{}%
 Winter, J. de, \& Happee, R. (2013). Why Selective Publication of Statistically Significant Results Can Be Effective. \emph{PLOS ONE}, \emph{8}(6), e66463. \url{https://doi.org/10.1371/journal.pone.0066463}
 
 \leavevmode\hypertarget{ref-Wiseman2019}{}%
 Wiseman, R., Watt, C., \& Kornbrot, D. (2019). Registered reports: An early example and analysis. \emph{PeerJ}, \emph{7}, e6232. \url{https://doi.org/10.7717/peerj.6232}
+
+\leavevmode\hypertarget{ref-R-knitr}{}%
+Xie, Y. (2015). \emph{Dynamic documents with R and knitr} (2nd ed.). Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://yihui.name/knitr/}
+
+\leavevmode\hypertarget{ref-R-bookdown}{}%
+Xie, Y. (2016). \emph{Bookdown: Authoring books and technical documents with R markdown}. Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://github.com/rstudio/bookdown}
+
+\leavevmode\hypertarget{ref-R-rmarkdown}{}%
+Xie, Y., Allaire, J., \& Grolemund, G. (2018). \emph{R markdown: The definitive guide}. Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://bookdown.org/yihui/rmarkdown}
 
 \leavevmode\hypertarget{ref-Agnoli2017}{}%
 Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (2017). Questionable research practices among italian research psychologists. \emph{PLOS ONE}, \emph{12}(3), e0172792. \url{https://doi.org/10.1371/journal.pone.0172792}
@@ -775,8 +834,14 @@ Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (20
 \leavevmode\hypertarget{ref-Allen2019}{}%
 Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tips in early career and beyond. \emph{PLOS Biology}, \emph{17}(5), e3000246. \url{https://doi.org/10.1371/journal.pbio.3000246}
 
+\leavevmode\hypertarget{ref-R-codebook}{}%
+Arslan, R. C. (2018). How to automatically generate rich codebooks from study metadata. PsyArxiv. \url{https://doi.org/10.31234/osf.io/5qc6h}
+
 \leavevmode\hypertarget{ref-Atkinson1982}{}%
 Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. \url{https://doi.org/10.1037/0022-0167.29.2.189}
+
+\leavevmode\hypertarget{ref-R-papaja}{}%
+Aust, F., \& Barth, M. (2018). \emph{papaja: Create APA manuscripts with R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
 
 \leavevmode\hypertarget{ref-Chambers2013}{}%
 Chambers, C. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
@@ -820,6 +885,9 @@ Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. \emph{Pe
 \leavevmode\hypertarget{ref-Kohler2019}{}%
 Köhler, T., \& Cortina, J. M. (2019). Play It Again, Sam! An Analysis of Constructive Replication in the Organizational Sciences. \emph{Journal of Management}, 014920631984398. \url{https://doi.org/10.1177/0149206319843985}
 
+\leavevmode\hypertarget{ref-R-TOSTER}{}%
+Lakens, D. (2017). Equivalence tests: A practical primer for t-tests, correlations, and meta-analyses. \emph{Social Psychological and Personality Science}, \emph{1}, 1--8. \url{https://doi.org/10.1177/1948550617697177}
+
 \leavevmode\hypertarget{ref-Lakens2019b}{}%
 Lakens, D. (n.d.). The Value of Preregistration for Psychological Science: A Conceptual Analysis. \url{https://doi.org/10.31234/osf.io/jbh4w}
 
@@ -841,11 +909,17 @@ Motyl, M., Demos, A. P., Carsel, T. S., Hanson, B. E., Melton, Z. J., Mueller, A
 \leavevmode\hypertarget{ref-Mueller-Langer2019}{}%
 Mueller-Langer, F., Fecher, B., Harhoff, D., \& Wagner, G. G. (2019). Replication studies in economics---How many and which papers are chosen for replication, and why? \emph{Research Policy}, \emph{48}(1), 62--83. \url{https://doi.org/10.1016/j.respol.2018.07.019}
 
+\leavevmode\hypertarget{ref-R-here}{}%
+Müller, K. (2017). \emph{Here: A simpler way to find your files}. Retrieved from \url{https://CRAN.R-project.org/package=here}
+
 \leavevmode\hypertarget{ref-Nosek2014}{}%
 Nosek, B. A., \& Lakens, D. (2014). Registered Reports: A Method to Increase the Credibility of Published Results. \emph{Social Psychology}, \emph{45}(3), 137--141. \url{https://doi.org/10.1027/1864-9335/a000192}
 
 \leavevmode\hypertarget{ref-Pridemore2018}{}%
 Pridemore, W. A., Makel, M. C., \& Plucker, J. A. (2018). Replication in Criminology and the Social Sciences. \emph{Annual Review of Criminology}, \emph{1}(1), 19--38. \url{https://doi.org/10.1146/annurev-criminol-032317-091849}
+
+\leavevmode\hypertarget{ref-R-base}{}%
+R Core Team. (2019). \emph{R: A language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
 
 \leavevmode\hypertarget{ref-RRRwebsite}{}%
 Registered Replication Reports. (n.d.). Retrieved December 28, 2019, from \url{https://www.psychologicalscience.org/publications/replication}
@@ -855,6 +929,9 @@ Rohatgi, A. (2018). \emph{WebPlotDigitizer - Web Based Plot Digitizer}. Austin, 
 
 \leavevmode\hypertarget{ref-Rosenthal1979}{}%
 Rosenthal, R. (1979). The file drawer problem and tolerance for null results. \emph{Psychological Bulletin}, \emph{86}(3), 638--641. \url{https://doi.org/10.1037/0033-2909.86.3.638}
+
+\leavevmode\hypertarget{ref-RStudioTeam2019}{}%
+RStudio Team. (2019). \emph{RStudio: Integrated development environment for r}. Boston, MA: RStudio, Inc. Retrieved from \url{http://www.rstudio.com/}
 
 \leavevmode\hypertarget{ref-Simmons2011}{}%
 Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. \emph{Psychological Science}, \emph{22}(11), 1359--1366. \url{https://doi.org/10.1177/0956797611417632}
@@ -877,10 +954,28 @@ Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effe
 \leavevmode\hypertarget{ref-vanAssen2014}{}%
 van Assen, M. A. L. M., van Aert, R. C. M., Nuijten, M. B., \& Wicherts, J. M. (2014). Why Publishing Everything Is More Effective than Selective Publishing of Statistically Significant Results. \emph{PLOS ONE}, \emph{9}(1), e84896. \url{https://doi.org/10.1371/journal.pone.0084896}
 
+\leavevmode\hypertarget{ref-R-reshape2}{}%
+Wickham, H. (2007). Reshaping data with the reshape package. \emph{Journal of Statistical Software}, \emph{21}(12), 1--20. Retrieved from \url{http://www.jstatsoft.org/v21/i12/}
+
+\leavevmode\hypertarget{ref-R-ggplot2}{}%
+Wickham, H. (2016). \emph{Ggplot2: Elegant graphics for data analysis}. Springer-Verlag New York. Retrieved from \url{https://ggplot2.tidyverse.org}
+
+\leavevmode\hypertarget{ref-R-stringr}{}%
+Wickham, H. (2019). \emph{Stringr: Simple, consistent wrappers for common string operations}. Retrieved from \url{https://CRAN.R-project.org/package=stringr}
+
 \leavevmode\hypertarget{ref-Winter2013}{}%
 Winter, J. de, \& Happee, R. (2013). Why Selective Publication of Statistically Significant Results Can Be Effective. \emph{PLOS ONE}, \emph{8}(6), e66463. \url{https://doi.org/10.1371/journal.pone.0066463}
 
 \leavevmode\hypertarget{ref-Wiseman2019}{}%
 Wiseman, R., Watt, C., \& Kornbrot, D. (2019). Registered reports: An early example and analysis. \emph{PeerJ}, \emph{7}, e6232. \url{https://doi.org/10.7717/peerj.6232}
+
+\leavevmode\hypertarget{ref-R-knitr}{}%
+Xie, Y. (2015). \emph{Dynamic documents with R and knitr} (2nd ed.). Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://yihui.name/knitr/}
+
+\leavevmode\hypertarget{ref-R-bookdown}{}%
+Xie, Y. (2016). \emph{Bookdown: Authoring books and technical documents with R markdown}. Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://github.com/rstudio/bookdown}
+
+\leavevmode\hypertarget{ref-R-rmarkdown}{}%
+Xie, Y., Allaire, J., \& Grolemund, G. (2018). \emph{R markdown: The definitive guide}. Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://bookdown.org/yihui/rmarkdown}
 
 \end{document}
