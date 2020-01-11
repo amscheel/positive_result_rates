@@ -41,7 +41,7 @@ library(ggplot2)
 # of the manuscript, you first need to load the main analysis script (and with it,
 # the data). Adjust the code to load the script if necessary.
 
-# source("quantitative_analyses.R")
+# source("02_quantitative_analyses.R")
 
 
 ##==============================================================================##
@@ -84,41 +84,59 @@ a <- 0.05
 
 # Create dataframe for original SRs
 pwrprior.origSR <- data.frame(t=c(1:1000)/1000) # Enter values for t from .001 - 1
-pwrprior.origSR$group <- "original SRs (PRR = .9595, n = 148)" # group label (later used for plot)
+pwrprior.origSR$group <- "origSRs" # group label (later used for plot)
 
 # Calculate values for power (1-b) for all values of t and:
 # - for the lower end of the 95% CI for the positive result rate
 # - for the positive result rate estimate
 # - for the upper end of the 95% CI for the positive result rate
-pwrprior.origSR$lower <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = min(SR.orig.binom$conf.int))
-pwrprior.origSR$estimate <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = prop.orig.support.SR)
-pwrprior.origSR$upper <- pwrfun(t = pwrprior.origSR$t, a = a, PRR = max(SR.orig.binom$conf.int))   
+pwrprior.origSR$lower <- pwrfun(t = pwrprior.origSR$t, 
+                                a = a, 
+                                PRR = min(SR.orig.binom$conf.int))
+pwrprior.origSR$estimate <- pwrfun(t = pwrprior.origSR$t, 
+                                   a = a, 
+                                   PRR = prop.orig.support.SR)
+pwrprior.origSR$upper <- pwrfun(t = pwrprior.origSR$t, 
+                                a = a, 
+                                PRR = max(SR.orig.binom$conf.int))   
 
 
 # Create dataframe for original RRs
 pwrprior.origRR <- data.frame(t=c(1:1000)/1000) # Enter values for t from .001 - 1
-pwrprior.origRR$group <- "original RRs (PRR = .5, n = 30)" # group label (later used for plot)
+pwrprior.origRR$group <- "origRRs" # group label (later used for plot)
 
 # Calculate values for power (1-b) for all values of t and:
 # - for the lower end of the 95% CI for the positive result rate
 # - for the positive result rate estimate
 # - for the upper end of the 95% CI for the positive result rate
-pwrprior.origRR$lower <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = min(RR.orig.binom$conf.int))
-pwrprior.origRR$estimate <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = prop.orig.support.RR)
-pwrprior.origRR$upper <- pwrfun(t = pwrprior.origRR$t, a = a, PRR = max(RR.orig.binom$conf.int))   
+pwrprior.origRR$lower <- pwrfun(t = pwrprior.origRR$t, 
+                                a = a, 
+                                PRR = min(RR.orig.binom$conf.int))
+pwrprior.origRR$estimate <- pwrfun(t = pwrprior.origRR$t, 
+                                   a = a, 
+                                   PRR = prop.orig.support.RR)
+pwrprior.origRR$upper <- pwrfun(t = pwrprior.origRR$t, 
+                                a = a, 
+                                PRR = max(RR.orig.binom$conf.int))   
 
 
 # Create dataframe for all RRs
 pwrprior.allRRs <-  data.frame(t=c(1:1000)/1000) # Enter values for t from .001 - 1
-pwrprior.allRRs$group <- "all RRs (PRR = .4366, N = 71)" # group label (later used for plot)
+pwrprior.allRRs$group <- "allRRs" # group label (later used for plot)
 
 # Calculate values for power (1-b) for all values of t and:
 # - for the lower end of the 95% CI for the positive result rate
 # - for the positive result rate estimate
 # - for the upper end of the 95% CI for the positive result rate
-pwrprior.allRRs$lower <- pwrfun(t = pwrprior.allRRs$t, a = a, PRR = min(RR.binom$conf.int))
-pwrprior.allRRs$estimate <- pwrfun(t = pwrprior.allRRs$t, a = a, PRR = prop.support.RR)
-pwrprior.allRRs$upper <- pwrfun(t = pwrprior.allRRs$t, a = a, PRR = max(RR.binom$conf.int))   
+pwrprior.allRRs$lower <- pwrfun(t = pwrprior.allRRs$t, 
+                                a = a, 
+                                PRR = min(RR.binom$conf.int))
+pwrprior.allRRs$estimate <- pwrfun(t = pwrprior.allRRs$t, 
+                                   a = a, 
+                                   PRR = prop.support.RR)
+pwrprior.allRRs$upper <- pwrfun(t = pwrprior.allRRs$t, 
+                                a = a, 
+                                PRR = max(RR.binom$conf.int))   
 
 
 ## 3.2 prepare the plot
@@ -134,15 +152,35 @@ pwrprior.df$upper[pwrprior.df$upper > 1] <- 1
 
 # Turn the group labels into factors and make sure they're listed in the correct order
 pwrprior.df$group <- factor(pwrprior.df$group, 
-                            levels = c("original SRs (PRR = .9595, n = 148)",
-                                       "original RRs (PRR = .5, n = 30)", 
-                                       "all RRs (PRR = .4366, N = 71)"))
+                            levels = c("origSRs", "origRRs", "allRRs"))
+
+# Make a helper function that allows us to print percentage signs
+# in the plot labels
+percent <- function(x, digits = 2, format = "f", ...) {
+  paste0(formatC(100 * x, format = format, digits = digits, ...), "%")
+}
+
+# Add group size and positive result rate to the group labels for plotting
+levels(pwrprior.df$group) = c(paste("original SRs (n = ", n.SR-n.rep.SR, ",\n",
+                                    percent(prop.orig.support.SR), 
+                                    " positive results)",
+                                    sep = ""),
+                              paste("original RRs (n = ", n.RR-n.rep.RR, ",\n",
+                                    percent(prop.orig.support.RR), 
+                                    " positive results)",
+                                    sep = ""),
+                              paste("all RRs (n = ", n.RR, ",\n",
+                                    percent(prop.support.RR), 
+                                    " positive results)",
+                                    sep = ""))
 
 ## 3.3 Create the plot
 power.baserate.plot <- ggplot(pwrprior.df, aes(x = t, y = estimate, colour = group, 
                                                fill = group, linetype = group)) +
                               geom_line(aes(y = estimate), size = 1) + 
-                              geom_ribbon(aes(ymin = lower, ymax = upper), alpha = .42, linetype = "blank") +
+                              geom_ribbon(aes(ymin = lower, ymax = upper), 
+                                          alpha = .42, 
+                                          linetype = "blank") +
                               scale_x_continuous(name="proportion of true hypotheses", 
                                                  limits=c(0.25, 1), 
                                                  breaks = c(seq(0.3, 1, 0.1)),
@@ -151,7 +189,15 @@ power.baserate.plot <- ggplot(pwrprior.df, aes(x = t, y = estimate, colour = gro
                                                  limits=c(0.25, 1), 
                                                  breaks = c(seq(0.3, 1, 0.1)),
                                                  expand = c(0, 0)) +
-                              scale_colour_manual(values = c("#0073C0", "#ED443F", "#2D132C"), name = NULL) +
-                              scale_fill_manual(values = c("#0073C0", "#ED443F", "#2D132C"), name = NULL) +
-                              scale_linetype_manual(values = c("solid", "dashed", "dotted"), name = NULL) +
-                              theme_bw()
+                              scale_colour_manual(values = c("#0073C0", "#ED443F",
+                                                             "#2D132C"), name = NULL) +
+                              scale_fill_manual(values = c("#0073C0", "#ED443F",
+                                                           "#2D132C"), name = NULL) +
+                              scale_linetype_manual(values = c("solid", "dashed",
+                                                               "dotted"), name = NULL) +
+                              theme_bw() +
+                              theme(legend.key = element_rect(size = 2.7, 
+                                                              color = 'white'),
+                                    legend.key.size = unit(2, "lines"),
+                                    legend.spacing.x = unit(0.5, "lines")) +
+                              coord_fixed(ratio=1)

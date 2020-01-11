@@ -136,25 +136,32 @@ mainplot.df <- data.frame(is_RR = c("SR", "SR", "RR", "RR"),
                           upper = c(max(SR.binom$conf.int)*100, NA,
                                     max(RR.binom$conf.int)*100, NA))
 
+# Reorder the group levels so that SRs come first, RRs second
+mainplot.df$is_RR <- factor(mainplot.df$is_RR, levels = c("SR", "RR"))
+
 # Plot the main result (positive result rate in SRs vs RRs)
 mainplot <- ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
                     geom_bar(stat = "identity", 
                              width = 0.5) +
                     scale_fill_manual(values= c("#bcbddc", "#756bb1"),
                                       name="first hypothesis") +
-                    annotate("text", label = "n = 152", x = 1, y = 105) +
-                    annotate("text", label = "n = 71", x = 2, y = 105) +
+                    annotate("text", label = paste("N =", n.SR), 
+                             x = 1, y = 105, size = 5) +
+                    annotate("text", label = paste("N =", n.RR), 
+                             x = 2, y = 105, size = 5) +
                     geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.05, size = 0.5) +
                     scale_x_discrete(breaks = waiver(), 
-                                     labels = c("SR" = "Standard\nReports (SRs)",
-                                                "RR" = "Registered\nReports (RRs)"), name = NULL)+ 
+                                     labels = c("SR" = "Standard\nReports",
+                                                "RR" = "Registered\nReports"), 
+                                     name = NULL)+ 
                     scale_y_continuous(lim=c(0,110), breaks = c(seq(0, 100, 10)),
                                        minor_breaks = c(seq(0, 100, 5)),
                                        name = "% of papers", expand = c(0, 0))+
-                    theme_minimal()+
+                    theme_minimal(base_size = 20)+
                     theme(panel.grid.major.x = element_blank(),
                           panel.grid.minor.x = element_blank(),
-                          legend.margin = margin(0,0,0,-5))
+                          legend.margin = margin(0,0,0,-5.5)) +
+                    coord_fixed(ratio=0.03)
 
 
 ##==============================================================================##
