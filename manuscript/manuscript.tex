@@ -1,7 +1,7 @@
 \PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[british,,man,floatsintext]{apa6}
+\documentclass[british,,jou,floatsintext]{apa6}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -30,7 +30,6 @@
 \usepackage{hyperref}
 \hypersetup{
             pdftitle={Positive Results in Registered Reports},
-            pdfauthor={Anne Scheel, Mitchell Schijen, \& Daniël Lakens},
             pdfkeywords={keyword 1, keyword 2, keyword 3},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -63,39 +62,76 @@
 \def\fps@figure{htbp}
 \makeatother
 
-\shorttitle{Positive Results in Registered Reports}
-\affiliation{
-\vspace{0.5cm}
-\textsuperscript{1} Eindhoven University of Technology}
-\keywords{keyword 1, keyword 2, keyword 3\newline\indent Word count: XXX}
+% Manuscript styling
 \usepackage{csquotes}
 \usepackage{upgreek}
 \captionsetup{font=singlespacing,justification=justified}
 
+% Table formatting
 \usepackage{longtable}
 \usepackage{lscape}
-\usepackage{multirow}
-\usepackage{tabularx}
-\usepackage[flushleft]{threeparttable}
-\usepackage{threeparttablex}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
 
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
 \newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
 \makeatletter
 \newcommand\LastLTentrywidth{1em}
 \newlength\longtablewidth
 \setlength{\longtablewidth}{1in}
 \newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
 
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-\usepackage{lineno}
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
 
-\linenumbers
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\makeatother
+\shorttitle{Positive Results in Registered Reports}
+\author{Anne Scheel\textsuperscript{1}, Mitchell Schijen\textsuperscript{1}, \& Daniël Lakens\textsuperscript{1}}
+\affiliation{
+\vspace{0.5cm}
+\textsuperscript{1} Eindhoven University of Technology}
+\authornote{
+
+Correspondence concerning this article should be addressed to Anne Scheel, Den Dolech 1, Atlas 9.417, 5600 MB, Eindhoven, The Netherlands. E-mail: a.m.scheel@tue.nl}
+\note{\textbackslash{}clearpage}
+\keywords{keyword 1, keyword 2, keyword 3\newline\indent Word count: XXX}
+\usepackage{dblfloatfix}
+
+
 \usepackage{float}
 \usepackage{framed}
 \usepackage{caption}
 \usepackage{setspace}
-\captionsetup[figure]{font={stretch=1, footnotesize}}
+\captionsetup[figure]{font={stretch=1, small}, skip=11pt}
 \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
 \newfloat{textbox}{thp}{lop}
 \floatname{textbox}{Box}
@@ -108,18 +144,11 @@
 \fi
 
 \title{Positive Results in Registered Reports}
-\author{Anne Scheel\textsuperscript{1}, Mitchell Schijen\textsuperscript{1}, \& Daniël Lakens\textsuperscript{1}}
+
 \date{}
 
-\authornote{
-
-Correspondence concerning this article should be addressed to Anne Scheel, Den Dolech 1, Atlas 9.417, 5600 MB, Eindhoven, The Netherlands. E-mail: \href{mailto:a.m.scheel@tue.nl}{\nolinkurl{a.m.scheel@tue.nl}}}
-\note{\clearpage}
 \abstract{
 XXXXXXXXXXXXXXXXXXX
-
-
-
 }
 
 \begin{document}
@@ -226,9 +255,9 @@ We initially excluded eight papers and replaced them (the decision to replace ex
 
 
 
-\begin{figure}
+\begin{figure*}
 \includegraphics[width=\textwidth]{Sampling_exclusions_and_resampling} \caption{Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. \enquote{Preregistered}: study had been preregistered but was not a full RR; \enquote{results-blind review}: article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); \enquote{ambiguous}: Four of these had been treated as RRs but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance. We chose to exclude these cases to be conservative.}\label{fig:sampling}
-\end{figure}
+\end{figure*}
 
 For Registered Reports we aimed to include all published RRs in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)}.
 We downloaded a database of published RRs curated by the Center for Open Science\footnote{\url{https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9}} (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than \enquote{Psychiatry/Psychology} or \enquote{Multidisciplinary} in the ESI.
@@ -343,10 +372,13 @@ Although replication RRs in our sample indeed had a lower positive result rate t
 
 
 
-\begin{table}[tbp]
+\begin{table*}[tbp]
+
 \begin{center}
 \begin{threeparttable}
+
 \caption{\label{tab:unnamed-chunk-4}Positive results in original studies vs replication studies}
+
 \begin{tabular}{lrrrrrrrr}
 \toprule
  & \multicolumn{4}{c}{original studies} & \multicolumn{4}{c}{replication studies} \\
@@ -358,12 +390,15 @@ RRs & 30 & 15 & 50.00 & 31.30; 68.70 & 41 & 16 & 39.02 & 24.20; 55.50\\
 \bottomrule
 \addlinespace
 \end{tabular}
+
 \begin{tablenotes}[para]
 \normalsize{\textit{Note.} SRs = standard reports, RRs = Registered Reports}
 \end{tablenotes}
+
 \end{threeparttable}
 \end{center}
-\end{table}
+
+\end{table*}
 
 Since our SR sample represents a direct replication of Fanelli (2010) for the discipline Psychiatry \& Psychology, another interesting question to ask is how our results compare to Fanelli's.
 The difference between the positive result rate for SRs in our sample (\(96.05\%\)) and Fanelli's (\(91.49\%\)) is \(4.56\%\). This difference is not significantly different from 0 in a two-sided proportions test (\(\chi^2 = 1.91\), \(p= .167\)) but also not statistically equivalent to a range between \(-6\%\) and \(6\%\) (\(z = -3.73\), \(p= .306\)), both at \(\alpha = 5\%\).
@@ -389,11 +424,15 @@ Using five as a cutoff value is an arbitrary decision, but we believe that it st
 
 
 
-\begin{table}[tbp]
+\begin{table*}[tbp]
+
 \begin{center}
 \begin{threeparttable}
+
 \caption{\label{tab:unnamed-chunk-6}Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)}
+
 \footnotesize{
+
 \begin{tabular}{llrrr}
 \toprule
  &  & \multicolumn{3}{c}{source} \\
@@ -441,21 +480,29 @@ predict* &  & 4 & 0 & 4\\
 \bottomrule
 \addlinespace
 \end{tabular}
+
 }
+
 \begin{tablenotes}[para]
 \normalsize{\textit{Note.} Table contains 44 hypothesis introduction phrases from 30 Registered Reports: 19 papers contributed one phrase each, nine papers contributed two each, one contributed three, and one contributed four.}
 \end{tablenotes}
+
 \end{threeparttable}
 \end{center}
-\end{table}
+
+\end{table*}
 
 
 
-\begin{table}[tbp]
+\begin{table*}[tbp]
+
 \begin{center}
 \begin{threeparttable}
+
 \caption{\label{tab:unnamed-chunk-7}Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)}
-\scriptsize{
+
+\footnotesize{
+
 \begin{tabular}{lllrrrr}
 \toprule
  &  &  & \multicolumn{3}{c}{source}  &\\
@@ -510,13 +557,17 @@ predict* &  & 4 & 0 & 4\\
 \bottomrule
 \addlinespace
 \end{tabular}
+
 }
+
 \begin{tablenotes}[para]
 \normalsize{\textit{Note.} Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each.}
 \end{tablenotes}
+
 \end{threeparttable}
 \end{center}
-\end{table}
+
+\end{table*}
 
 It is important to keep in mind that not all hypotheses could be coded from the abstract: For 21 RRs, the hypothesis introduction phrases analysed above came only from the full text, which means that search terms extracted from them may not be useful in literature searches focussed only on titles, abstracts, and keywords.
 Therefore we additionally tested how many of the RRs would have been detected in a regular search using our five most frequent word stems.
@@ -542,11 +593,14 @@ As we noted above, there is good reason to assume that methodological rigour and
 
 
 
-\begin{figure}
-\centering
-\includegraphics{manuscript_files/figure-latex/powerbaserate-1.pdf}
-\caption{\label{fig:powerbaserate}(ref:powerbaserate}
-\end{figure}
+\begin{figure*}
+
+{\centering \includegraphics[width=0.6\textwidth]{manuscript_files/figure-latex/powerbaserate-1} 
+
+}
+
+\caption{Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given \(\alpha = 5 \%\) and no bias. Shaded areas indicate \(95\%\) confidence intervals. SRs = standard reports, RRs = Registered Reports. The curve for all SRs (i.e, including replications; \(96.05 \%\) positive results, \(N = 152\)) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation \(PRR = \alpha*(1-t) + (1-\beta)*t\); with \(PRR =\) positive result rate, \(\alpha =\) probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), \(1-\beta =\) probability of obtaining a positive result when testing a true hypothesis (power), and \(t =\) proportion of true hypotheses; and solving for \(t\) and \(1-\beta\), respectively.}\label{fig:powerbaserate}
+\end{figure*}
 
 It is a-priori plausible that Registered Reports are currently used for a population of hypotheses that are less likely to be true:
 For example, authors may use the format strategically for studies they expect to yield negative results (which would be difficult to publish otherwise).
@@ -602,231 +656,231 @@ The Registered Reports format is a promising candidate for bias protection, but 
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-Agnoli2017}{}%
-Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (2017). Questionable research practices among italian research psychologists. \emph{PLOS ONE}, \emph{12}(3), e0172792. doi:\href{https://doi.org/10.1371/journal.pone.0172792}{10.1371/journal.pone.0172792}
+Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (2017). Questionable research practices among italian research psychologists. \emph{PLOS ONE}, \emph{12}(3), e0172792. \url{https://doi.org/10.1371/journal.pone.0172792}
 
 \leavevmode\hypertarget{ref-Allen2019}{}%
-Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tips in early career and beyond. \emph{PLOS Biology}, \emph{17}(5), e3000246. doi:\href{https://doi.org/10.1371/journal.pbio.3000246}{10.1371/journal.pbio.3000246}
+Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tips in early career and beyond. \emph{PLOS Biology}, \emph{17}(5), e3000246. \url{https://doi.org/10.1371/journal.pbio.3000246}
 
 \leavevmode\hypertarget{ref-Atkinson1982}{}%
-Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. doi:\href{https://doi.org/10.1037/0022-0167.29.2.189}{10.1037/0022-0167.29.2.189}
+Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. \url{https://doi.org/10.1037/0022-0167.29.2.189}
 
 \leavevmode\hypertarget{ref-Chambers2013}{}%
 Chambers, C. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
 
 \leavevmode\hypertarget{ref-Chambers2015}{}%
-Chambers, C., Dienes, Z., McIntosh, R., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. doi:\href{https://doi.org/10.1016/j.cortex.2015.03.022}{10.1016/j.cortex.2015.03.022}
+Chambers, C., Dienes, Z., McIntosh, R., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. \url{https://doi.org/10.1016/j.cortex.2015.03.022}
 
 \leavevmode\hypertarget{ref-OSC2015}{}%
-Collaboration, O. S. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. doi:\href{https://doi.org/10.1126/science.aac4716}{10.1126/science.aac4716}
+Collaboration, O. S. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. \url{https://doi.org/10.1126/science.aac4716}
 
 \leavevmode\hypertarget{ref-Cristea2018}{}%
-Cristea, I. A., \& Ioannidis, J. P. A. (2018). P values in display items are ubiquitous and almost invariably significant: A survey of top science journals. \emph{PLOS ONE}, \emph{13}(5), e0197440. doi:\href{https://doi.org/10.1371/journal.pone.0197440}{10.1371/journal.pone.0197440}
+Cristea, I. A., \& Ioannidis, J. P. A. (2018). P values in display items are ubiquitous and almost invariably significant: A survey of top science journals. \emph{PLOS ONE}, \emph{13}(5), e0197440. \url{https://doi.org/10.1371/journal.pone.0197440}
 
 \leavevmode\hypertarget{ref-Fanelli2010}{}%
-Fanelli, D. (2010). "Positive" results increase down the hierarchy of the sciences. \emph{PLoS ONE}, \emph{5}(4), e10068. doi:\href{https://doi.org/10.1371/journal.pone.0010068}{10.1371/journal.pone.0010068}
+Fanelli, D. (2010). "Positive" results increase down the hierarchy of the sciences. \emph{PLoS ONE}, \emph{5}(4), e10068. \url{https://doi.org/10.1371/journal.pone.0010068}
 
 \leavevmode\hypertarget{ref-Fanelli2012}{}%
-Fanelli, D. (2012). Negative results are disappearing from most disciplines and countries. \emph{Scientometrics}, \emph{90}(3), 891--904. doi:\href{https://doi.org/10.1007/s11192-011-0494-7}{10.1007/s11192-011-0494-7}
+Fanelli, D. (2012). Negative results are disappearing from most disciplines and countries. \emph{Scientometrics}, \emph{90}(3), 891--904. \url{https://doi.org/10.1007/s11192-011-0494-7}
 
 \leavevmode\hypertarget{ref-Fiedler2016}{}%
-Fiedler, K., \& Schwarz, N. (2016). Questionable Research Practices Revisited. \emph{Social Psychological and Personality Science}, \emph{7}(1), 45--52. doi:\href{https://doi.org/10.1177/1948550615612150}{10.1177/1948550615612150}
+Fiedler, K., \& Schwarz, N. (2016). Questionable Research Practices Revisited. \emph{Social Psychological and Personality Science}, \emph{7}(1), 45--52. \url{https://doi.org/10.1177/1948550615612150}
 
 \leavevmode\hypertarget{ref-Franco2014}{}%
-Franco, A., Malhotra, N., \& Simonovits, G. (2014). Publication bias in the social sciences: Unlocking the file drawer. \emph{Science}, \emph{345}(6203), 1502--1505. doi:\href{https://doi.org/10.1126/science.1255484}{10.1126/science.1255484}
+Franco, A., Malhotra, N., \& Simonovits, G. (2014). Publication bias in the social sciences: Unlocking the file drawer. \emph{Science}, \emph{345}(6203), 1502--1505. \url{https://doi.org/10.1126/science.1255484}
 
 \leavevmode\hypertarget{ref-Franco2016}{}%
-Franco, A., Malhotra, N., \& Simonovits, G. (2016). Underreporting in Psychology Experiments: Evidence From a Study Registry. \emph{Social Psychological and Personality Science}, \emph{7}(1), 8--12. doi:\href{https://doi.org/10.1177/1948550615598377}{10.1177/1948550615598377}
+Franco, A., Malhotra, N., \& Simonovits, G. (2016). Underreporting in Psychology Experiments: Evidence From a Study Registry. \emph{Social Psychological and Personality Science}, \emph{7}(1), 8--12. \url{https://doi.org/10.1177/1948550615598377}
 
 \leavevmode\hypertarget{ref-Greenwald1975}{}%
 Greenwald, A. G. (1975). Consequences of Prejudice Against the Null Hypothesis. \emph{Psychological Bulletin}, \emph{82}(1), 1--20.
 
 \leavevmode\hypertarget{ref-John2012}{}%
-John, L. K., Loewenstein, G., \& Prelec, D. (2012). Measuring the Prevalence of Questionable Research Practices With Incentives for Truth Telling. \emph{Psychological Science}, \emph{23}(5), 524--532. doi:\href{https://doi.org/10.1177/0956797611430953}{10.1177/0956797611430953}
+John, L. K., Loewenstein, G., \& Prelec, D. (2012). Measuring the Prevalence of Questionable Research Practices With Incentives for Truth Telling. \emph{Psychological Science}, \emph{23}(5), 524--532. \url{https://doi.org/10.1177/0956797611430953}
 
 \leavevmode\hypertarget{ref-Jonas2016}{}%
-Jonas, K. J., \& Cesario, J. (2016). How can preregistration contribute to research in our field? \emph{Comprehensive Results in Social Psychology}, \emph{1}(1-3), 1--7. doi:\href{https://doi.org/10.1080/23743603.2015.1070611}{10.1080/23743603.2015.1070611}
+Jonas, K. J., \& Cesario, J. (2016). How can preregistration contribute to research in our field? \emph{Comprehensive Results in Social Psychology}, \emph{1}(1-3), 1--7. \url{https://doi.org/10.1080/23743603.2015.1070611}
 
 \leavevmode\hypertarget{ref-Kerr1998}{}%
-Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. \emph{Personality and Social Psychology Review}, \emph{2}(3), 196--217. doi:\href{https://doi.org/10.1207/s15327957pspr0203_4}{10.1207/s15327957pspr0203\_4}
+Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. \emph{Personality and Social Psychology Review}, \emph{2}(3), 196--217. \url{https://doi.org/10.1207/s15327957pspr0203_4}
 
 \leavevmode\hypertarget{ref-Kohler2019}{}%
-Köhler, T., \& Cortina, J. M. (2019). Play It Again, Sam! An Analysis of Constructive Replication in the Organizational Sciences. \emph{Journal of Management}, 014920631984398. doi:\href{https://doi.org/10.1177/0149206319843985}{10.1177/0149206319843985}
+Köhler, T., \& Cortina, J. M. (2019). Play It Again, Sam! An Analysis of Constructive Replication in the Organizational Sciences. \emph{Journal of Management}, 014920631984398. \url{https://doi.org/10.1177/0149206319843985}
 
 \leavevmode\hypertarget{ref-Lakens2019b}{}%
-Lakens, D. (n.d.). The Value of Preregistration for Psychological Science: A Conceptual Analysis. doi:\href{https://doi.org/10.31234/osf.io/jbh4w}{10.31234/osf.io/jbh4w}
+Lakens, D. (n.d.). The Value of Preregistration for Psychological Science: A Conceptual Analysis. \url{https://doi.org/10.31234/osf.io/jbh4w}
 
 \leavevmode\hypertarget{ref-Lakens2018a}{}%
-Lakens, D., Scheel, A. M., \& Isager, P. M. (2018). Equivalence Testing for Psychological Research: A Tutorial. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(2), 259--269. doi:\href{https://doi.org/10.1016/j.ympev.2015.01.015}{10.1016/j.ympev.2015.01.015}
+Lakens, D., Scheel, A. M., \& Isager, P. M. (2018). Equivalence Testing for Psychological Research: A Tutorial. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(2), 259--269. \url{https://doi.org/10.1016/j.ympev.2015.01.015}
 
 \leavevmode\hypertarget{ref-Mahoney1977}{}%
-Mahoney, M. J. (1977). Publication Prejudices: An Experimental Study of Confirmatory Bias in the Peer Review System. \emph{Cognitive Therapy and Research}, \emph{1}(2), 161--175. doi:\href{https://doi.org/10.1007/BF01173636}{10.1007/BF01173636}
+Mahoney, M. J. (1977). Publication Prejudices: An Experimental Study of Confirmatory Bias in the Peer Review System. \emph{Cognitive Therapy and Research}, \emph{1}(2), 161--175. \url{https://doi.org/10.1007/BF01173636}
 
 \leavevmode\hypertarget{ref-Makel2012}{}%
-Makel, M. C., Plucker, J. A., \& Hegarty, B. (2012). Replications in Psychology Research: How Often Do They Really Occur? \emph{Perspectives on Psychological Science}. doi:\href{https://doi.org/10.1177/1745691612460688}{10.1177/1745691612460688}
+Makel, M. C., Plucker, J. A., \& Hegarty, B. (2012). Replications in Psychology Research: How Often Do They Really Occur? \emph{Perspectives on Psychological Science}. \url{https://doi.org/10.1177/1745691612460688}
 
 \leavevmode\hypertarget{ref-Maxwell2004}{}%
-Maxwell, S. E. (2004). The Persistence of Underpowered Studies in Psychological Research: Causes, Consequences, and Remedies. \emph{Psychological Methods}, \emph{9}(2), 147--163. doi:\href{https://doi.org/10.1037/1082-989X.9.2.147}{10.1037/1082-989X.9.2.147}
+Maxwell, S. E. (2004). The Persistence of Underpowered Studies in Psychological Research: Causes, Consequences, and Remedies. \emph{Psychological Methods}, \emph{9}(2), 147--163. \url{https://doi.org/10.1037/1082-989X.9.2.147}
 
 \leavevmode\hypertarget{ref-Motyl2017}{}%
-Motyl, M., Demos, A. P., Carsel, T. S., Hanson, B. E., Melton, Z. J., Mueller, A. B., \ldots{} Skitka, L. J. (2017). The state of social and personality science: Rotten to the core, not so bad, getting better, or getting worse? \emph{Journal of Personality and Social Psychology}, \emph{113}(1), 34--58. doi:\href{https://doi.org/10.1037/pspa0000084}{10.1037/pspa0000084}
+Motyl, M., Demos, A. P., Carsel, T. S., Hanson, B. E., Melton, Z. J., Mueller, A. B., \ldots{} Skitka, L. J. (2017). The state of social and personality science: Rotten to the core, not so bad, getting better, or getting worse? \emph{Journal of Personality and Social Psychology}, \emph{113}(1), 34--58. \url{https://doi.org/10.1037/pspa0000084}
 
 \leavevmode\hypertarget{ref-Mueller-Langer2019}{}%
-Mueller-Langer, F., Fecher, B., Harhoff, D., \& Wagner, G. G. (2019). Replication studies in economics---How many and which papers are chosen for replication, and why? \emph{Research Policy}, \emph{48}(1), 62--83. doi:\href{https://doi.org/10.1016/j.respol.2018.07.019}{10.1016/j.respol.2018.07.019}
+Mueller-Langer, F., Fecher, B., Harhoff, D., \& Wagner, G. G. (2019). Replication studies in economics---How many and which papers are chosen for replication, and why? \emph{Research Policy}, \emph{48}(1), 62--83. \url{https://doi.org/10.1016/j.respol.2018.07.019}
 
 \leavevmode\hypertarget{ref-Nosek2014}{}%
-Nosek, B. A., \& Lakens, D. (2014). Registered Reports: A Method to Increase the Credibility of Published Results. \emph{Social Psychology}, \emph{45}(3), 137--141. doi:\href{https://doi.org/10.1027/1864-9335/a000192}{10.1027/1864-9335/a000192}
+Nosek, B. A., \& Lakens, D. (2014). Registered Reports: A Method to Increase the Credibility of Published Results. \emph{Social Psychology}, \emph{45}(3), 137--141. \url{https://doi.org/10.1027/1864-9335/a000192}
 
 \leavevmode\hypertarget{ref-Pridemore2018}{}%
-Pridemore, W. A., Makel, M. C., \& Plucker, J. A. (2018). Replication in Criminology and the Social Sciences. \emph{Annual Review of Criminology}, \emph{1}(1), 19--38. doi:\href{https://doi.org/10.1146/annurev-criminol-032317-091849}{10.1146/annurev-criminol-032317-091849}
+Pridemore, W. A., Makel, M. C., \& Plucker, J. A. (2018). Replication in Criminology and the Social Sciences. \emph{Annual Review of Criminology}, \emph{1}(1), 19--38. \url{https://doi.org/10.1146/annurev-criminol-032317-091849}
 
 \leavevmode\hypertarget{ref-RRRwebsite}{}%
-\emph{Registered Replication Reports}. (n.d.). \emph{Association for Psychological Science - APS}. Retrieved December 28, 2019, from \url{https://www.psychologicalscience.org/publications/replication}
+Registered Replication Reports. (n.d.). Retrieved December 28, 2019, from \url{https://www.psychologicalscience.org/publications/replication}
 
 \leavevmode\hypertarget{ref-Rohatgi2018}{}%
 Rohatgi, A. (2018). \emph{WebPlotDigitizer - Web Based Plot Digitizer}. Austin, Texas, USA. Retrieved from \url{https://automeris.io/WebPlotDigitizer}
 
 \leavevmode\hypertarget{ref-Rosenthal1979}{}%
-Rosenthal, R. (1979). The file drawer problem and tolerance for null results. \emph{Psychological Bulletin}, \emph{86}(3), 638--641. doi:\href{https://doi.org/10.1037/0033-2909.86.3.638}{10.1037/0033-2909.86.3.638}
+Rosenthal, R. (1979). The file drawer problem and tolerance for null results. \emph{Psychological Bulletin}, \emph{86}(3), 638--641. \url{https://doi.org/10.1037/0033-2909.86.3.638}
 
 \leavevmode\hypertarget{ref-Simmons2011}{}%
-Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. \emph{Psychological Science}, \emph{22}(11), 1359--1366. doi:\href{https://doi.org/10.1177/0956797611417632}{10.1177/0956797611417632}
+Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. \emph{Psychological Science}, \emph{22}(11), 1359--1366. \url{https://doi.org/10.1177/0956797611417632}
 
 \leavevmode\hypertarget{ref-Simons2018}{}%
-Simons, D. J. (2018). Introducing Advances in Methods and Practices in Psychological Science. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(1), 3--6. doi:\href{https://doi.org/10.1177/2515245918757424}{10.1177/2515245918757424}
+Simons, D. J. (2018). Introducing Advances in Methods and Practices in Psychological Science. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(1), 3--6. \url{https://doi.org/10.1177/2515245918757424}
 
 \leavevmode\hypertarget{ref-Simons2014}{}%
-Simons, D. J., Holcombe, A. O., \& Spellman, B. A. (2014). An Introduction to Registered Replication Reports at \emph{Perspectives} \emph{on} \emph{Psychological Science}. \emph{Perspectives on Psychological Science}, \emph{9}(5), 552--555. doi:\href{https://doi.org/10.1177/1745691614543974}{10.1177/1745691614543974}
+Simons, D. J., Holcombe, A. O., \& Spellman, B. A. (2014). An Introduction to Registered Replication Reports at \emph{Perspectives} \emph{on} \emph{Psychological Science}. \emph{Perspectives on Psychological Science}, \emph{9}(5), 552--555. \url{https://doi.org/10.1177/1745691614543974}
 
 \leavevmode\hypertarget{ref-Sterling1959}{}%
-Sterling, T. D. (1959). Publication Decisions and their Possible Effects on Inferences Drawn from Tests of Significance---or Vice Versa. \emph{Journal of the American Statistical Association}, \emph{54}(285), 30--34. doi:\href{https://doi.org/10.1080/01621459.1959.10501497}{10.1080/01621459.1959.10501497}
+Sterling, T. D. (1959). Publication Decisions and their Possible Effects on Inferences Drawn from Tests of Significance---or Vice Versa. \emph{Journal of the American Statistical Association}, \emph{54}(285), 30--34. \url{https://doi.org/10.1080/01621459.1959.10501497}
 
 \leavevmode\hypertarget{ref-Sterling1995}{}%
-Sterling, T. D., Rosenbaum, W. L., \& Weinkam, J. J. (1995). Publication Decisions Revisited: The Effect of the Outcome of Statistical Tests on the Decision to Publish and Vice Versa. \emph{The American Statistician}, \emph{49}(1), 108. doi:\href{https://doi.org/10.2307/2684823}{10.2307/2684823}
+Sterling, T. D., Rosenbaum, W. L., \& Weinkam, J. J. (1995). Publication Decisions Revisited: The Effect of the Outcome of Statistical Tests on the Decision to Publish and Vice Versa. \emph{The American Statistician}, \emph{49}(1), 108. \url{https://doi.org/10.2307/2684823}
 
 \leavevmode\hypertarget{ref-Szucs2017}{}%
-Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effect sizes and power in the recent cognitive neuroscience and psychology literature. \emph{PLOS Biology}, \emph{15}(3), e2000797. doi:\href{https://doi.org/10.1371/journal.pbio.2000797}{10.1371/journal.pbio.2000797}
+Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effect sizes and power in the recent cognitive neuroscience and psychology literature. \emph{PLOS Biology}, \emph{15}(3), e2000797. \url{https://doi.org/10.1371/journal.pbio.2000797}
 
 \leavevmode\hypertarget{ref-vanAssen2014}{}%
-van Assen, M. A. L. M., van Aert, R. C. M., Nuijten, M. B., \& Wicherts, J. M. (2014). Why Publishing Everything Is More Effective than Selective Publishing of Statistically Significant Results. \emph{PLOS ONE}, \emph{9}(1), e84896. doi:\href{https://doi.org/10.1371/journal.pone.0084896}{10.1371/journal.pone.0084896}
+van Assen, M. A. L. M., van Aert, R. C. M., Nuijten, M. B., \& Wicherts, J. M. (2014). Why Publishing Everything Is More Effective than Selective Publishing of Statistically Significant Results. \emph{PLOS ONE}, \emph{9}(1), e84896. \url{https://doi.org/10.1371/journal.pone.0084896}
 
 \leavevmode\hypertarget{ref-Winter2013}{}%
-Winter, J. de, \& Happee, R. (2013). Why Selective Publication of Statistically Significant Results Can Be Effective. \emph{PLOS ONE}, \emph{8}(6), e66463. doi:\href{https://doi.org/10.1371/journal.pone.0066463}{10.1371/journal.pone.0066463}
+Winter, J. de, \& Happee, R. (2013). Why Selective Publication of Statistically Significant Results Can Be Effective. \emph{PLOS ONE}, \emph{8}(6), e66463. \url{https://doi.org/10.1371/journal.pone.0066463}
 
 \leavevmode\hypertarget{ref-Wiseman2019}{}%
-Wiseman, R., Watt, C., \& Kornbrot, D. (2019). Registered reports: An early example and analysis. \emph{PeerJ}, \emph{7}, e6232. doi:\href{https://doi.org/10.7717/peerj.6232}{10.7717/peerj.6232}
+Wiseman, R., Watt, C., \& Kornbrot, D. (2019). Registered reports: An early example and analysis. \emph{PeerJ}, \emph{7}, e6232. \url{https://doi.org/10.7717/peerj.6232}
 
 \leavevmode\hypertarget{ref-Agnoli2017}{}%
-Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (2017). Questionable research practices among italian research psychologists. \emph{PLOS ONE}, \emph{12}(3), e0172792. doi:\href{https://doi.org/10.1371/journal.pone.0172792}{10.1371/journal.pone.0172792}
+Agnoli, F., Wicherts, J. M., Veldkamp, C. L. S., Albiero, P., \& Cubelli, R. (2017). Questionable research practices among italian research psychologists. \emph{PLOS ONE}, \emph{12}(3), e0172792. \url{https://doi.org/10.1371/journal.pone.0172792}
 
 \leavevmode\hypertarget{ref-Allen2019}{}%
-Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tips in early career and beyond. \emph{PLOS Biology}, \emph{17}(5), e3000246. doi:\href{https://doi.org/10.1371/journal.pbio.3000246}{10.1371/journal.pbio.3000246}
+Allen, C., \& Mehler, D. M. A. (2019). Open science challenges, benefits and tips in early career and beyond. \emph{PLOS Biology}, \emph{17}(5), e3000246. \url{https://doi.org/10.1371/journal.pbio.3000246}
 
 \leavevmode\hypertarget{ref-Atkinson1982}{}%
-Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. doi:\href{https://doi.org/10.1037/0022-0167.29.2.189}{10.1037/0022-0167.29.2.189}
+Atkinson, D. R., Furlong, M. J., \& Wampold, B. E. (1982). Statistical significance, reviewer evaluations, and the scientific process: Is there a (statistically) significant relationship? \emph{Journal of Counseling Psychology}, \emph{29}(2), 189--194. \url{https://doi.org/10.1037/0022-0167.29.2.189}
 
 \leavevmode\hypertarget{ref-Chambers2013}{}%
 Chambers, C. (2013). Registered reports: A new publishing initiative at Cortex, \emph{49}(3), 609--610. Retrieved from \url{http://orca.cf.ac.uk/45177/1/Chambers_Cortex_2013b_GreenOA.pdf}
 
 \leavevmode\hypertarget{ref-Chambers2015}{}%
-Chambers, C., Dienes, Z., McIntosh, R., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. doi:\href{https://doi.org/10.1016/j.cortex.2015.03.022}{10.1016/j.cortex.2015.03.022}
+Chambers, C., Dienes, Z., McIntosh, R., Rotshtein, P., \& Willmes, K. (2015). Registered Reports: Realigning incentives in scientific publishing. \emph{Cortex}, \emph{66}, 1--2. \url{https://doi.org/10.1016/j.cortex.2015.03.022}
 
 \leavevmode\hypertarget{ref-OSC2015}{}%
-Collaboration, O. S. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. doi:\href{https://doi.org/10.1126/science.aac4716}{10.1126/science.aac4716}
+Collaboration, O. S. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. \url{https://doi.org/10.1126/science.aac4716}
 
 \leavevmode\hypertarget{ref-Cristea2018}{}%
-Cristea, I. A., \& Ioannidis, J. P. A. (2018). P values in display items are ubiquitous and almost invariably significant: A survey of top science journals. \emph{PLOS ONE}, \emph{13}(5), e0197440. doi:\href{https://doi.org/10.1371/journal.pone.0197440}{10.1371/journal.pone.0197440}
+Cristea, I. A., \& Ioannidis, J. P. A. (2018). P values in display items are ubiquitous and almost invariably significant: A survey of top science journals. \emph{PLOS ONE}, \emph{13}(5), e0197440. \url{https://doi.org/10.1371/journal.pone.0197440}
 
 \leavevmode\hypertarget{ref-Fanelli2010}{}%
-Fanelli, D. (2010). "Positive" results increase down the hierarchy of the sciences. \emph{PLoS ONE}, \emph{5}(4), e10068. doi:\href{https://doi.org/10.1371/journal.pone.0010068}{10.1371/journal.pone.0010068}
+Fanelli, D. (2010). "Positive" results increase down the hierarchy of the sciences. \emph{PLoS ONE}, \emph{5}(4), e10068. \url{https://doi.org/10.1371/journal.pone.0010068}
 
 \leavevmode\hypertarget{ref-Fanelli2012}{}%
-Fanelli, D. (2012). Negative results are disappearing from most disciplines and countries. \emph{Scientometrics}, \emph{90}(3), 891--904. doi:\href{https://doi.org/10.1007/s11192-011-0494-7}{10.1007/s11192-011-0494-7}
+Fanelli, D. (2012). Negative results are disappearing from most disciplines and countries. \emph{Scientometrics}, \emph{90}(3), 891--904. \url{https://doi.org/10.1007/s11192-011-0494-7}
 
 \leavevmode\hypertarget{ref-Fiedler2016}{}%
-Fiedler, K., \& Schwarz, N. (2016). Questionable Research Practices Revisited. \emph{Social Psychological and Personality Science}, \emph{7}(1), 45--52. doi:\href{https://doi.org/10.1177/1948550615612150}{10.1177/1948550615612150}
+Fiedler, K., \& Schwarz, N. (2016). Questionable Research Practices Revisited. \emph{Social Psychological and Personality Science}, \emph{7}(1), 45--52. \url{https://doi.org/10.1177/1948550615612150}
 
 \leavevmode\hypertarget{ref-Franco2014}{}%
-Franco, A., Malhotra, N., \& Simonovits, G. (2014). Publication bias in the social sciences: Unlocking the file drawer. \emph{Science}, \emph{345}(6203), 1502--1505. doi:\href{https://doi.org/10.1126/science.1255484}{10.1126/science.1255484}
+Franco, A., Malhotra, N., \& Simonovits, G. (2014). Publication bias in the social sciences: Unlocking the file drawer. \emph{Science}, \emph{345}(6203), 1502--1505. \url{https://doi.org/10.1126/science.1255484}
 
 \leavevmode\hypertarget{ref-Franco2016}{}%
-Franco, A., Malhotra, N., \& Simonovits, G. (2016). Underreporting in Psychology Experiments: Evidence From a Study Registry. \emph{Social Psychological and Personality Science}, \emph{7}(1), 8--12. doi:\href{https://doi.org/10.1177/1948550615598377}{10.1177/1948550615598377}
+Franco, A., Malhotra, N., \& Simonovits, G. (2016). Underreporting in Psychology Experiments: Evidence From a Study Registry. \emph{Social Psychological and Personality Science}, \emph{7}(1), 8--12. \url{https://doi.org/10.1177/1948550615598377}
 
 \leavevmode\hypertarget{ref-Greenwald1975}{}%
 Greenwald, A. G. (1975). Consequences of Prejudice Against the Null Hypothesis. \emph{Psychological Bulletin}, \emph{82}(1), 1--20.
 
 \leavevmode\hypertarget{ref-John2012}{}%
-John, L. K., Loewenstein, G., \& Prelec, D. (2012). Measuring the Prevalence of Questionable Research Practices With Incentives for Truth Telling. \emph{Psychological Science}, \emph{23}(5), 524--532. doi:\href{https://doi.org/10.1177/0956797611430953}{10.1177/0956797611430953}
+John, L. K., Loewenstein, G., \& Prelec, D. (2012). Measuring the Prevalence of Questionable Research Practices With Incentives for Truth Telling. \emph{Psychological Science}, \emph{23}(5), 524--532. \url{https://doi.org/10.1177/0956797611430953}
 
 \leavevmode\hypertarget{ref-Jonas2016}{}%
-Jonas, K. J., \& Cesario, J. (2016). How can preregistration contribute to research in our field? \emph{Comprehensive Results in Social Psychology}, \emph{1}(1-3), 1--7. doi:\href{https://doi.org/10.1080/23743603.2015.1070611}{10.1080/23743603.2015.1070611}
+Jonas, K. J., \& Cesario, J. (2016). How can preregistration contribute to research in our field? \emph{Comprehensive Results in Social Psychology}, \emph{1}(1-3), 1--7. \url{https://doi.org/10.1080/23743603.2015.1070611}
 
 \leavevmode\hypertarget{ref-Kerr1998}{}%
-Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. \emph{Personality and Social Psychology Review}, \emph{2}(3), 196--217. doi:\href{https://doi.org/10.1207/s15327957pspr0203_4}{10.1207/s15327957pspr0203\_4}
+Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. \emph{Personality and Social Psychology Review}, \emph{2}(3), 196--217. \url{https://doi.org/10.1207/s15327957pspr0203_4}
 
 \leavevmode\hypertarget{ref-Kohler2019}{}%
-Köhler, T., \& Cortina, J. M. (2019). Play It Again, Sam! An Analysis of Constructive Replication in the Organizational Sciences. \emph{Journal of Management}, 014920631984398. doi:\href{https://doi.org/10.1177/0149206319843985}{10.1177/0149206319843985}
+Köhler, T., \& Cortina, J. M. (2019). Play It Again, Sam! An Analysis of Constructive Replication in the Organizational Sciences. \emph{Journal of Management}, 014920631984398. \url{https://doi.org/10.1177/0149206319843985}
 
 \leavevmode\hypertarget{ref-Lakens2019b}{}%
-Lakens, D. (n.d.). The Value of Preregistration for Psychological Science: A Conceptual Analysis. doi:\href{https://doi.org/10.31234/osf.io/jbh4w}{10.31234/osf.io/jbh4w}
+Lakens, D. (n.d.). The Value of Preregistration for Psychological Science: A Conceptual Analysis. \url{https://doi.org/10.31234/osf.io/jbh4w}
 
 \leavevmode\hypertarget{ref-Lakens2018a}{}%
-Lakens, D., Scheel, A. M., \& Isager, P. M. (2018). Equivalence Testing for Psychological Research: A Tutorial. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(2), 259--269. doi:\href{https://doi.org/10.1016/j.ympev.2015.01.015}{10.1016/j.ympev.2015.01.015}
+Lakens, D., Scheel, A. M., \& Isager, P. M. (2018). Equivalence Testing for Psychological Research: A Tutorial. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(2), 259--269. \url{https://doi.org/10.1016/j.ympev.2015.01.015}
 
 \leavevmode\hypertarget{ref-Mahoney1977}{}%
-Mahoney, M. J. (1977). Publication Prejudices: An Experimental Study of Confirmatory Bias in the Peer Review System. \emph{Cognitive Therapy and Research}, \emph{1}(2), 161--175. doi:\href{https://doi.org/10.1007/BF01173636}{10.1007/BF01173636}
+Mahoney, M. J. (1977). Publication Prejudices: An Experimental Study of Confirmatory Bias in the Peer Review System. \emph{Cognitive Therapy and Research}, \emph{1}(2), 161--175. \url{https://doi.org/10.1007/BF01173636}
 
 \leavevmode\hypertarget{ref-Makel2012}{}%
-Makel, M. C., Plucker, J. A., \& Hegarty, B. (2012). Replications in Psychology Research: How Often Do They Really Occur? \emph{Perspectives on Psychological Science}. doi:\href{https://doi.org/10.1177/1745691612460688}{10.1177/1745691612460688}
+Makel, M. C., Plucker, J. A., \& Hegarty, B. (2012). Replications in Psychology Research: How Often Do They Really Occur? \emph{Perspectives on Psychological Science}. \url{https://doi.org/10.1177/1745691612460688}
 
 \leavevmode\hypertarget{ref-Maxwell2004}{}%
-Maxwell, S. E. (2004). The Persistence of Underpowered Studies in Psychological Research: Causes, Consequences, and Remedies. \emph{Psychological Methods}, \emph{9}(2), 147--163. doi:\href{https://doi.org/10.1037/1082-989X.9.2.147}{10.1037/1082-989X.9.2.147}
+Maxwell, S. E. (2004). The Persistence of Underpowered Studies in Psychological Research: Causes, Consequences, and Remedies. \emph{Psychological Methods}, \emph{9}(2), 147--163. \url{https://doi.org/10.1037/1082-989X.9.2.147}
 
 \leavevmode\hypertarget{ref-Motyl2017}{}%
-Motyl, M., Demos, A. P., Carsel, T. S., Hanson, B. E., Melton, Z. J., Mueller, A. B., \ldots{} Skitka, L. J. (2017). The state of social and personality science: Rotten to the core, not so bad, getting better, or getting worse? \emph{Journal of Personality and Social Psychology}, \emph{113}(1), 34--58. doi:\href{https://doi.org/10.1037/pspa0000084}{10.1037/pspa0000084}
+Motyl, M., Demos, A. P., Carsel, T. S., Hanson, B. E., Melton, Z. J., Mueller, A. B., \ldots{} Skitka, L. J. (2017). The state of social and personality science: Rotten to the core, not so bad, getting better, or getting worse? \emph{Journal of Personality and Social Psychology}, \emph{113}(1), 34--58. \url{https://doi.org/10.1037/pspa0000084}
 
 \leavevmode\hypertarget{ref-Mueller-Langer2019}{}%
-Mueller-Langer, F., Fecher, B., Harhoff, D., \& Wagner, G. G. (2019). Replication studies in economics---How many and which papers are chosen for replication, and why? \emph{Research Policy}, \emph{48}(1), 62--83. doi:\href{https://doi.org/10.1016/j.respol.2018.07.019}{10.1016/j.respol.2018.07.019}
+Mueller-Langer, F., Fecher, B., Harhoff, D., \& Wagner, G. G. (2019). Replication studies in economics---How many and which papers are chosen for replication, and why? \emph{Research Policy}, \emph{48}(1), 62--83. \url{https://doi.org/10.1016/j.respol.2018.07.019}
 
 \leavevmode\hypertarget{ref-Nosek2014}{}%
-Nosek, B. A., \& Lakens, D. (2014). Registered Reports: A Method to Increase the Credibility of Published Results. \emph{Social Psychology}, \emph{45}(3), 137--141. doi:\href{https://doi.org/10.1027/1864-9335/a000192}{10.1027/1864-9335/a000192}
+Nosek, B. A., \& Lakens, D. (2014). Registered Reports: A Method to Increase the Credibility of Published Results. \emph{Social Psychology}, \emph{45}(3), 137--141. \url{https://doi.org/10.1027/1864-9335/a000192}
 
 \leavevmode\hypertarget{ref-Pridemore2018}{}%
-Pridemore, W. A., Makel, M. C., \& Plucker, J. A. (2018). Replication in Criminology and the Social Sciences. \emph{Annual Review of Criminology}, \emph{1}(1), 19--38. doi:\href{https://doi.org/10.1146/annurev-criminol-032317-091849}{10.1146/annurev-criminol-032317-091849}
+Pridemore, W. A., Makel, M. C., \& Plucker, J. A. (2018). Replication in Criminology and the Social Sciences. \emph{Annual Review of Criminology}, \emph{1}(1), 19--38. \url{https://doi.org/10.1146/annurev-criminol-032317-091849}
 
 \leavevmode\hypertarget{ref-RRRwebsite}{}%
-\emph{Registered Replication Reports}. (n.d.). \emph{Association for Psychological Science - APS}. Retrieved December 28, 2019, from \url{https://www.psychologicalscience.org/publications/replication}
+Registered Replication Reports. (n.d.). Retrieved December 28, 2019, from \url{https://www.psychologicalscience.org/publications/replication}
 
 \leavevmode\hypertarget{ref-Rohatgi2018}{}%
 Rohatgi, A. (2018). \emph{WebPlotDigitizer - Web Based Plot Digitizer}. Austin, Texas, USA. Retrieved from \url{https://automeris.io/WebPlotDigitizer}
 
 \leavevmode\hypertarget{ref-Rosenthal1979}{}%
-Rosenthal, R. (1979). The file drawer problem and tolerance for null results. \emph{Psychological Bulletin}, \emph{86}(3), 638--641. doi:\href{https://doi.org/10.1037/0033-2909.86.3.638}{10.1037/0033-2909.86.3.638}
+Rosenthal, R. (1979). The file drawer problem and tolerance for null results. \emph{Psychological Bulletin}, \emph{86}(3), 638--641. \url{https://doi.org/10.1037/0033-2909.86.3.638}
 
 \leavevmode\hypertarget{ref-Simmons2011}{}%
-Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. \emph{Psychological Science}, \emph{22}(11), 1359--1366. doi:\href{https://doi.org/10.1177/0956797611417632}{10.1177/0956797611417632}
+Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. \emph{Psychological Science}, \emph{22}(11), 1359--1366. \url{https://doi.org/10.1177/0956797611417632}
 
 \leavevmode\hypertarget{ref-Simons2018}{}%
-Simons, D. J. (2018). Introducing Advances in Methods and Practices in Psychological Science. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(1), 3--6. doi:\href{https://doi.org/10.1177/2515245918757424}{10.1177/2515245918757424}
+Simons, D. J. (2018). Introducing Advances in Methods and Practices in Psychological Science. \emph{Advances in Methods and Practices in Psychological Science}, \emph{1}(1), 3--6. \url{https://doi.org/10.1177/2515245918757424}
 
 \leavevmode\hypertarget{ref-Simons2014}{}%
-Simons, D. J., Holcombe, A. O., \& Spellman, B. A. (2014). An Introduction to Registered Replication Reports at \emph{Perspectives} \emph{on} \emph{Psychological Science}. \emph{Perspectives on Psychological Science}, \emph{9}(5), 552--555. doi:\href{https://doi.org/10.1177/1745691614543974}{10.1177/1745691614543974}
+Simons, D. J., Holcombe, A. O., \& Spellman, B. A. (2014). An Introduction to Registered Replication Reports at \emph{Perspectives} \emph{on} \emph{Psychological Science}. \emph{Perspectives on Psychological Science}, \emph{9}(5), 552--555. \url{https://doi.org/10.1177/1745691614543974}
 
 \leavevmode\hypertarget{ref-Sterling1959}{}%
-Sterling, T. D. (1959). Publication Decisions and their Possible Effects on Inferences Drawn from Tests of Significance---or Vice Versa. \emph{Journal of the American Statistical Association}, \emph{54}(285), 30--34. doi:\href{https://doi.org/10.1080/01621459.1959.10501497}{10.1080/01621459.1959.10501497}
+Sterling, T. D. (1959). Publication Decisions and their Possible Effects on Inferences Drawn from Tests of Significance---or Vice Versa. \emph{Journal of the American Statistical Association}, \emph{54}(285), 30--34. \url{https://doi.org/10.1080/01621459.1959.10501497}
 
 \leavevmode\hypertarget{ref-Sterling1995}{}%
-Sterling, T. D., Rosenbaum, W. L., \& Weinkam, J. J. (1995). Publication Decisions Revisited: The Effect of the Outcome of Statistical Tests on the Decision to Publish and Vice Versa. \emph{The American Statistician}, \emph{49}(1), 108. doi:\href{https://doi.org/10.2307/2684823}{10.2307/2684823}
+Sterling, T. D., Rosenbaum, W. L., \& Weinkam, J. J. (1995). Publication Decisions Revisited: The Effect of the Outcome of Statistical Tests on the Decision to Publish and Vice Versa. \emph{The American Statistician}, \emph{49}(1), 108. \url{https://doi.org/10.2307/2684823}
 
 \leavevmode\hypertarget{ref-Szucs2017}{}%
-Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effect sizes and power in the recent cognitive neuroscience and psychology literature. \emph{PLOS Biology}, \emph{15}(3), e2000797. doi:\href{https://doi.org/10.1371/journal.pbio.2000797}{10.1371/journal.pbio.2000797}
+Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effect sizes and power in the recent cognitive neuroscience and psychology literature. \emph{PLOS Biology}, \emph{15}(3), e2000797. \url{https://doi.org/10.1371/journal.pbio.2000797}
 
 \leavevmode\hypertarget{ref-vanAssen2014}{}%
-van Assen, M. A. L. M., van Aert, R. C. M., Nuijten, M. B., \& Wicherts, J. M. (2014). Why Publishing Everything Is More Effective than Selective Publishing of Statistically Significant Results. \emph{PLOS ONE}, \emph{9}(1), e84896. doi:\href{https://doi.org/10.1371/journal.pone.0084896}{10.1371/journal.pone.0084896}
+van Assen, M. A. L. M., van Aert, R. C. M., Nuijten, M. B., \& Wicherts, J. M. (2014). Why Publishing Everything Is More Effective than Selective Publishing of Statistically Significant Results. \emph{PLOS ONE}, \emph{9}(1), e84896. \url{https://doi.org/10.1371/journal.pone.0084896}
 
 \leavevmode\hypertarget{ref-Winter2013}{}%
-Winter, J. de, \& Happee, R. (2013). Why Selective Publication of Statistically Significant Results Can Be Effective. \emph{PLOS ONE}, \emph{8}(6), e66463. doi:\href{https://doi.org/10.1371/journal.pone.0066463}{10.1371/journal.pone.0066463}
+Winter, J. de, \& Happee, R. (2013). Why Selective Publication of Statistically Significant Results Can Be Effective. \emph{PLOS ONE}, \emph{8}(6), e66463. \url{https://doi.org/10.1371/journal.pone.0066463}
 
 \leavevmode\hypertarget{ref-Wiseman2019}{}%
-Wiseman, R., Watt, C., \& Kornbrot, D. (2019). Registered reports: An early example and analysis. \emph{PeerJ}, \emph{7}, e6232. doi:\href{https://doi.org/10.7717/peerj.6232}{10.7717/peerj.6232}
+Wiseman, R., Watt, C., \& Kornbrot, D. (2019). Registered reports: An early example and analysis. \emph{PeerJ}, \emph{7}, e6232. \url{https://doi.org/10.7717/peerj.6232}
 
 \end{document}

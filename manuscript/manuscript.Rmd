@@ -32,7 +32,7 @@ header-includes:
   - \usepackage{framed}
   - \usepackage{caption}
   - \usepackage{setspace}
-  - \captionsetup[figure]{font={stretch=1, footnotesize}}
+  - \captionsetup[figure]{font={stretch=1, small}, skip=11pt}
   - \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
   - \newfloat{textbox}{thp}{lop}
   - \floatname{textbox}{Box}
@@ -44,10 +44,10 @@ figsintext        : yes
 figurelist        : no
 tablelist         : no
 footnotelist      : no
-lineno            : yes
+lineno            : no
 
 lang              : "en-UK"
-class             : "man"
+class             : "jou"
 output            : papaja::apa6_pdf
 ---
 
@@ -157,7 +157,7 @@ We initially excluded eight papers and replaced them (the decision to replace ex
 
 (ref:sampling) Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. "Preregistered": study had been preregistered but was not a full RR; "results-blind review": article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); "ambiguous": Four of these had been treated as RRs but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance. We chose to exclude these cases to be conservative.
 
-```{r sampling, echo=FALSE, warning=FALSE, fig.cap = "(ref:sampling)", out.width = "\\textwidth"}
+```{r sampling, echo=FALSE, warning=FALSE, fig.cap = "(ref:sampling)", out.width = "\\textwidth", fig.env="figure*"}
 
 knitr::include_graphics("Sampling_exclusions_and_resampling.png")
 ```
@@ -193,7 +193,7 @@ MS and AS independently coded all 21 pilot articles with only one major disagree
 In the SR group, this disagreement was also the only case of major disagreement with Fanelli's original coding, which we deemed satisfying to proceed. 
 
 ```{r include=FALSE}
-source(here("analysis", "interrater_agreement.R"))
+source(here("analysis", "01_interrater_agreement.R"))
 ```
 
 
@@ -239,7 +239,7 @@ We would accept our hypothesis that RRs have a lower positive result rate than S
 
 # Results
 ```{r include=FALSE}
-source(here("analysis", "quantitative_analyses.R"))
+source(here("analysis", "02_quantitative_analyses.R"))
 ```
 
 ## Confirmatory Analyses
@@ -251,7 +251,7 @@ We thus accept our hypothesis that the positive result rate in RRs is lower than
 
 (ref:mainplot) Positive result rates for standard reports and Registered Reports. Error bars indicate $95 \%$ confidence intervals around the observed positive result rate.
 
-```{r mainplot, echo=FALSE, warning=FALSE, fig.width=4, fig.height=3, fig.cap="(ref:mainplot)"}
+```{r mainplot, echo=FALSE, warning=FALSE, fig.height=5, fig.cap="(ref:mainplot)"}
 mainplot
 ```
 
@@ -286,7 +286,7 @@ The data are inconclusive.
 
 
 ```{r include=FALSE}
-source(here("analysis", "hypothesis_introduction_analyses.R"))
+source(here("analysis", "03_hypothesis_introduction_analyses.R"))
 ```
 Finally, we analysed the language that was used to introduce or refer to hypotheses in RRs.
 We were interested in whether the search phrase "test$^\ast$ the hypothes$^\ast$" used by Fanelli captured the way researchers write about hypothesis tests reasonably well. The answer is a resounding "no":
@@ -340,7 +340,7 @@ apa_table(
   , col_spanners = list(`source` = c(4, 6))
   , midrules = c(6, 10, 11, 12, 29, 30, 34, 35, 36)
   , landscape = FALSE
-  , font_size = "scriptsize"
+  , font_size = "footnotesize"
   , escape = TRUE
 )
 ```
@@ -365,10 +365,10 @@ For example, if we assume no publication bias and no QRPs, more than $90\%$ of t
 This is highly unlikely, meaning that the standard literature is unlikely to reflect reality. 
 As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high, or higher, than in standard reports, leaving the rate of true hypotheses and bias as remaining explanations.
 
-(ref:powerbaserate) Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given $\alpha = 5 \%$ and no bias. Shaded areas indicate $95\%$ confidence intervals. SRs = standard reports, RRs = Registered Reports, PRR = positive result rate. The curve for all SRs (i.e, including replications; $`r printnum(prop.support.SR*100)` \%$ positive results, $N = `r n.SR`$) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation $PRR = \alpha*(1-t) + (1-\beta)*t$; with $PRR =$ positive result rate, $\alpha =$ probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), $1-\beta =$ probability of obtaining a positive result when testing a true hypothesis (power), and $t =$ proportion of true hypotheses; and solving for $t$ and $1-\beta$, respectively.
+(ref:powerbaserate) Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given $\alpha = 5 \%$ and no bias. Shaded areas indicate $95\%$ confidence intervals. SRs = standard reports, RRs = Registered Reports. The curve for all SRs (i.e, including replications; $`r printnum(prop.support.SR*100)` \%$ positive results, $N = `r n.SR`$) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation $PRR = \alpha*(1-t) + (1-\beta)*t$; with $PRR =$ positive result rate, $\alpha =$ probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), $1-\beta =$ probability of obtaining a positive result when testing a true hypothesis (power), and $t =$ proportion of true hypotheses; and solving for $t$ and $1-\beta$, respectively.
 
-```{r powerbaserate, echo=FALSE, warning=FALSE, fig.width=6, fig.height=3, fig.cap="(ref:powerbaserate"}
-source(here("analysis", "power_baserate_plot.R"))
+```{r powerbaserate, echo=FALSE, fig.width=5, fig.height=3, fig.align='center', warning=FALSE, fig.cap="(ref:powerbaserate)",   out.width = "0.6\\textwidth", fig.env="figure*"}
+source(here("analysis", "04_power_baserate_plot.R"))
 power.baserate.plot
 ```
 
