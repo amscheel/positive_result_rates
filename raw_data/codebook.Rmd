@@ -25,16 +25,18 @@ ggplot2::theme_set(ggplot2::theme_bw())
 pander::panderOptions("table.split.table", Inf)
 ```
 
-```{r prepare_codebook}
+```{r include=FALSE}
+library(here)
 library(codebook)
 library(readxl)
-#library(here)
 library(rio)
+```
 
+```{r prepare_codebook}
 codebook_data <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", n_max = 243)
 
 # Read codebook from second sheet in Excel file.
-dict <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", sheet = "codebook")
+dict <- read_excel("positive_results_in_registered_reports_masterfile_data.xlsx", sheet = "data_dictionary")
 
 # Add variable labels to data (from Excel file)
 var_label(codebook_data) <- dict_to_list(dict)
@@ -50,7 +52,8 @@ val_labels(codebook_data$result_from_fulltext) <- c("result from abstract alone"
 val_labels(codebook_data$coding_round) <- c("RR pilot" = 0,
                                             "main coding round" = 1,
                                             "SR replacements and late RR additions" = 2,
-                                            "second SR replacement" = 3)
+                                            "second SR replacement" = 3,
+                                            "RR protocol replacement" = 4)
 val_labels(codebook_data$uses_AS_coding) <- c("uses MS coding" = 0, "uses AS coding" = 1)
 val_labels(codebook_data$coded_by_MS) <- c("not coded by MS" = 0, "coded by MS" = 1)
 val_labels(codebook_data$evaluation_certainty_MS) <- c("not certain" = 1,
@@ -83,9 +86,17 @@ val_labels(codebook_data$hypothesis_intro_contains_replic) <- c("hypothesis intr
 
 
 # Add meta data
-metadata(codebook_data)$name <- "Positive Results in Registered Reports in Psychology"
-metadata(codebook_data)$description <- "Coded variables to compare the proportion of papers that find support for their first tested hypothesis between Registered Reports and standard reports in psychology"
-metadata(codebook_data)$creator <- "Anne Scheel, Mitchell Schijen, Daniël Lakens"
+metadata(codebook_data)$name <- "Positive Results in Standard vs Registered Reports"
+metadata(codebook_data)$description <- "Coded variables to compare the proportion of papers that find support for their first tested hypothesis between Registered Reports and standard reports in Psychology"
+metadata(codebook_data)$creator <- list(
+      "@type" = "Person",
+      givenName = "Anne", familyName = "Scheel",
+      affiliation = list("@type" = "Organization",
+        name = "Eindhoven University of Technology"),
+      "@type" = "Person",
+      givenName = " Mitchell", familiyName = "Schijen",
+      "@type" = "Person",
+      givenName = "Daniël", familiyName = "Lakens")
 metadata(codebook_data)$temporalCoverage <- "Winter 2018"
 
 #Export codebook
