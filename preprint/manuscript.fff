@@ -1,0 +1,15 @@
+\begin{figure*}
+\includegraphics[width=\textwidth]{Sampling_exclusions_and_resampling} \caption{Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. \enquote{Preregistered}: study had been preregistered but was not a full RR; \enquote{results-blind review}: article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); \enquote{ambiguous}: Four of these had been treated as RRs but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance. We chose to exclude these cases to be conservative.}\label{fig:sampling}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}
+
+{\centering \includegraphics[width=0.6\textwidth]{manuscript_files/figure-latex/powerbaserate-1}
+
+}
+
+\caption{Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given \(\alpha = 5 \%\) and no bias. Shaded areas indicate \(95\%\) confidence intervals. SRs = standard reports, RRs = Registered Reports. The curve for all SRs (i.e, including replications; \(96.05 \%\) positive results, \(N = 152\)) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation \(PRR = \alpha*(1-t) + (1-\beta)*t\); with \(PRR =\) positive result rate, \(\alpha =\) probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), \(1-\beta =\) probability of obtaining a positive result when testing a true hypothesis (power), and \(t =\) proportion of true hypotheses; and solving for \(t\) and \(1-\beta\), respectively.}\label{fig:powerbaserate}
+\end{figure*}
+\efloatseparator
+ 
