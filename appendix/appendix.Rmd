@@ -19,7 +19,7 @@ library("here")
 
 \raggedright
 
-This document contains additional information about the methods and analyses reported in the manuscript '**An excess of positive results: Comparing the standard Psychology literature with Registered Reports**', as well as an additional robustness analysis (see section 4.1).
+This document contains additional information about the methods and analyses reported in the manuscript '**An excess of positive results: Comparing the standard Psychology literature with Registered Reports**', as well as an additional robustness analysis (see section 4.1). This PDF was created in RMarkdown. The reproducible RMarkdown file, containing embedded code for the analysis in section 4.1, is available in our online repository at <https://osf.io/dbhgr> ([`appendix/appendix.Rmd`](https://osf.io/t4kc3/)).
 
 # 1. Project timeline
 | Time | Event |
@@ -72,10 +72,10 @@ The author informed us that the search was carried out in Web of Science using a
 We implemented this exact procedure with the following changes: 
 We used a current version of the Essential Science Indicators (ESI) database^[retrieved from http://help.incites.clarivate.com/incitesLiveESI/ESIGroup/overviewESI/esiJournalsList.html] (retrieved on 4th December 2018), we only searched journals from the 'Psychiatry/Psychology' discipline, we used ISSNs instead of journal names in our search query (to prevent the risk that names of journals on the list could be sub-strings of names of journals not on the list, which would then be searched as well), and we restricted the search to papers published between 2013 and 2018 (to match them to the RR population). 
 
-Using a programming script written in Processing (The Processing Foundation, 2019) a single search query compatible with Web of Science was generated that contained the key phrase that had to occur in the paper ('test$^\ast$ the hypothes$^\ast$'), as well as the desired publication years (2013 up to and including 2018), and the ISSNs of all 633 journals listed as Psychiatry/Psychology journals in the ESI database (the journal list is provided in the file `raw_data/source_data/ESI_journallist_Psychology_20181204.xlsx`). 
-The resulting search query is available in the file `raw_data/source_data/SR_search_query_WoS.txt`.
+Using a programming script written in Processing (The Processing Foundation, 2019) a single search query compatible with Web of Science was generated that contained the key phrase that had to occur in the paper ('test$^\ast$ the hypothes$^\ast$'), as well as the desired publication years (2013 up to and including 2018), and the ISSNs of all 633 journals listed as Psychiatry/Psychology journals in the ESI database (the journal list is provided in the file [`raw_data/source_data/ESI_journallist_Psychology_20181204.csv`](https://osf.io/x938b/)). 
+The resulting search query is available in the file [`raw_data/source_data/SR_search_query_WoS.txt`](https://osf.io/9xah6/).
 
-The search yielded 1919 results which were exported and saved in the file `raw_data/source_data/SR_search_results_WoS_20190107.csv`. 
+The search yielded 1919 results which were exported and saved in the file [`raw_data/source_data/SR_search_results_WoS_20190107.csv`](https://osf.io/q5fgd/). 
 We randomly selected 150 papers from this list using the sample() function in R and the seed '20190120':
 ```{r eval=FALSE}
 # Load all 1919 search results
@@ -133,7 +133,7 @@ The revised hypothesis introduction phrases were coded by AS alone and not doubl
 However, they are very similar to the phrases coded by MS and AS in the initial coding round (the main difference being increased consistency across papers).
 
 ### 3.2.4 Additional measures
-For the sake of completeness, we report all other recorded measures not described thus far in the following (*all* recorded measures are included and described in the dataset `raw_data/positive_results_in_registered_reports_masterfile_data.xlsx`). 
+For the sake of completeness, we report all other recorded measures not described thus far in the following (*all* recorded measures are included and described in the dataset [`raw_data/positive_results_in_registered_reports_data.xlsx`](https://osf.io/aqr2s/)). 
 
 * We coded direct quotes of either 'finding', 'conclusion', or both, depending on how the hypothesis-relevant results were reported (we adopted these two variables from the data excerpt provided by Fanelli). 
 * To track the coding process and facilitate double-coding and disagreement resolution, we coded 
