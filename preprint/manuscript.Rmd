@@ -25,7 +25,7 @@ abstract: >
   When studies with positive results that support the tested hypotheses have a higher probability of being published than studies with negative results, the literature will give a distorted view of the evidence for scientific claims. Psychological scientists have been concerned about the degree of distortion in their literature due to publication bias and inflated Type-1 error rates. Registered Reports were developed with the goal to minimise such biases: In this new publication format, peer review and the decision to publish take place before the study results are known. We compared the results in the full population of published Registered Reports in Psychology ($N = 71$ as of November 2018) with a random sample of hypothesis-testing studies from the standard literature ($N = 152$) by searching 633 journals for the phrase ‘test* the hypothes*’ [replicating a method by @Fanelli2010]. Analysing the first hypothesis reported in each paper, we found $96.05\%$ positive results in standard reports, but only $43.66\%$ positive results in Registered Reports. The difference remained nearly as large when direct replications were excluded from the analysis ($95.95\%$ vs $50\%$ positive results). This large gap suggests that psychologists under-report negative results to an extent that threatens cumulative science. Although our study did not directly test the effectiveness of Registered Reports at reducing bias, these results show that the introduction of Registered Reports has led to a much larger proportion of negative results appearing in the published literature compared to standard reports.
   
 keywords          : "Publication bias, Registered Reports, hypothesis testing"
-wordcount         : "6408"
+#wordcount         : "6465"
 
 header-includes:
   - \usepackage{float}
@@ -160,7 +160,7 @@ We initially excluded eight papers and replaced them (the decision to replace ex
 
 # Important additional chunk option when using journal mode: fig.env="figure*"
 
-knitr::include_graphics("Sampling_exclusions_and_resampling.png")
+knitr::include_graphics("sampling_process_flowchart.png")
 ```
 
 For Registered Reports we aimed to include all published Registered Reports in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase "test$^\ast$ the hypothes$^\ast$". 
@@ -444,12 +444,12 @@ Therefore, although the search term used to find standard reports might limit th
 
 A final limitation is the decision to code only the first reported hypothesis. 
 The first hypothesis test may not be representative for all hypothesis tests reported in a paper, and the order of reporting may differ between standard reports and Registered Reports. 
-Perhaps Registered Report authors are more likely to present their hypotheses in "chronological" order, whereas standard report authors tend to rearrange the order in which hypotheses are reported based on their outcomes, and present supported hypotheses first. 
+Perhaps Registered-Report authors are more likely to present their hypotheses in "chronological" order, whereas standard-report authors tend to rearrange the order in which hypotheses are reported based on their outcomes, and present supported hypotheses first. 
 Here again, the converging estimates from the four studies cited above (none of which use the first-hypothesis rule) make it seem unlikely that our result is an artefact of this decision. 
 Regardless of which hypothesis one chooses to analyse across a set of papers -- the first, the last, or the "critical" one -- the positive result rate turns out to be higher than what can be expected based on realistic estimates of the proportion of true hypotheses researchers study and the statistical power of their tests. 
 
 ## Conclusion
-Our study presents a systematic comparison of positive results in Registered Reports and the standard literature. The much lower positive result rate in Registered Reports compared to standard reports suggests that an unbiased literature would look very different from the published research we are used to. Standard publication formats seem to lead psychological scientists to miss out on many high-quality studies with negative results, which are available in the Registered Reports literature. The absence of negative results is a serious threat to a cumulative science. In 1959, Sterling asked: "What credence can then be given to inferences drawn from statistical tests of $H_0$ if the reader is not aware of all experimental outcomes of a kind?" The amount of experimental outcomes missing from the standard literature appears to be so large that not much credence may be left. In contrast, Registered Reports have clearly led to a much larger proportion of negative results appearing in the literature -- and may be one solution to a much more credible record of the research scientists conduct.
+Our study presents a systematic comparison of positive results in Registered Reports and the standard literature. The much lower positive result rate in Registered Reports compared to standard reports suggests that an unbiased literature would look very different from the published research we are used to. Standard publication formats seem to lead psychological scientists to miss out on many high-quality studies with negative results, which are available in the Registered Reports literature. The absence of negative results is a serious threat to a cumulative science. In 1959, Sterling asked: "What credence can then be given to inferences drawn from statistical tests of $H_0$ if the reader is not aware of all experimental outcomes of a kind?" The amount of experimental outcomes missing from the standard literature appears to be so large that not much credence may be left. In contrast, Registered Reports have clearly led to a much larger proportion of negative results appearing in the literature -- and may be one solution to a more credible record of the research scientists conduct.
 
 
 ```{r include=FALSE}
