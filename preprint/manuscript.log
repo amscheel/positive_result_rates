@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 18:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 19:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1444,11 +1444,11 @@ Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 38EB49B4BA334A1B4F8D687AD575C083;3046.
  ) 
 Here is how much of TeX's memory you used:
- 16530 strings out of 493315
- 237876 string characters out of 6139669
+ 16526 strings out of 493315
+ 237844 string characters out of 6139669
  381255 words of memory out of 5000000
  19082 multiletter control sequences out of 15000+600000
- 92854 words of font info for 483 fonts, out of 8000000 for 9000
+ 92591 words of font info for 480 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  43i,10n,40p,3381b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/local/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</opt/local/share
@@ -1458,10 +1458,10 @@ type1/public/txfonts/rtxr.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
 c/txfonts/txsy.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmb8a
 .pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></opt/loc
 al/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (14 pages, 465930 bytes).
+Output written on manuscript.pdf (14 pages, 465862 bytes).
 PDF statistics:
- 398 PDF objects out of 1000 (max. 8388607)
- 364 compressed objects within 4 object streams
+ 400 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
  121 named destinations out of 1000 (max. 500000)
  43200 words of extra memory for PDF output out of 51595 (max. 10000000)
 
