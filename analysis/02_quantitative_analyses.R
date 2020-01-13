@@ -53,7 +53,7 @@ library("papaja")
 library("here")
 
 # load the dataset from the RDS file created with codebook
-alldata <- readRDS(here("raw_data", "positive_results_in_registered_reports_codebook.rds"))
+alldata <- readRDS(here("raw_data", "positive_results_in_registered_reports_data.rds"))
 # remove excluded papers
 included <- alldata[alldata$include_in_analysis==1,]
 
