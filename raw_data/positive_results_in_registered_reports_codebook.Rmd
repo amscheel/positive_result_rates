@@ -32,10 +32,10 @@ library(rio)
 ```
 
 ```{r prepare_codebook}
-codebook_data <- import("positive_results_in_registered_reports_masterfile_data.xlsx")
+codebook_data <- import("positive_results_in_registered_reports_data.xlsx")
 
 # Read codebook from second sheet in Excel file.
-dict <- import("positive_results_in_registered_reports_masterfile_data.xlsx", sheet = "data_dictionary")
+dict <- import("positive_results_in_registered_reports_data.xlsx", sheet = "data_dictionary")
 
 # Add variable labels to data (from Excel file)
 var_label(codebook_data) <- dict_to_list(dict)
