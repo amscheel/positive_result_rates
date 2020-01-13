@@ -191,6 +191,3 @@ $PRR$ is the positive result rate (the proportion of positive results, i.e. the 
 By solving this equation for $t$ and for $1-\beta$, respectively, we can calculate the combinations of these two factors that would produce a given positive result rate for a given level of $\alpha$.
 Figure 3 in the manuscript was produced by solving for power, $1 - \beta = (PRR - \alpha + \alpha * t) / t$, and calculating power for all levels of $t$ from 0 to 1, $\alpha = .05$, and the observed positive result rates of original standard reports, original Registered Reports, and all Registered Reports.
 
-This calculation and the plot shown in Figure 3 are extreme simplifications of the research process and not intended for drawing inferences about (e.g.) how many of the hypotheses tested in the literature are true versus false. 
-However, we believe that it serves as a useful illustration of the assumptions that would be necessary to explain our results without referring to an influence of publication bias or error inflation.
-

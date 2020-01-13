@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 15:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 17:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1424,25 +1424,16 @@ Package caption Warning: Unused \captionsetup[textbox] on input line 140.
 See the caption package documentation for explanation.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 836.
-
-Underfull \vbox (badness 5331) has occurred while \output is active []
-
-Extra height:10.0pt when 145.06pt
-
-Underfull \vbox (badness 6461) has occurred while \output is active []
-
-Extra height:10.0pt when 146.06pt
-
-Underfull \vbox (badness 7740) has occurred while \output is active []
-
-Extra height:10.0pt when 147.06pt
-Extra height:0.0pt when 148.06pt
-(2)Left:148.06pt Right:140.12pt Output:148.06pt
+Extra height:10.0pt when 175.06pt
+Extra height:10.0pt when 176.06pt
+Extra height:10.0pt when 177.06pt
+Extra height:0.0pt when 178.06pt
+(2)Left:178.06pt Right:170.12pt Output:178.06pt
 - LAST -
 Extra skip:0.0pt
-Left:148.06pt
-Right:140.12pt
-Output:148.06pt
+Left:178.06pt
+Right:170.12pt
+Output:178.06pt
 [14
 
 ]
@@ -1454,11 +1445,11 @@ Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 38EB49B4BA334A1B4F8D687AD575C083;3046.
  ) 
 Here is how much of TeX's memory you used:
- 16526 strings out of 493315
- 237883 string characters out of 6139669
- 381189 words of memory out of 5000000
+ 16530 strings out of 493315
+ 237908 string characters out of 6139669
+ 381273 words of memory out of 5000000
  19082 multiletter control sequences out of 15000+600000
- 92689 words of font info for 480 fonts, out of 8000000 for 9000
+ 92854 words of font info for 483 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  43i,10n,40p,3381b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/local/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</opt/local/share
@@ -1468,7 +1459,7 @@ type1/public/txfonts/rtxr.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
 c/txfonts/txsy.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmb8a
 .pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></opt/loc
 al/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (14 pages, 465674 bytes).
+Output written on manuscript.pdf (14 pages, 465926 bytes).
 PDF statistics:
  398 PDF objects out of 1000 (max. 8388607)
  364 compressed objects within 4 object streams

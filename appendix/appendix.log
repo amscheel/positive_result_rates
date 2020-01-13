@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 01:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 17:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -938,15 +938,15 @@ LaTeX Font Info:    Try loading font information for TS1+lmr on input line 501.
 (/opt/local/share/texmf-texlive/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [4] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 655.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 647.
 [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 655.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 647.
 (./appendix.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 655.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 655.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 647.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 647.
 Package rerunfilecheck Info: File `appendix.out' has not changed.
 (rerunfilecheck)             Checksum: 3E3D08CB982A6810F801F4A16B704A0D;3025.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 655.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 647.
  ) 
 Here is how much of TeX's memory you used:
  13643 strings out of 493315
@@ -970,7 +970,7 @@ al/share/texmf-texlive/fonts/type1/public/lm/lmri10.pfb></opt/local/share/texmf
 /type1/public/lm/lmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/l
 m/lmtk10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/lmtt10.pfb><
 /opt/local/share/texmf-texlive/fonts/type1/public/lm/lmtti10.pfb>
-Output written on appendix.pdf (6 pages, 238907 bytes).
+Output written on appendix.pdf (6 pages, 238595 bytes).
 PDF statistics:
  178 PDF objects out of 1000 (max. 8388607)
  156 compressed objects within 2 object streams
