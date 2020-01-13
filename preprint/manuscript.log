@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 00:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 13:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1392,14 +1392,8 @@ File: Sampling_exclusions_and_resampling.png Graphic file (type png)
 Package pdftex.def Info: Sampling_exclusions_and_resampling.png used on input l
 ine 264.
 (pdftex.def)             Requested size: 501.51811pt x 286.41339pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[4]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[5 <./Sampling_exclusions_and_resampling.png>]
-<manuscript_files/figure-latex/mainplot-1.pdf, id=142, 406.51875pt x 334.24875p
+[4] [5 <./Sampling_exclusions_and_resampling.png>]
+<manuscript_files/figure-latex/mainplot-1.pdf, id=143, 406.51875pt x 334.24875p
 t>
 File: manuscript_files/figure-latex/mainplot-1.pdf Graphic file (type pdf)
 <use manuscript_files/figure-latex/mainplot-1.pdf>
@@ -1413,7 +1407,7 @@ Underfull \vbox (badness 1331) has occurred while \output is active []
 LaTeX Warning: Float too large for page by 6.94576pt on input line 576.
 
 
-Underfull \vbox (badness 1331) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [7] [8] [9]
 <manuscript_files/figure-latex/powerbaserate-1.png, id=182, 1428.33624pt x 818.
@@ -1469,7 +1463,7 @@ Package rerunfilecheck Info: File `manuscript.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  16526 strings out of 493315
- 237887 string characters out of 6139669
+ 237883 string characters out of 6139669
  381188 words of memory out of 5000000
  19082 multiletter control sequences out of 15000+600000
  92689 words of font info for 480 fonts, out of 8000000 for 9000
@@ -1482,7 +1476,7 @@ type1/public/txfonts/rtxr.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
 c/txfonts/txsy.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmb8a
 .pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></opt/loc
 al/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (14 pages, 465326 bytes).
+Output written on manuscript.pdf (14 pages, 465476 bytes).
 PDF statistics:
  398 PDF objects out of 1000 (max. 8388607)
  364 compressed objects within 4 object streams
