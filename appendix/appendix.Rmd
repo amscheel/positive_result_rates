@@ -61,7 +61,7 @@ The file also contains a variable indicating the discipline category we identifi
 ##### Excluding Registered Replication Reports (RRRs):
 The decision to exclude all RRRs was made during the main data collection (coding round 1), i.e. after piloting and after the study had been preregistered. 
 MS and AS both noted that RRRs were particularly difficult to code because no clear hypothesis and/or no clear conclusions could be identified. 
-This lead us to look up the editorial information for the RRR format, which clearly states that RRRs are not supposed to test hypotheses:  
+This led us to look up the editorial information for the RRR format, which clearly states that RRRs are not supposed to test hypotheses:  
 'The conclusion of a Registered Replication Report should avoid categorizing each result as a success or failure to replicate. Instead, it should focus on the cumulative estimate of the effect size' (retrieved from https://www.psychologicalscience.org/publications/replication). 
 Therefore we decided to categorically exclude all RRRs, regardless of whether or not we were able to code them.
 
@@ -112,10 +112,10 @@ All criteria we used are described in the main manuscript.
 Since the difference between replication studies and original studies was not the main focus of our paper, and because definitions of (e.g.) direct versus conceptual replications can be difficult to apply, we originally aimed for a 'lightweight' coding criterion and coded two binary variables: 'contains replication' and 'contains original work'. 
 Both of these pertained to a full paper and were not restricted to the first hypothesis, meaning that a paper could be coded as 'contains a replication' even if the coded hypothesis was clearly novel. 
 A paper could be coded as containing only replication research (i.e., 'contains replication' = 1, 'contains original work' = 0), only original work (i.e., 'contains replication' = 0, 'contains original work' = 1), or both (i.e., 'contains replication' = 1, 'contains original work' = 1), but not neither. 
-However, we did not define any precise criteria for what would vs would not constitute a replication, which lead to coding disagreements between MS and AS for a relatively large number of papers (MS had used a relatively lenient, AS a quite strict definition of 'contains replication'). 
+However, we did not define any precise criteria for what would vs would not constitute a replication, which led to coding disagreements between MS and AS for a relatively large number of papers (MS had used a relatively lenient, AS a quite strict definition of 'contains replication'). 
 We therefore decided (after MS had completed his BEP thesis) to completely revise the way in which replication status was coded. 
 
-The main reason why we coded replication status in the first place was the idea that direct replication studies may sometimes or often be motivated by the authors' scepticisim of the original result, and that such direct replication studies may be overrepresented in the Registered Reports population compared to the standard literature. 
+The main reason why we coded replication status in the first place was the idea that direct replication studies may sometimes or often be motivated by the authors' scepticism of the original result, and that such direct replication studies may be overrepresented in the Registered Reports population compared to the standard literature. 
 Therefore, we chose to focus on whether the authors' goal appeared to be to test if a previously published result holds up by conducting a close replication of the respective original study. 
 We would thus ignore replications that had the goal to test if a hypothesis or method holds in a new context or population (i.e., that did not have the goal to challenge or verify the results in the original context or population) and 'internal' replications (i.e., replications of studies published in the same paper). 
 

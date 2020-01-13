@@ -215,7 +215,7 @@ We therefore extracted the phrase used to introduce the hypothesis from the code
 We also wanted to code if a study was a replication of a previously published one: 
 We expected a much larger proportion of Registered Reports to be direct replications, many of which may have been motivated by scepticism of the original study. 
 A lower positive result rate in Registered Reports could then be an effect of failed replications rather than an effect of safeguards against QRPs and publication bias. 
-After an initial coding attempt with ill-defined coding criteria lead to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered): 
+After an initial coding attempt with ill-defined coding criteria led to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered): 
 We searched the full texts of all papers for the string "replic$^\ast$" [cf. @Makel2012; @Kohler2019; @Mueller-Langer2019; @Pridemore2018], and for those that did contain it determined whether the first hypothesis was a close or direct replication of previously published work. 
 Conceptual replications and internal replications were not counted as replications in this narrow sense: 
 The reason to code replication status in the first place was the idea that direct replications of previous work may be motivated by replicators' scepticism in the hypothesis and thus have a low prior probability, whereas conceptual replications are usually considered as building on previous work rather than verifying it. 
@@ -421,7 +421,7 @@ Rather, the numbers strongly suggest a reduction of publication bias and/or Type
 
 ## Limitations
 We compared hypotheses tested in Registered Reports with hypotheses tested in standard reports. 
-Because neither hypotheses, authors, nor editors are randomly assigned to each publication format we cannot draw firm conclusions about the causes that lead to a difference in the proportion of supported hypotheses. 
+Because neither hypotheses, authors, nor editors were randomly assigned to each publication format we cannot draw firm conclusions about the causes that led to a difference in the proportion of supported hypotheses. 
 Although it seems plausible that selective reporting and QRPs are reduced in Registered Reports, we do not know by how much, nor if this reduction would be of comparable size in a randomised experiment. 
 As mentioned above, it is a-priori plausible that the Registered Reports format is used selectively for particularly risky hypotheses. 
 This means that the proportion of true hypotheses in Registered Reports does not necessarily generalise to the entire population of hypotheses that are tested in psychology. 
