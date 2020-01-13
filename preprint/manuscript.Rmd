@@ -32,7 +32,7 @@ header-includes:
   - \usepackage{framed}
   - \usepackage{caption}
   - \usepackage{setspace}
-  - \captionsetup[figure]{font={stretch=1, small}, skip=11pt}
+  - \captionsetup[figure]{font={stretch=1, small}, skip=12pt}
   - \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
   - \newfloat{textbox}{thp}{lop}
   - \floatname{textbox}{Box}
@@ -459,7 +459,7 @@ my_citation <- cite_r(file = "prr_software.bib")
 
 ## Disclosures
 ### Data, materials, and online resources
-The data and code necessary to reproduce all analyses reported here, as well as additional supplementary information, is available at <https://osf.io/dbhgr>. The manuscript including figures and statistical analyses, the appendix, and the codebook available in the supplement were created using RStudio [1.2.5019, @RStudioTeam2019] and `r my_citation`.
+The data and code necessary to reproduce all analyses reported here, as well as the [Appendix](https://osf.io/vcqya/), the [preregistration document](https://osf.io/sy927/) and additional supplementary files, are available at <https://osf.io/dbhgr>. The manuscript including figures and statistical analyses, the Appendix, and the [codebook](https://osf.io/6jrkz/) available in the supplement were created using RStudio [1.2.5019, @RStudioTeam2019] and `r my_citation`.
 
 ### Conflicts of Interest
 The authors declare that they have no conflicts of interest with respect to the authorship or the publication of this article.

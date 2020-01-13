@@ -49,13 +49,13 @@ This document contains additional information about the methods and analyses rep
 We preregistered our study on 7th December 2018. 
 The preregistration document can be found at https://osf.io/sy927/. 
 To facilitate the comparison between the preregistration and the procedure and analyses we eventually carried out, we annotated the preregistration document in Word, adding comments that for each 'decision unit' note whether it was carried out as preregistered and give a brief overview of relevant changes or additional details. 
-The annotated preregistration document is provided in the file `appendix/preregistration_annotated.docx`.
+The annotated preregistration document is provided in the file [`appendix/preregistration_annotated.docx`](https://osf.io/e79vb/) (to view the annotations the file must be opened with a word processor like MS Word).
 
 # 3. Method
 ## 3.1 Sample
 ### 3.1.1 Registered Reports
-As described in the main manuscript, we selected Registered Reports by retrieving the Registered Reports database curated by the Center for Open Science (COS, https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9) on 19th November 2018, determining the discipline each paper belonged to and excluding all non-Psychology papers, and then verifying if all Psychology papers on the list were indeed Registered Reports. 
-The file `raw_data/source_data/RR_database_categorised_Nov2018.csv` contains the full list of papers that were included in the COS database when we accessed and copied it. 
+As described in the main manuscript, we selected Registered Reports by retrieving the Registered Reports database curated by the Center for Open Science^[retrieved from https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (COS) on 19th November 2018, determining the discipline each paper belonged to and excluding all non-Psychology papers, and then verifying if all Psychology papers on the list were indeed Registered Reports. 
+The file [`raw_data/source_data/RR_database_categorised_Nov2018.csv`](https://osf.io/8ybrk/) contains the full list of papers that were included in the COS database when we accessed and copied it. 
 The file also contains a variable indicating the discipline category we identified for each paper ('Discipline'), whether the papers was indeed a Registered Report ('RR', only checked for Psychology papers), and optional comments with details regarding this coding process ('comments').
 
 ##### Excluding Registered Replication Reports (RRRs):
@@ -70,7 +70,7 @@ Fanelli (2010) describes his sampling strategy as follows:
 'The sentence "test$^\ast$ the hypothes$^\ast$" was used to search all 10837 journals in the Essential Science Indicators database, which classifies journals univocally in 22 disciplines. When the number of papers retrieved from one discipline exceeded 150, papers were selected using a random number generator' (p. 8). 
 The author informed us that the search was carried out in Web of Science using a Boolean search query which contained the key phrase and the full list of journal names for each scientific discipline (personal communication, 5th October 2018).
 We implemented this exact procedure with the following changes: 
-We used a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018), we only searched journals from the 'Psychiatry/Psychology' discipline, we used ISSNs instead of journal names in our search query (to prevent the risk that names of journals on the list could be sub-strings of names of journals not on the list, which would then be searched as well), and we restricted the search to papers published between 2013 and 2018 (to match them to the RR population). 
+We used a current version of the Essential Science Indicators (ESI) database^[retrieved from http://help.incites.clarivate.com/incitesLiveESI/ESIGroup/overviewESI/esiJournalsList.html] (retrieved on 4th December 2018), we only searched journals from the 'Psychiatry/Psychology' discipline, we used ISSNs instead of journal names in our search query (to prevent the risk that names of journals on the list could be sub-strings of names of journals not on the list, which would then be searched as well), and we restricted the search to papers published between 2013 and 2018 (to match them to the RR population). 
 
 Using a programming script written in Processing (The Processing Foundation, 2019) a single search query compatible with Web of Science was generated that contained the key phrase that had to occur in the paper ('test$^\ast$ the hypothes$^\ast$'), as well as the desired publication years (2013 up to and including 2018), and the ISSNs of all 633 journals listed as Psychiatry/Psychology journals in the ESI database (the journal list is provided in the file `raw_data/source_data/ESI_journallist_Psychology_20181204.xlsx`). 
 The resulting search query is available in the file `raw_data/source_data/SR_search_query_WoS.txt`.

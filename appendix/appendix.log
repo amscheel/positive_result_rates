@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 17:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.10.16)  13 JAN 2020 18:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -923,37 +923,42 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/opt/local/share/texmf-texlive/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 286.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 287.
 
 (/opt/local/share/texmf-texlive/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 303.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 303.
+[2]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 373.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 379.
 [3]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 501.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 507.
 
 (/opt/local/share/texmf-texlive/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [4] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 647.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 653.
 [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 647.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 653.
 (./appendix.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 647.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 647.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 653.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 653.
 Package rerunfilecheck Info: File `appendix.out' has not changed.
 (rerunfilecheck)             Checksum: 3E3D08CB982A6810F801F4A16B704A0D;3025.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 647.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 653.
  ) 
 Here is how much of TeX's memory you used:
- 13643 strings out of 493315
- 196466 string characters out of 6139669
+ 13692 strings out of 493315
+ 197138 string characters out of 6139669
  312441 words of memory out of 5000000
- 16794 multiletter control sequences out of 15000+600000
- 50024 words of font info for 72 fonts, out of 8000000 for 9000
+ 16824 multiletter control sequences out of 15000+600000
+ 67345 words of font info for 89 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  31i,8n,35p,902b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/local/share/texmf-texlive/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/local/
@@ -964,16 +969,18 @@ ips/lm/lm-ts1.enc}{/opt/local/share/texmf-texlive/fonts/enc/dvips/lm/lm-ec.enc}
 are/texmf-texlive/fonts/type1/public/lm/lmbx12.pfb></opt/local/share/texmf-texl
 ive/fonts/type1/public/lm/lmmi10.pfb></opt/local/share/texmf-texlive/fonts/type
 1/public/lm/lmr10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/lmr
-17.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/lmr7.pfb></opt/loc
-al/share/texmf-texlive/fonts/type1/public/lm/lmri10.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/lm/lmsy10.pfb></opt/local/share/texmf-texlive/fonts
-/type1/public/lm/lmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/l
-m/lmtk10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/lmtt10.pfb><
-/opt/local/share/texmf-texlive/fonts/type1/public/lm/lmtti10.pfb>
-Output written on appendix.pdf (6 pages, 238595 bytes).
+17.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/lmr6.pfb></opt/loc
+al/share/texmf-texlive/fonts/type1/public/lm/lmr7.pfb></opt/local/share/texmf-t
+exlive/fonts/type1/public/lm/lmr8.pfb></opt/local/share/texmf-texlive/fonts/typ
+e1/public/lm/lmri10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/l
+msy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/lm/lmsy7.pfb></opt
+/local/share/texmf-texlive/fonts/type1/public/lm/lmtk10.pfb></opt/local/share/t
+exmf-texlive/fonts/type1/public/lm/lmtt10.pfb></opt/local/share/texmf-texlive/f
+onts/type1/public/lm/lmtti10.pfb>
+Output written on appendix.pdf (6 pages, 286431 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 156 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 10353 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 171 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 14449 words of extra memory for PDF output out of 17280 (max. 10000000)
 
