@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.14)  14 JAN 2020 18:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.14)  15 JAN 2020 00:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1212,7 +1212,7 @@ Package pdftex.def Info: sampling_process_flowchart.png  used on input line 264
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [5 <./sampling_process_flowchart.png>]
-<manuscript_files/figure-latex/mainplot-1.pdf, id=146, 406.51875pt x 334.24875p
+<manuscript_files/figure-latex/mainplot-1.pdf, id=147, 406.51875pt x 334.24875p
 t>
 File: manuscript_files/figure-latex/mainplot-1.pdf Graphic file (type pdf)
 <use manuscript_files/figure-latex/mainplot-1.pdf>
@@ -1220,7 +1220,7 @@ Package pdftex.def Info: manuscript_files/figure-latex/mainplot-1.pdf  used on
 input line 364.
 (pdftex.def)             Requested size: 241.74208pt x 198.76572pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1168) has occurred while \output is active []
 
 [6 <./manuscript_files/figure-latex/mainplot-1.pdf>]
 Underfull \vbox (badness 1331) has occurred while \output is active []
@@ -1229,7 +1229,7 @@ Underfull \vbox (badness 1331) has occurred while \output is active []
 LaTeX Warning: Float too large for page by 6.94576pt on input line 576.
 
 [7] [8] [9]
-<manuscript_files/figure-latex/powerbaserate-1.pdf, id=184, 349.305pt x 197.738
+<manuscript_files/figure-latex/powerbaserate-1.pdf, id=186, 349.305pt x 197.738
 75pt>
 File: manuscript_files/figure-latex/powerbaserate-1.pdf Graphic file (type pdf)
 
@@ -1240,7 +1240,10 @@ d on input line 604.
 
 Underfull \vbox (badness 1215) has occurred while \output is active []
 
-[10] [11 <./manuscript_files/figure-latex/powerbaserate-1.pdf>] [12] [13]
+[10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[11 <./manuscript_files/figure-latex/powerbaserate-1.pdf>] [12] [13]
 
 Package caption Warning: Unused \captionsetup[textbox] on input line 140.
 See the caption package documentation for explanation.
@@ -1260,15 +1263,18 @@ Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 38EB49B4BA334A1B4F8D687AD575C083;3046.
  ) 
 Here is how much of TeX's memory you used:
- 16712 strings out of 492616
- 244795 string characters out of 6129481
- 400040 words of memory out of 5000000
+ 16713 strings out of 492616
+ 244805 string characters out of 6129481
+ 400047 words of memory out of 5000000
  19727 multiletter control sequences out of 15000+600000
- 95727 words of font info for 486 fonts, out of 8000000 for 9000
+ 95825 words of font info for 486 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,10n,40p,3381b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
 
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2019/texmf-dist/fonts/type1/public/txfonts/rtxi.pfb></usr/local/texlive/20
@@ -1278,10 +1284,10 @@ mf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2019/texmf-dist
 type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on manuscript.pdf (14 pages, 384850 bytes).
+Output written on manuscript.pdf (14 pages, 385185 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 123 named destinations out of 1000 (max. 500000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 381 compressed objects within 4 object streams
+ 124 named destinations out of 1000 (max. 500000)
  43200 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -204,7 +204,7 @@ The protocol undergoes peer review, and, if successful, receives \enquote{in-pri
 The authors then collect and analyse the data and write up the final report.
 The final report undergoes another round of peer review, but this time only to check if the authors adhered to the plan outlined in their protocol (and, if applicable, if the data passes pre-specified quality checks).
 Registered Reports thus combine an antidote to QRPs (preregistration) with an antidote to publication bias, because studies are selected for publication before their results are known.
-Since its introduction at the journal Cortex in 2013, the format has rapidly gained popularity and is offered by 222 journals at the time of writing (\url{http://cos.io/rr}).
+Since its introduction at the journal \emph{Cortex} in 2013, the format has rapidly gained popularity and is offered by 222 journals at the time of writing (\url{http://cos.io/rr}).
 
 In addition to bias protection, Registered Reportss promise high-quality research: Stage-1 peer review (pre data) increases the likelihood that methodological flaws and immature or misguided ideas will be spotted and fixed (or weeded out) before a study is conducted, and authors typically have to include outcome-neutral control conditions that allow verifying data quality once results are in (studies failing these quality checks may be rejected).
 Many journals offering Registered Reports also require that planned hypothesis tests are based on a power analysis that ensures a high probability of finding a statistically significant result if there is a true effect of the expected size (e.g., \(90\%\) power for a given effect size of interest).
@@ -254,20 +254,20 @@ We used the same method as Fanelli (2010) to obtain a new sample of standard rep
 We excluded papers if they were not complete, published, non-retracted articles (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision.
 An overview of the sampling process and all exclusions is shown in Figure~\ref{fig:sampling}.
 
-For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)} and the ISSNs of all journals listed in the ESI Psychiatry/Psychology category.
+For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)} and the ISSNs of all 633 journals listed in the ESI Psychiatry/Psychology category.
 Using the same sample size as Fanelli (2010), we randomly selected 150 papers from the 1919 search results using the sample() function in R and the seed \enquote{20190120} (seed was not preregistered, but no other seeds were tried).
 We initially excluded eight papers and replaced them (decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had been excluded erroneously, leading to a final sample size of 152 (see Fig.~\ref{fig:sampling}).
 
 
 
 \begin{figure*}
-\includegraphics[width=\textwidth]{sampling_process_flowchart} \caption{Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. \enquote{Preregistered}: study had been preregistered but was not a full RR; \enquote{results-blind review}: article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); \enquote{ambiguous}: four of these had been treated as Registered Reports but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance (we chose to exclude these cases to be conservative).}\label{fig:sampling}
+\includegraphics[width=\textwidth]{sampling_process_flowchart} \caption{Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had been excluded erroneously. \enquote{Preregistered}: study had been preregistered but was not a full RR; \enquote{results-blind review}: article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); \enquote{ambiguous}: four of these had been treated as Registered Reports but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance (we chose to exclude these cases to be conservative).}\label{fig:sampling}
 \end{figure*}
 
 For Registered Reports we aimed to include all published Registered Reports in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)}.
 We downloaded a database of published Registered Reports curated by the Center for Open Science\footnote{\url{https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9}} (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than \enquote{Psychiatry/Psychology} or \enquote{Multidisciplinary} in the ESI.
-Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 Registered Reports published in Cortex because the ESI counts this journal towards the separate category \enquote{Neuroscience and Behavior}.
-Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., Royal Society Open Science) were hand-coded by AS.
+Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 Registered Reports published in \emph{Cortex} because the ESI counts this journal towards the separate category \enquote{Neuroscience and Behavior}.
+Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., \emph{Royal Society Open Science}) were hand-coded by AS.
 This deviates from our preregistration insofar as we had not specified how discipline membership would be determined.
 
 Following these exclusions, we verified the Registered Reports status of all remaining papers in our sample.
@@ -311,7 +311,7 @@ We had preregistered that AS would additionally code a random subset of both gro
 
 Selecting papers that use the phrase \enquote{test\(^\ast\) the hypothes\(^\ast\)} might yield different results than alternative search phrases.
 Getting a better overview of \enquote{natural} descriptions of hypotheses would be useful for future investigations of the generalisability of Fanelli's (2010) results and could inspire new research questions.
-We therefore extracted the phrase used to introduce the hypothesis from the coded hypothesis quotes for all Registered Reports and tried to identify clusters of similar expressions which may be used to create alternative search phrases. .
+We therefore extracted the phrase used to introduce the hypothesis from the coded hypothesis quotes for all Registered Reports and tried to identify clusters of similar expressions which may be used to create alternative search phrases.
 
 \hypertarget{replication-status}{%
 \subsubsection{Replication status}\label{replication-status}}
@@ -320,7 +320,7 @@ We also wanted to code if a study was a replication of a previously published on
 We expected a much larger proportion of Registered Reports to be direct replications, many of which may have been motivated by scepticism of the original study.
 A lower positive result rate in Registered Reports could then be an effect of failed replications rather than an effect of safeguards against QRPs and publication bias.
 After an initial coding attempt with ill-defined coding criteria had led to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered):
-We searched the full texts of all papers for the string \enquote{replic\(^\ast\)} (cf. Makel, Plucker, \& Hegarty, 2012; Köhler \& Cortina, 2019; Mueller-Langer, Fecher, Harhoff, \& Wagner, 2019; Pridemore, Makel, \& Plucker, 2018), and for papers that did contain it determined whether the coded hypothesis was a close replication with the goal to verify a previously published result.
+We searched the full texts of all papers for the string \enquote{replic\(^\ast\)} (cf. Makel, Plucker, \& Hegarty, 2012; Köhler \& Cortina, 2019; Mueller-Langer, Fecher, Harhoff, \& Wagner, 2019; Pridemore, Makel, \& Plucker, 2018) and, for papers that did contain it, determined whether the coded hypothesis was a close replication with the goal to verify a previously published result.
 Conceptual replications and internal replications (replication of a study in the same paper) were not counted as replications in this narrow sense, since both are more likely to be motivated by the goal to build on previous work than by scepticism.
 AS coded all papers, DL double-coded 32 Registered Reports (\(45.07 \%\)) and 99 standard reports (\(65.13 \%\)).
 There were 5 disagreements (Cohen's kappa = .878), all were resolved by discussion.
@@ -337,7 +337,7 @@ All of these are documented in the Appendix and in our shared dataset and codebo
 We planned to test our hypothesis in the following way (quoting directly from our preregistration, \url{https://osf.io/sy927}, point 9):
 
 \begin{quote}
-A one-sided proportion test with an alpha level of \(5\%\) will be performed to test whether the positive result rate (full or partial support) of Registered Reports in psychology is statistically lower than the positive result rate of conventional reports {[}we later changed the term to \enquote{standard reports}{]} in psychology.
+A one-sided proportion test with an alpha level of \(5\%\) will be performed to test whether the positive result rate (full or partial support) of Registered Reports in psychology is statistically lower than the positive result rate of conventional reports\footnote{We later changed the term to \enquote{standard reports}.} in psychology.
 In addition to testing if there is a statistically significant difference between RRs and conventional reports, we will test if the difference is smaller than our smallest effect size of interest using an equivalence test for proportion tests with an alpha level of \(5\%\) (Lakens, Scheel, \& Isager, 2018).
 We determined our smallest effect size of interest to be the difference between the positive result rate in psychology (\(91.5\%\)) and the positive result rate in general social sciences (\(85.5\%\)) as reported by Fanelli (2010), i.e.~a difference of \(91.5\% - 85.5\% = 6\%\).
 The rationale for choosing general social sciences as a comparison is that this discipline had the lowest positive result rate amongst the \enquote{soft} sciences (Fanelli, 2010).
@@ -368,7 +368,7 @@ We thus accept our hypothesis that the positive result rate in Registered Report
 \hypertarget{exploratory-analyses}{%
 \subsection{Exploratory Analyses}\label{exploratory-analyses}}
 
-As described in the Method section, we only classified close or direct replications of previously published work as replications.
+As described in the Method section, we only classified direct replications of previously published work as replications.
 This means that our non-replication category also contains some conceptual replications and \enquote{internal} replications (where original and replication are published in the same paper).
 For ease of communication we will nonetheless refer to this category as \enquote{original} studies.
 As expected, direct replications were much more common among Registered Reports than standard reports: 41 out of 71 Registered Reports (\(57.75\%\)), but only 4 out of 152 standard reports (\(2.63\%\)) were classified as direct replications of previously published work.
@@ -406,7 +406,7 @@ RRs & 30 & 15 & 50.00 & 31.30; 68.70 & 41 & 16 & 39.02 & 24.20; 55.50\\
 \end{table*}
 
 Since our standard-reports sample represents a direct replication of Fanelli (2010) for the discipline Psychiatry \& Psychology, another interesting question to ask is how our results compare to Fanelli's.
-The difference between the positive result rate for standard reports in our sample (\(96.05\%\)) and Fanelli's (\(91.49\%\)) is \(4.56\%\). This difference is not significantly different from 0 in a two-sided proportions test (\(\chi^2 = 1.91\), \(p= .167\)) but also not statistically equivalent to a range between \(-6\%\) and \(6\%\) (\(z = -3.73\), \(p= .306\)), both at \(\alpha = 5\%\).
+The difference between the positive result rate for standard reports in our sample (\(96.05\%\)) and Fanelli's (\(91.49\%\)) is \(4.56\%\). This difference is not significantly different from 0 in a two-sided proportions test (\(\chi^2 = 1.91\), \(p= .167\)) but also not statistically equivalent to a range between \(-6\%\) and \(6\%\) (\(z = 0.51\), \(p= .306\)), both at \(\alpha = 5\%\).
 In other words, we can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least \(\pm 6\%\) between them.
 The data are inconclusive.
 
@@ -417,12 +417,12 @@ To get an overview of analogous hypothesis-introduction phrases researchers used
 For example, from the hypothesis quote \enquote{(f)or Study 1, we predicted that participants reading about academic (vs.~social) behaviors would show a better anagram performance} we extracted the hypothesis-introduction phrase \enquote{predicted that}.
 
 For the majority of Registered Reports (49), we identified one hypothesis-introduction phrase; the remaining ones used two (16 RRs), three (4 RRs), or four (1 RR) different phrases or had no identifiable hypothesis introduction (1 RR).
-In this total set of 97 hypothesis introductions, we found 64 unique phrases, showing substantial linguistic variation (see Tables 2 and 3).
-In order to condense the information, we listed all unique word stems (e.g., the word stem \enquote{hypothes\(^\ast\)} captures the words \enquote{hypothesis}, \enquote{hypotheses}, \enquote{hypothesize}, \enquote{hypothesized}, and so on) and analysed their frequency among all hypothesis introductions.
+In this total set of 97 hypothesis introductions, we found 64 unique phrases showing substantial linguistic variation (see Tables 2 and 3).
+To condense the information, we listed all unique word stems (e.g., the word stem \enquote{hypothes\(^\ast\)} captures the words \enquote{hypothesis}, \enquote{hypotheses}, \enquote{hypothesize}, \enquote{hypothesized}, and so on) and analysed their frequency among all hypothesis introductions.
 Excluding words that are common but too unspecific by themselves, such as \enquote{that}, \enquote{to}, or \enquote{whether}, the five most frequent word stems were \enquote{hypothes\(^\ast\)} (34 occurrences), \enquote{replicat\(^\ast\)} (24), \enquote{test\(^\ast\)} (20), \enquote{examine\(^\ast\)} (8), and \enquote{predict\(^\ast\)} (8).
-Clearly \enquote{test\(^\ast\)} and \enquote{hypothes\(^\ast\)} are quite popular, yet they co-occurred only 8 times and more than half of all hypothesis introductions (51/97) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 (\(69.77\%\)) hypothesis introductions found in original Registered Reports contained either \enquote{test\(^\ast\)} or \enquote{hypothes\(^\ast\)} or both, but the same was true for only 16 out of 54 (\(29.63\%\)) hypothesis introductions in direct replication Registered Reports.
+Clearly \enquote{test\(^\ast\)} and \enquote{hypothes\(^\ast\)} are quite popular, yet they co-occurred only 8 times and more than half of all hypothesis introductions (51/97) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 (\(69.77\%\)) hypothesis introductions in original Registered Reports contained either \enquote{test\(^\ast\)} or \enquote{hypothes\(^\ast\)} or both, but the same was true for only 16 out of 54 (\(29.63\%\)) hypothesis introductions in direct replication Registered Reports.
 
-We noticed that direct replication Registered Reports generally tended to use different language to describe their hypothesis. As the high frequency of the word stem \enquote{replicat\(^\ast\)} suggests, these studies were often not framed as new tests of a previously tested hypothesis, but as attempts to replicate a previously documented effect or to repeat a previously conducted experiment.
+We noticed that direct replication Registered Reports generally tended to use different language to describe their hypothesis. As the high frequency of the word stem \enquote{replicat\(^\ast\)} suggests, these studies were often not framed as \emph{tests} of a previously tested hypothesis, but as attempts to repeat a previously conducted procedure.
 Authors thus seemed to have focussed more on the goal to replicate a previous finding than to test a hypothesis.
 
 Tables 2 and 3 list all unique hypothesis introductions and their frequency in original Registered Reports and direct replication Registered Reports, respectively, grouped by the five most frequent word stems (\enquote{hypothes\(^\ast\)}, \enquote{replicat\(^\ast\)}, \enquote{test\(^\ast\)}, \enquote{examine\(^\ast\)}, \enquote{predict\(^\ast\)}).
@@ -505,7 +505,7 @@ predict* &  & 4 & 0 & 4\\
 \begin{center}
 \begin{threeparttable}
 
-\caption{\label{tab:unnamed-chunk-7}Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)}
+\caption{\label{tab:unnamed-chunk-7}Hypothesis introduction phrases in direct replication Registered Reports (testing previously studied hypotheses)}
 
 \footnotesize{
 
@@ -567,7 +567,7 @@ predict* &  & 4 & 0 & 4\\
 }
 
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each.}
+\normalsize{\textit{Note.} Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no identifiable hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each.}
 \end{tablenotes}
 
 \end{threeparttable}
@@ -593,7 +593,7 @@ Furthermore, our estimate of the positive result rate for Registered Reports (\(
 
 To explain the \(52.39 \%\) gap between standard reports and Registered Reports, we must assume some combination of differences in bias, statistical power, or the proportion of true hypotheses researchers choose to examine.
 Figure~\ref{fig:powerbaserate} visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased.
-For example, assuming no publication bias and no QRPs, even if all hypotheses authors of standard reports tested were true, their study designs would need to have more than \(90\%\) power for the true effect size.
+For example, assuming no publication bias and no QRPs, even if \emph{all} hypotheses authors of standard reports tested were true, their study designs would need to have more than \(90\%\) power for the true effect size.
 This is highly unlikely, meaning that the standard literature is unlikely to reflect reality.
 As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high as in standard reports or higher, leaving the rate of true hypotheses and bias as remaining explanations.
 

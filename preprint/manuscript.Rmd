@@ -25,7 +25,7 @@ abstract: >
   When studies with positive results that support the tested hypotheses have a higher probability of being published than studies with negative results, the literature will give a distorted view of the evidence for scientific claims. Psychological scientists have been concerned about the degree of distortion in their literature due to publication bias and inflated Type-1 error rates. Registered Reports were developed with the goal to minimise such biases: In this new publication format, peer review and the decision to publish take place before the study results are known. We compared the results in the full population of published Registered Reports in Psychology ($N = 71$ as of November 2018) with a random sample of hypothesis-testing studies from the standard literature ($N = 152$) by searching 633 journals for the phrase ‘test* the hypothes*’ [replicating a method by @Fanelli2010]. Analysing the first hypothesis reported in each paper, we found $96.05\%$ positive results in standard reports, but only $43.66\%$ positive results in Registered Reports. The difference remained nearly as large when direct replications were excluded from the analysis ($95.95\%$ vs $50\%$ positive results). This large gap suggests that psychologists under-report negative results to an extent that threatens cumulative science. Although our study did not directly test the effectiveness of Registered Reports at reducing bias, these results show that the introduction of Registered Reports has led to a much larger proportion of negative results appearing in the published literature compared to standard reports.
   
 keywords          : "Publication bias, Registered Reports, hypothesis testing"
-#wordcount         : "6465"
+#wordcount         : "6442"
 
 header-includes:
   - \usepackage{float}
@@ -106,7 +106,7 @@ The protocol undergoes peer review, and, if successful, receives "in-principle a
 The authors then collect and analyse the data and write up the final report. 
 The final report undergoes another round of peer review, but this time only to check if the authors adhered to the plan outlined in their protocol (and, if applicable, if the data passes pre-specified quality checks). 
 Registered Reports thus combine an antidote to QRPs (preregistration) with an antidote to publication bias, because studies are selected for publication before their results are known. 
-Since its introduction at the journal Cortex in 2013, the format has rapidly gained popularity and is offered by 222 journals at the time of writing (http://cos.io/rr).
+Since its introduction at the journal *Cortex* in 2013, the format has rapidly gained popularity and is offered by 222 journals at the time of writing (http://cos.io/rr).
 
 In addition to bias protection, Registered Reportss promise high-quality research: Stage-1 peer review (pre data) increases the likelihood that methodological flaws and immature or misguided ideas will be spotted and fixed (or weeded out) before a study is conducted, and authors typically have to include outcome-neutral control conditions that allow verifying data quality once results are in (studies failing these quality checks may be rejected). 
 Many journals offering Registered Reports also require that planned hypothesis tests are based on a power analysis that ensures a high probability of finding a statistically significant result if there is a true effect of the expected size (e.g., $90\%$ power for a given effect size of interest). 
@@ -150,11 +150,11 @@ We used the same method as @Fanelli2010 to obtain a new sample of standard repor
 We excluded papers if they were not complete, published, non-retracted articles (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision. 
 An overview of the sampling process and all exclusions is shown in Figure\ \@ref(fig:sampling). 
 
-For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase "test$^\ast$ the hypothes$^\ast$" and the ISSNs of all journals listed in the ESI Psychiatry/Psychology category. 
+For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase "test$^\ast$ the hypothes$^\ast$" and the ISSNs of all 633 journals listed in the ESI Psychiatry/Psychology category. 
 Using the same sample size as @Fanelli2010, we randomly selected 150 papers from the 1919 search results using the sample() function in R and the seed "20190120" (seed was not preregistered, but no other seeds were tried).
 We initially excluded eight papers and replaced them (decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had been excluded erroneously, leading to a final sample size of 152 (see Fig.\ \@ref(fig:sampling)). 
 
-(ref:sampling) Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had erroneously been excluded. "Preregistered": study had been preregistered but was not a full RR; "results-blind review": article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); "ambiguous": four of these had been treated as Registered Reports but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance (we chose to exclude these cases to be conservative).
+(ref:sampling) Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had been excluded erroneously. "Preregistered": study had been preregistered but was not a full RR; "results-blind review": article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); "ambiguous": four of these had been treated as Registered Reports but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance (we chose to exclude these cases to be conservative).
 
 ```{r sampling, echo=FALSE, warning=FALSE, fig.cap = "(ref:sampling)", out.width = "\\textwidth", fig.env="figure*"}
 
@@ -165,8 +165,8 @@ knitr::include_graphics("sampling_process_flowchart.png")
 
 For Registered Reports we aimed to include all published Registered Reports in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase "test$^\ast$ the hypothes$^\ast$". 
 We downloaded a database of published Registered Reports curated by the Center for Open Science^[https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than "Psychiatry/Psychology" or "Multidisciplinary" in the ESI. 
-Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 Registered Reports published in Cortex because the ESI counts this journal towards the separate category "Neuroscience and Behavior". 
-Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., Royal Society Open Science) were hand-coded by AS. 
+Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 Registered Reports published in *Cortex* because the ESI counts this journal towards the separate category "Neuroscience and Behavior". 
+Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., *Royal Society Open Science*) were hand-coded by AS. 
 This deviates from our preregistration insofar as we had not specified how discipline membership would be determined.
 
 Following these exclusions, we verified the Registered Reports status of all remaining papers in our sample. 
@@ -209,14 +209,14 @@ We had preregistered that AS would additionally code a random subset of both gro
 ### Hypothesis introductions
 Selecting papers that use the phrase "test$^\ast$ the hypothes$^\ast$" might yield different results than alternative search phrases. 
 Getting a better overview of "natural" descriptions of hypotheses would be useful for future investigations of the generalisability of Fanelli's [-@Fanelli2010] results and could inspire new research questions. 
-We therefore extracted the phrase used to introduce the hypothesis from the coded hypothesis quotes for all Registered Reports and tried to identify clusters of similar expressions which may be used to create alternative search phrases. . 
+We therefore extracted the phrase used to introduce the hypothesis from the coded hypothesis quotes for all Registered Reports and tried to identify clusters of similar expressions which may be used to create alternative search phrases. 
 
 ### Replication status
 We also wanted to code if a study was a replication of a previously published one: 
 We expected a much larger proportion of Registered Reports to be direct replications, many of which may have been motivated by scepticism of the original study. 
 A lower positive result rate in Registered Reports could then be an effect of failed replications rather than an effect of safeguards against QRPs and publication bias. 
 After an initial coding attempt with ill-defined coding criteria had led to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered): 
-We searched the full texts of all papers for the string "replic$^\ast$" [cf. @Makel2012; @Kohler2019; @Mueller-Langer2019; @Pridemore2018], and for papers that did contain it determined whether the coded hypothesis was a close replication with the goal to verify a previously published result. 
+We searched the full texts of all papers for the string "replic$^\ast$" [cf. @Makel2012; @Kohler2019; @Mueller-Langer2019; @Pridemore2018] and, for papers that did contain it, determined whether the coded hypothesis was a close replication with the goal to verify a previously published result. 
 Conceptual replications and internal replications (replication of a study in the same paper) were not counted as replications in this narrow sense, since both are more likely to be motivated by the goal to build on previous work than by scepticism.
 AS coded all papers, DL double-coded `r rep.RR.coded.DL` Registered Reports ($`r printnum(rep.RR.coded.DL/sum(included$is_RR)*100)` \%$) and `r rep.SR.coded.DL` standard reports ($`r printnum(rep.SR.coded.DL/sum(included$is_RR==0)*100)` \%$). 
 There were `r rep.disagreements` disagreements (Cohen's kappa = `r printp(kappa.rep)`), all were resolved by discussion. 
@@ -229,7 +229,7 @@ All of these are documented in the Appendix and in our shared dataset and codebo
 ## Analysis
 We planned to test our hypothesis in the following way (quoting directly from our preregistration, [https://osf.io/sy927](https://osf.io/sy927), point 9): 
 
-> A one-sided proportion test with an alpha level of $5\%$ will be performed to test whether the positive result rate (full or partial support) of Registered Reports in psychology is statistically lower than the positive result rate of conventional reports [we later changed the term to "standard reports"] in psychology. 
+> A one-sided proportion test with an alpha level of $5\%$ will be performed to test whether the positive result rate (full or partial support) of Registered Reports in psychology is statistically lower than the positive result rate of conventional reports^[We later changed the term to "standard reports".] in psychology. 
 > In addition to testing if there is a statistically significant difference between RRs and conventional reports, we will test if the difference is smaller than our smallest effect size of interest using an equivalence test for proportion tests with an alpha level of $5\%$ [@Lakens2018a].
 > We determined our smallest effect size of interest to be the difference between the positive result rate in psychology ($91.5\%$) and the positive result rate in general social sciences ($85.5\%$) as reported by @Fanelli2010, i.e. a difference of $91.5\% - 85.5\% = 6\%$. 
 > The rationale for choosing general social sciences as a comparison is that this discipline had the lowest positive result rate amongst the "soft" sciences [@Fanelli2010]. 
@@ -247,7 +247,7 @@ source(here("analysis", "02_quantitative_analyses.R"))
 
 `r n.support.SR` out of `r n.SR` standard reports and `r n.support.RR` out of `r n.RR` Registered Reports had positive results, meaning that the positive result rate was $`r printnum(prop.support.SR*100)` \%$ for standard reports ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]) and $`r printnum(prop.support.RR*100)` \%$ for Registered Reports ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]; see Fig.\ \@ref(fig:mainplot)). 
 The preregistered one-sided proportions test with an alpha level of $5\%$ showed that this difference of $-`r printnum((prop.support.SR-prop.support.RR)*100)` \%$ was statistically significant, $\chi^2 = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
-Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100` \%$ and $`r SESOI*100` \%$ at $\alpha = 5\%$, $z = `r printnum(min(tostresult$TOST_z1, tostresult$TOST_z2))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
+Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100` \%$ and $`r SESOI*100` \%$ at $\alpha = 5\%$, $z = `r printnum(min(abs(tostresult$TOST_z1), abs(tostresult$TOST_z2)))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
 We thus accept our hypothesis that the positive result rate in Registered Reports is lower than in standard reports.
 
 (ref:mainplot) Positive result rates for standard reports and Registered Reports. Error bars indicate $95 \%$ confidence intervals around the observed positive result rate.
@@ -288,12 +288,12 @@ ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
 
 
 ## Exploratory Analyses
-As described in the Method section, we only classified close or direct replications of previously published work as replications. 
+As described in the Method section, we only classified direct replications of previously published work as replications. 
 This means that our non-replication category also contains some conceptual replications and "internal" replications (where original and replication are published in the same paper). 
 For ease of communication we will nonetheless refer to this category as "original" studies.
 As expected, direct replications were much more common among Registered Reports than standard reports: `r n.rep.RR` out of `r n.RR` Registered Reports ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` standard reports ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
 However, this difference cannot account for the stark overall difference between standard reports and Registered Reports described above: 
-Although replication Registered Reports in our sample indeed had a lower positive result rate than original Registered Reports (see Table 1), the difference between original standard reports and original Registered Reports, $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$, was still significantly different from 0 ($\chi^2 = `r printnum(origproptest$statistic)`$, $p `r printp(origproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(reptost$TOST_z1, reptost$TOST_z2))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
+Although replication Registered Reports in our sample indeed had a lower positive result rate than original Registered Reports (see Table 1), the difference between original standard reports and original Registered Reports, $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$, was still significantly different from 0 ($\chi^2 = `r printnum(origproptest$statistic)`$, $p `r printp(origproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(abs(reptost$TOST_z1), abs(reptost$TOST_z2)))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
 
 (ref:table1) Positive results in original studies vs replication studies
 
@@ -311,7 +311,7 @@ apa_table(
 ```
 
 Since our standard-reports sample represents a direct replication of @Fanelli2010 for the discipline Psychiatry & Psychology, another interesting question to ask is how our results compare to Fanelli's.
-The difference between the positive result rate for standard reports in our sample ($`r printnum(prop.support.SR*100)`\%$) and Fanelli's ($`r printnum(prop.support.Fanelli*100)`\%$) is $`r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$. This difference is not significantly different from 0 in a two-sided proportions test ($\chi^2 = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(Fanellitost$TOST_z1, Fanellitost$TOST_z2))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
+The difference between the positive result rate for standard reports in our sample ($`r printnum(prop.support.SR*100)`\%$) and Fanelli's ($`r printnum(prop.support.Fanelli*100)`\%$) is $`r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$. This difference is not significantly different from 0 in a two-sided proportions test ($\chi^2 = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(abs(Fanellitost$TOST_z1), abs(Fanellitost$TOST_z2)))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
 In other words, we can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least $\pm `r SESOI*100`\%$ between them. 
 The data are inconclusive.
 
@@ -326,12 +326,12 @@ To get an overview of analogous hypothesis-introduction phrases researchers used
 For example, from the hypothesis quote "(f)or Study 1, we predicted that participants reading about academic (vs. social) behaviors would show a better anagram performance" we extracted the hypothesis-introduction phrase "predicted that". 
 
 For the majority of Registered Reports (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==1))`), we identified one hypothesis-introduction phrase; the remaining ones used two (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==2))` RRs), three (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==3))` RRs), or four (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==4))` RR) different phrases or had no identifiable hypothesis introduction (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==0))` RR).
-In this total set of `r nrow(intros.long)` hypothesis introductions, we found `r length(uniquephrases)` unique phrases, showing substantial linguistic variation (see Tables 2 and 3).
-In order to condense the information, we listed all unique word stems (e.g., the word stem "hypothes$^\ast$" captures the words "hypothesis", "hypotheses", "hypothesize", "hypothesized", and so on) and analysed their frequency among all hypothesis introductions.
+In this total set of `r nrow(intros.long)` hypothesis introductions, we found `r length(uniquephrases)` unique phrases showing substantial linguistic variation (see Tables 2 and 3).
+To condense the information, we listed all unique word stems (e.g., the word stem "hypothes$^\ast$" captures the words "hypothesis", "hypotheses", "hypothesize", "hypothesized", and so on) and analysed their frequency among all hypothesis introductions.
 Excluding words that are common but too unspecific by themselves, such as "that", "to", or "whether", the five most frequent word stems were "hypothes$^\ast$" (`r wordoccurrences.df[1,2]` occurrences), "replicat$^\ast$" (`r wordoccurrences.df[2,2]`), "test$^\ast$" (`r wordoccurrences.df[3,2]`), "examine$^\ast$" (`r wordoccurrences.df[4,2]`), and "predict$^\ast$" (`r wordoccurrences.df[5,2]`). 
-Clearly "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 ($`r printnum(30/43*100)`\%$) hypothesis introductions found in original Registered Reports contained either "test$^\ast$" or "hypothes$^\ast$" or both, but the same was true for only 16 out of 54 ($`r printnum(16/54*100)`\%$) hypothesis introductions in direct replication Registered Reports.
+Clearly "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 ($`r printnum(30/43*100)`\%$) hypothesis introductions in original Registered Reports contained either "test$^\ast$" or "hypothes$^\ast$" or both, but the same was true for only 16 out of 54 ($`r printnum(16/54*100)`\%$) hypothesis introductions in direct replication Registered Reports.
 
-We noticed that direct replication Registered Reports generally tended to use different language to describe their hypothesis. As the high frequency of the word stem "replicat$^\ast$" suggests, these studies were often not framed as new tests of a previously tested hypothesis, but as attempts to replicate a previously documented effect or to repeat a previously conducted experiment. 
+We noticed that direct replication Registered Reports generally tended to use different language to describe their hypothesis. As the high frequency of the word stem "replicat$^\ast$" suggests, these studies were often not framed as *tests* of a previously tested hypothesis, but as attempts to repeat a previously conducted procedure. 
 Authors thus seemed to have focussed more on the goal to replicate a previous finding than to test a hypothesis.
 
 Tables 2 and 3 list all unique hypothesis introductions and their frequency in original Registered Reports and direct replication Registered Reports, respectively, grouped by the five most frequent word stems ("hypothes$^\ast$", "replicat$^\ast$", "test$^\ast$", "examine$^\ast$", "predict$^\ast$"). 
@@ -357,7 +357,7 @@ apa_table(
 )
 ```
 
-(ref:table3) Hypothesis introduction phrases in replication Registered Reports (testing previously studied hypotheses)
+(ref:table3) Hypothesis introduction phrases in direct replication Registered Reports (testing previously studied hypotheses)
 
 ```{r echo = FALSE, results = 'asis'}
 # Important alternative settings when using journal mode: font_size = "footnotesize"
@@ -369,7 +369,7 @@ apa_table(
                   "full text", "total", "")
   , align = c("l", "l", "l", rep("r", 4))
   , caption = "(ref:table3)"
-  , note = "Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each."
+  , note = "Table contains 53 hypothesis introduction phrases from 40 Registered Reports. One additional RR had no identifiable hypothesis introduction. Thirty papers contributed one phrase each, seven contributed two each, and three contributed three each."
   , added_stub_head = "Variables"
   , col_spanners = list(`source` = c(4, 6))
   , midrules = c(6, 10, 11, 12, 29, 30, 34, 35, 36)
@@ -395,7 +395,7 @@ Furthermore, our estimate of the positive result rate for Registered Reports ($`
 
 To explain the $`r printnum((prop.support.SR - prop.support.RR)*100)` \%$ gap between standard reports and Registered Reports, we must assume some combination of differences in bias, statistical power, or the proportion of true hypotheses researchers choose to examine. 
 Figure\ \@ref(fig:powerbaserate) visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased. 
-For example, assuming no publication bias and no QRPs, even if all hypotheses authors of standard reports tested were true, their study designs would need to have more than $90\%$ power for the true effect size. 
+For example, assuming no publication bias and no QRPs, even if *all* hypotheses authors of standard reports tested were true, their study designs would need to have more than $90\%$ power for the true effect size. 
 This is highly unlikely, meaning that the standard literature is unlikely to reflect reality. 
 As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high as in standard reports or higher, leaving the rate of true hypotheses and bias as remaining explanations.
 
