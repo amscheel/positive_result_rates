@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.14)  28 JAN 2020 11:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.14)  4 FEB 2020 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1198,21 +1198,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [1{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]
-Underfull \vbox (badness 1215) has occurred while \output is active []
-
-[2]
-<sampling_process_flowchart.png, id=113, 2562.57375pt x 1463.4675pt>
+] [2] [3]
+<sampling_process_flowchart.png, id=126, 2562.57375pt x 1463.4675pt>
 File: sampling_process_flowchart.png Graphic file (type png)
 <use sampling_process_flowchart.png>
 Package pdftex.def Info: sampling_process_flowchart.png  used on input line 264
 .
 (pdftex.def)             Requested size: 501.51811pt x 286.41339pt.
-[3] [4]
+[4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [5 <./sampling_process_flowchart.png>]
-<positive_results_SRs_RRs_files/figure-latex/mainplot-1.pdf, id=147, 406.51875p
+<positive_results_SRs_RRs_files/figure-latex/mainplot-1.pdf, id=151, 406.51875p
 t x 334.24875pt>
 File: positive_results_SRs_RRs_files/figure-latex/mainplot-1.pdf Graphic file (
 type pdf)
@@ -1221,7 +1221,7 @@ Package pdftex.def Info: positive_results_SRs_RRs_files/figure-latex/mainplot-1
 .pdf  used on input line 364.
 (pdftex.def)             Requested size: 241.74208pt x 198.76572pt.
 
-Underfull \vbox (badness 1168) has occurred while \output is active []
+Underfull \vbox (badness 1436) has occurred while \output is active []
 
 [6 <./positive_results_SRs_RRs_files/figure-latex/mainplot-1.pdf>]
 Underfull \vbox (badness 1331) has occurred while \output is active []
@@ -1230,7 +1230,7 @@ Underfull \vbox (badness 1331) has occurred while \output is active []
 LaTeX Warning: Float too large for page by 6.94576pt on input line 576.
 
 [7] [8] [9]
-<positive_results_SRs_RRs_files/figure-latex/powerbaserate-1.pdf, id=186, 349.3
+<positive_results_SRs_RRs_files/figure-latex/powerbaserate-1.pdf, id=190, 349.3
 05pt x 197.73875pt>
 File: positive_results_SRs_RRs_files/figure-latex/powerbaserate-1.pdf Graphic f
 ile (type pdf)
@@ -1239,42 +1239,42 @@ Package pdftex.def Info: positive_results_SRs_RRs_files/figure-latex/powerbaser
 ate-1.pdf  used on input line 604.
 (pdftex.def)             Requested size: 300.95074pt x 170.3658pt.
 
-Underfull \vbox (badness 1215) has occurred while \output is active []
-
-[10]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11 <./positive_results_SRs_RRs_files/figure-latex/powerbaserate-1.pdf>] [12] [
-13]
+[10] [11 <./positive_results_SRs_RRs_files/figure-latex/powerbaserate-1.pdf>] [
+12] [13]
 
 Package caption Warning: Unused \captionsetup[textbox] on input line 140.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 838.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 850.
 - LAST -
-Extra skip:7.94499pt
-Left:94.0pt/2.06499pt
-Right:88.0pt/0.12pt
-Output:94.0pt
+Extra skip:14.045pt
+Left:238.0pt/2.165pt
+Right:226.0pt/0.12pt
+Output:238.0pt
 [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 838.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 850.
 (./positive_results_SRs_RRs.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 838.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 838.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 850.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 850.
 Package rerunfilecheck Info: File `positive_results_SRs_RRs.out' has not change
 d.
 (rerunfilecheck)             Checksum: 38EB49B4BA334A1B4F8D687AD575C083;3046.
  ) 
 Here is how much of TeX's memory you used:
- 16713 strings out of 492616
- 245099 string characters out of 6129481
- 400061 words of memory out of 5000000
+ 16734 strings out of 492616
+ 245285 string characters out of 6129481
+ 401052 words of memory out of 5000000
  19727 multiletter control sequences out of 15000+600000
- 95825 words of font info for 486 fonts, out of 8000000 for 9000
+ 96535 words of font info for 498 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,10n,40p,3395b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
@@ -1287,10 +1287,10 @@ mf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2019/texmf-dist
 type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on positive_results_SRs_RRs.pdf (14 pages, 385297 bytes).
+Output written on positive_results_SRs_RRs.pdf (14 pages, 387397 bytes).
 PDF statistics:
- 418 PDF objects out of 1000 (max. 8388607)
- 383 compressed objects within 4 object streams
- 124 named destinations out of 1000 (max. 500000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 396 compressed objects within 4 object streams
+ 129 named destinations out of 1000 (max. 500000)
  43200 words of extra memory for PDF output out of 51595 (max. 10000000)
 
