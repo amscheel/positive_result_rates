@@ -19,5 +19,5 @@ This repository contains all data, code, and materials to reproduce our analyses
     + the preprint as a [PDF document](https://github.com/amscheel/positive_result_rates/blob/master/preprint/positive_results_SRs_RRs.pdf)
     + the [RMarkdown code](https://github.com/amscheel/positive_result_rates/blob/master/preprint/positive_results_SRs_RRs.Rmd) used to produce the preprint, along with two .bib files and several auxiliary files
     + Figure 1 from the manuscript as a [draw.io](https://github.com/amscheel/positive_result_rates/blob/master/preprint/sampling_process_flowchart.drawio) and [PNG](https://github.com/amscheel/positive_result_rates/blob/master/preprint/sampling_process_flowchart.png) file
-* "Old files": The folder `old_files/` contains files to reproduce the analyses reported in MS' BEP dissertation. These are partially outdated and not necessary to reproduce the content of our manuscript.
+* "Old files": The folder [`old_files/`](https://github.com/amscheel/positive_result_rates/tree/master/old_files) contains files to reproduce the analyses reported in MS' BEP dissertation. These are partially outdated and not necessary to reproduce the content of our manuscript.
 
