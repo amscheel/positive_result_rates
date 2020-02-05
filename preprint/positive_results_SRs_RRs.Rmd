@@ -456,7 +456,8 @@ my_citation <- cite_r(file = "prr_software.bib")
 
 ## Disclosures
 ### Data, materials, and online resources
-Data and code necessary to reproduce all analyses reported here, as well as the [Appendix](https://osf.io/qw798/), the [preregistration](https://osf.io/sy927/), and additional supplementary files, are available at <https://osf.io/dbhgr>. The manuscript including figures and statistical analyses, the [Appendix](https://osf.io/qw798/), and the [codebook](https://osf.io/6jrkz/) available in the supplement were created using RStudio [1.2.5019, @RStudioTeam2019] and `r my_citation`.
+[Data](https://osf.io/aqr2s/) and code necessary to reproduce all analyses reported here, as well as the [Appendix](https://osf.io/qw798/), the [preregistration](https://osf.io/sy927/), and additional supplementary files, are available at <https://osf.io/dbhgr>. 
+The manuscript, including figures and statistical analyses, the [Appendix](https://osf.io/qw798/), and the [codebook](https://osf.io/6jrkz/) available in the supplement were created using RStudio [1.2.5019, @RStudioTeam2019] and `r my_citation`.
 
 ### Conflicts of Interest
 The authors declare that they have no conflicts of interest with respect to the authorship or the publication of this article.

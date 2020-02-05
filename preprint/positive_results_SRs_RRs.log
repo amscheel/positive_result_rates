@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.14)  4 FEB 2020 19:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.14)  5 FEB 2020 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1284,10 +1284,10 @@ mf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2019/texmf-dist
 type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on positive_results_SRs_RRs.pdf (14 pages, 387177 bytes).
+Output written on positive_results_SRs_RRs.pdf (14 pages, 387200 bytes).
 PDF statistics:
- 430 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
+ 431 PDF objects out of 1000 (max. 8388607)
+ 396 compressed objects within 4 object streams
  129 named destinations out of 1000 (max. 500000)
  43200 words of extra memory for PDF output out of 51595 (max. 10000000)
 
