@@ -19,7 +19,7 @@ library("here")
 
 \raggedright
 
-This document contains additional information about the methods and analyses reported in the manuscript '**An excess of positive results: Comparing the standard Psychology literature with Registered Reports**', as well as an additional robustness analysis (see section 4.1). This PDF was created in RMarkdown. The reproducible RMarkdown file, containing embedded code for the analysis in section 4.1, is available in our online repository at <https://osf.io/dbhgr> ([`appendix/positive_results_SRs_RRs_appendix.Rmd`](https://osf.io/qw798/)).
+This document contains additional information about the methods and analyses reported in the manuscript '**An excess of positive results: Comparing the standard Psychology literature with Registered Reports**', as well as an additional robustness analysis (see section 4.1). This PDF was created in RMarkdown. The reproducible RMarkdown file, containing embedded code for the analysis in section 4.1, is available in our online repository at <https://osf.io/dbhgr> ([`appendix/positive_results_SRs_RRs_appendix.Rmd`](https://osf.io/jq8yc/)).
 
 # 1. Project timeline
 | Time | Event |
