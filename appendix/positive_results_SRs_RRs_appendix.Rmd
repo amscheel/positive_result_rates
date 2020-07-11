@@ -49,14 +49,23 @@ This document contains additional information about the methods and analyses rep
 We preregistered our study on 7th December 2018. 
 The preregistration document can be found at https://osf.io/sy927/. 
 To facilitate the comparison between the preregistration and the procedure and analyses we eventually carried out, we annotated the preregistration document in Word, adding comments that for each 'decision unit' note whether it was carried out as preregistered and give a brief overview of relevant changes or additional details. 
-The annotated preregistration document is provided in the file [`appendix/preregistration_annotated.docx`](https://osf.io/e79vb/) (to view the annotations the file must be opened with a word processor like MS Word).
+The annotated preregistration document is provided in the file [`appendix/preregistration_annotated.docx`](https://osf.io/e79vb/) (to view the annotations, the file must be opened with a word processor like MS Word).
 
 # 3. Method
 ## 3.1 Sample
 ### 3.1.1 Registered Reports
-As described in the main manuscript, we selected Registered Reports by retrieving the Registered Reports database curated by the Center for Open Science^[retrieved from https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (COS) on 19th November 2018, determining the discipline each paper belonged to and excluding all non-Psychology papers, and then verifying if all Psychology papers on the list were indeed Registered Reports. 
+To identify the Registered Reports population, we downloaded a database of published Registered Reports curated by the Center for Open Science^[https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (COS; retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than 'Psychiatry/Psychology' or 'Multidisciplinary' in the Essential Science Indicators (ESI) database. 
+Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 Registered Reports published in *Cortex* because the ESI counts this journal towards the separate category 'Neuroscience and Behavior'. 
+Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., *Royal Society Open Science*) were hand-coded by AS. 
+This deviates from our preregistration insofar as we had not specified *how* discipline membership would be determined.
+
+Following these exclusions, we verified the Registered Reports status of all remaining papers in our sample. 
+Papers were counted as Registered Reports if they were labelled as such by the journal itself and the journal submission guidelines made it clear that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with https://cos.io/rr). 
+For papers not clearly labelled as Registered Reports, we consulted relevant editorial publications (e.g., for special issues) or contacted the respective editors directly. 
+
 The file [`raw_data/source_data/RR_database_categorised_Nov2018.csv`](https://osf.io/8ybrk/) contains the full list of papers that were included in the COS database when we accessed and copied it. 
-The file also contains a variable indicating the discipline category we identified for each paper ('Discipline'), whether the papers was indeed a Registered Report ('RR', only checked for Psychology papers), and optional comments with details regarding this coding process ('comments').
+The file also contains a variable indicating the discipline category we identified for each paper ('Discipline'), whether the papers was indeed a Registered Report ('RR'; only checked for Psychology papers), and optional comments with details regarding this coding process ('comments').
+
 
 ##### Excluding Registered Replication Reports (RRRs):
 The decision to exclude all RRRs was made during the main data collection (coding round 1), i.e. after piloting and after the study had been preregistered. 
@@ -70,13 +79,17 @@ Fanelli (2010) describes his sampling strategy as follows:
 'The sentence "test$^\ast$ the hypothes$^\ast$" was used to search all 10837 journals in the Essential Science Indicators database, which classifies journals univocally in 22 disciplines. When the number of papers retrieved from one discipline exceeded 150, papers were selected using a random number generator' (p. 8). 
 The author informed us that the search was carried out in Web of Science using a Boolean search query which contained the key phrase and the full list of journal names for each scientific discipline (personal communication, 5th October 2018).
 We implemented this exact procedure with the following changes: 
-We used a current version of the Essential Science Indicators (ESI) database^[retrieved from http://help.incites.clarivate.com/incitesLiveESI/ESIGroup/overviewESI/esiJournalsList.html] (retrieved on 4th December 2018), we only searched journals from the 'Psychiatry/Psychology' discipline, we used ISSNs instead of journal names in our search query (to prevent the risk that names of journals on the list could be sub-strings of names of journals not on the list, which would then be searched as well), and we restricted the search to papers published between 2013 and 2018 (to match them to the RR population). 
 
-Using a programming script written in Processing (The Processing Foundation, 2019) a single search query compatible with Web of Science was generated that contained the key phrase that had to occur in the paper ('test$^\ast$ the hypothes$^\ast$'), as well as the desired publication years (2013 up to and including 2018), and the ISSNs of all 633 journals listed as Psychiatry/Psychology journals in the ESI database (the journal list is provided in the file [`raw_data/source_data/ESI_journallist_Psychology_20181204.csv`](https://osf.io/x938b/)). 
-The resulting search query is available in the file [`raw_data/source_data/SR_search_query_WoS.txt`](https://osf.io/9xah6/).
+* We used a current version of the Essential Science Indicators (ESI) database^[retrieved from http://help.incites.clarivate.com/incitesLiveESI/ESIGroup/overviewESI/esiJournalsList.html] (retrieved on 4th December 2018),
+* we only searched journals from the 'Psychiatry/Psychology' discipline,
+* we used ISSNs instead of journal names in our search query (to prevent the risk that names of journals on the list could be sub-strings of names of journals not on the list, which would then be searched as well), and
+* we restricted the search to papers published between 2013 and 2018 (to match them to the RR population). 
+
+Using a programming script written in *Processing* (The Processing Foundation, 2019), a single search query compatible with Web of Science was generated that contained the key phrase that had to occur in the paper ('test$^\ast$ the hypothes$^\ast$'), as well as the desired publication years (2013 up to and including 2018), and the ISSNs of all 633 journals listed as Psychiatry/Psychology journals in the ESI database (the journal list is provided in the file [`raw_data/source_data/ESI_journallist_Psychology_20181204.csv`](https://osf.io/x938b/)). 
+The resulting search query is available in the text file [`raw_data/source_data/SR_search_query_WoS.txt`](https://osf.io/9xah6/).
 
 The search yielded 1919 results which were exported and saved in the file [`raw_data/source_data/SR_search_results_WoS_20190107.csv`](https://osf.io/q5fgd/). 
-We randomly selected 150 papers from this list using the sample() function in R and the seed '20190120':
+We randomly selected 150 papers from this list using the sample() function in R and the seed '20190120' (the seed was not preregistered, but no other seeds were tried):
 ```{r eval=FALSE}
 # Load all 1919 search results
 allSRs <- read.csv("SR_search_results_WoS_20190107.csv")
@@ -87,7 +100,7 @@ x <- sample(c(1:1919), 150)
 SRsample <- allSRs[x, ]
 ```
 
-The same strategy and random seed were used to sample 8 replacement papers and later another replacement paper after one of the initial 8 had to be excluded:
+The same strategy and random seed were used to sample 8 replacement papers, and later another replacement paper after one of the initial 8 had to be excluded:
 
 ```{r eval=FALSE}
 # Sample 8 additional papers and put them into a new dataframe
@@ -104,35 +117,53 @@ We checked if there was any overlap between the SR sample and the RR population 
 
 
 ## 3.2 Coding procedure
-### 3.2.1 Hypothesis support
-In our email correspondence with Daniele Fanelli, we asked for potential additional details of the coding procedure, but were told that not 'much more' than the information given in Fanelli (2010) had been used for coding instructions. 
-All criteria we used are described in the main manuscript.
+### 3.2.1 Piloting
+Before preregistering our study, we conducted a pilot to assess if we could employ Fanelli's method successfully.
+Originally we had planned to first reproduce his results on the same sample of Psychiatry/Psychology articles used in Fanelli (2010). 
+Unfortunately the author refused to share the original data (or even a list of the coded articles) with us. 
+Instead, we received an excerpt which contained data for 11 records from the original sample, but no reference information of the coded articles (personal communication, 5th October 2018). 
+We were able to find these 11 articles based on the hypothesis quotes that had been coded, and used them as a pilot sample along with 10 randomly selected Registered Reports. 
+MS and AS independently coded all 21 pilot articles with only one major disagreement in each group. 
+In the standard reports group, this disagreement was also the only case of major disagreement with Fanelli's original coding, which we deemed satisfying to proceed. 
 
-### 3.2.2 Replication status
+### 3.2.2 Hypothesis support
+In our email correspondence with Daniele Fanelli, we asked for potential additional details of the coding procedure, but were told that not 'much more' than the information given in Fanelli (2010) had been used for coding instructions:
+
+> By examining the abstract and/or full- text, it was determined whether the authors of each paper had concluded to have found a positive (full or partial) or negative (null or negative) support. 
+> If more than one hypothesis was being tested, only the first one to appear in the text was considered. 
+> We excluded meeting abstracts and papers that either did not test a hypothesis or for which we lacked sufficient information to determine the outcome.  (Fanelli, 2010, p. 8)
+
+Like Fanelli (2010), we coded hypotheses as having received 'support', 'partial support', or 'no support', which was recoded into a binary 'support' (full or partial) vs 'no support' variable for the analysis. 
+Based on our experiences during the pilot, we added one coding criterion: 
+If the first hypothesis mentioned in a paper was not explicitly tested but subsequently divided into sub-hypotheses that were tested, we would code the first *tested* hypothesis rather than the first hypothesis mentioned in the text. 
+
+### 3.2.3 Replication status
+#### Initial coding approach (discarded)
 Since the difference between replication studies and original studies was not the main focus of our paper, and because definitions of (e.g.) direct versus conceptual replications can be difficult to apply, we originally aimed for a 'lightweight' coding criterion and coded two binary variables: 'contains replication' and 'contains original work'. 
 Both of these pertained to a full paper and were not restricted to the first hypothesis, meaning that a paper could be coded as 'contains a replication' even if the coded hypothesis was clearly novel. 
 A paper could be coded as containing only replication research (i.e., 'contains replication' = 1, 'contains original work' = 0), only original work (i.e., 'contains replication' = 0, 'contains original work' = 1), or both (i.e., 'contains replication' = 1, 'contains original work' = 1), but not neither. 
 However, we did not define any precise criteria for what would vs would not constitute a replication, which led to coding disagreements between MS and AS for a relatively large number of papers (MS had used a relatively lenient, AS a quite strict definition of 'contains replication'). 
 We therefore decided (after MS had completed his BEP thesis) to completely revise the way in which replication status was coded. 
 
+#### Eventual coding approach
 The main reason why we coded replication status in the first place was the idea that direct replication studies may sometimes or often be motivated by the authors' scepticism of the original result, and that such direct replication studies may be overrepresented in the Registered Reports population compared to the standard literature. 
 Therefore, we chose to focus on whether the authors' goal appeared to be to test if a previously published result holds up by conducting a close replication of the respective original study. 
 We would thus ignore replications that had the goal to test if a hypothesis or method holds in a new context or population (i.e., that did not have the goal to challenge or verify the results in the original context or population) and 'internal' replications (i.e., replications of studies published in the same paper). 
 
 To limit the amount of work that would be caused by re-analysing all coded hypotheses, we decided to first search the full texts of all papers for the string 'replic' and only re-analyse the hypotheses of papers that contained the string (assuming that it would be highly unlikely that authors conducting a close replication in the way described above would not use words such as 'replication' or 'replicate' anywhere in their paper). 
 
-### 3.2.3 Hypothesis introductions
+### 3.2.4 Hypothesis introductions
 Hypothesis introduction phrases were first coded by MS and AS as short phrases taken from the coded hypothesis quotes. 
 The idea was to extract phrases roughly analogous to Fanelli's (2010) search phrase 'test$^\ast$ the hypothes$^\ast$', but no clear coding criteria were defined. 
 For the final analysis of hypothesis introductions in Registered Reports, AS revised the coding for all Registered Reports (but not standard reports) by starting with the coded hypothesis quotes and extracting minimal phrases that signalled that a hypothesis was being tested, stripped from all content-specific details in a consistent manner across all papers. 
-Rather than focussing on the 'best' or just the first identifiable phrase, all identifiable hypothesis introduction phrases were coded, meaning that each paper could have one or several phrases. 
+Rather than focusing on the 'best' or just the first identifiable phrase, all identifiable hypothesis introduction phrases were coded, meaning that each paper could have one or several phrases. 
 There was only one Registered Report for which no hypothesis introduction could be identified.
 
 The revised hypothesis introduction phrases were captured in two new variables, 'RR_hyp_intro_abstract' and 'RR_hyp_intro_fulltext', depending on whether the phrase had been found in the abstract or the full text of the respective paper (this information was relevant since typically the contents of abstracts, but not full texts, are searchable via search engines). 
 The revised hypothesis introduction phrases were coded by AS alone and not double-coded. 
 However, they are very similar to the phrases coded by MS and AS in the initial coding round (the main difference being increased consistency across papers).
 
-### 3.2.4 Additional measures
+### 3.2.5 Additional measures
 For the sake of completeness, we report all other recorded measures not described thus far in the following (*all* recorded measures are included and described in the dataset [`raw_data/positive_results_in_registered_reports_data.xlsx`](https://osf.io/aqr2s/)). 
 
 * We coded direct quotes of either 'finding', 'conclusion', or both, depending on how the hypothesis-relevant results were reported (we adopted these two variables from the data excerpt provided by Fanelli). 
@@ -144,7 +175,7 @@ For the sake of completeness, we report all other recorded measures not describe
   + if the finding/conclusion had been coded from the abstract or full text
   + any individual coder's remarks
   + any remarks regarding the resolution of coding disagreements
-* While revising our coding criteria for replication status, we also coded if the coded hypothesis introduction for a paper contained the string 'replic' and if a paper was part of a special issue focussed on replication, but in the end did not use these two variables (we did not run any analyses on them).
+* While revising our coding criteria for replication status, we also coded if the coded hypothesis introduction for a paper contained the string 'replic' and if a paper was part of a special issue focused on replication, but in the end did not use these two variables (we did not run any analyses on them).
 
 
 # 4. Analyses
