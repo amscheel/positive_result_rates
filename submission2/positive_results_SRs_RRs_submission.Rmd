@@ -25,7 +25,7 @@ abstract: >
  Selectively publishing results that support the tested hypotheses ('positive' results) distorts the available evidence for scientific claims. For the past decade, psychological scientists have been increasingly concerned about the degree of such distortion in their literature. A new publication format has been developed to prevent selective reporting: In Registered Reports, peer review and the decision to publish take place before results are known. We compared the results in published Registered Reports (N = 71 as of November 2018) with a random sample of hypothesis-testing studies from the standard literature (N = 152) in Psychology. Analysing the first hypothesis of each paper, we found $96\%$ positive results in standard reports, but only $44\%$ positive results in Registered Reports. We discuss possible explanations for this large difference and suggest that a plausible factor is the reduction of publication bias and/or Type-1 error inflation in the Registered-Reports literature.
   
 keywords          : "Publication bias, Registered Reports, hypothesis testing"
-#wordcount         : "6488"
+#wordcount         : "5870"
 
 header-includes:
   - \usepackage{float}
@@ -105,7 +105,7 @@ If successful, the journal commits to publishing the final article following dat
 The authors then collect and analyse the data and complete the final report. 
 The final report is peer-reviewed again, but this time only to ensure that the the registered plan was adhered to and stated conclusions are justified (and, if applicable, that the data pass pre-specified quality checks).
 Registered Reports thus combine an antidote to QRPs (preregistration) with an antidote to publication bias, because studies are selected for publication before their results are known. 
-Since its introduction in 2013, the format has rapidly gained popularity and is offered by 250 journals at the time of writing (http://cos.io/rr).
+Since its introduction in 2013, the format has rapidly gained popularity and is offered by 256 journals at the time of writing (http://cos.io/rr).
 
 In addition to reducing bias, Registered Reports are designed to ensure high standards for research quality. 
 First, pre-data peer review increases the chance that methodological flaws and immature ideas will be identified and addressed before a study is conducted. 
@@ -121,7 +121,7 @@ We set out to compare all published Registered Reports in Psychology with a new 
 Fanelli searched for articles containing the phrase "test$^\ast$ the hypothes$^\ast$", drew a random sample of 150 articles per discipline, and coded if the first hypothesis in each article had been supported or not.
 For standard reports we used the same sampling method (restricted to the Psychology discipline), for Registered Reports we relied on a database curated by the Center for Open Science (COS). 
 We chose this method because Fanelli's 2010 and 2012 studies (both use the same coding method) have been highly influential, and because it can easily be applied to a large set of studies. 
-Because we expected many more Registered Reports than standard reports to be close replications of earlier studies$\,$---$\,$and perhaps movitated by scepticism of the original results$\,$---$\,$we additionally examined the role of replications in our analysis.
+Because we expected many more Registered Reports than standard reports to be close replications of earlier studies$\,$---$\,$and perhaps motivated by scepticism of the original results$\,$---$\,$we additionally examined the role of replications in our analysis.
 
 In a recent commentary, @Allen2019 reported a similar investigation: 
 With a self-developed coding method, they surveyed the 127 biomedical and Psychology Registered Reports listed in the COS database as of September 2018 and found $60.5\%$ unsupported hypotheses across all included Registered Reports (counting all hypotheses in each paper).
@@ -135,6 +135,7 @@ This allows others to verify (or contest) our results and can hopefully provide 
 After conducting a pilot to test the planned procedure, we preregistered our study (https://osf.io/s8e97). 
 Methods and analyses described here were preregistered unless otherwise noted. 
 Our online materials include an Appendix with fine-grained methodological details and an annotated preregistration document with detailed comparisons to the eventual procedure (https://osf.io/dbhgr).
+Appendix and open dataset also list all measures we collected but do not describe here (all of which were either auxiliary variables to facilitate the coding process or earlier versions of the variables discussed here).
 
 ## Sample
 We used the same method as @Fanelli2010 to obtain a new sample of standard reports in Psychology, but restricted year of publication to 2013-2018 to match the sample to the Registered Reports population. 
@@ -192,9 +193,6 @@ We determined whether the coded hypothesis of papers whose full text contained t
 Conceptual replications and internal replications (replication of a study in the same paper) were not counted as replications in this narrow sense, since both are more likely to be motivated by the goal to build on previous work than by scepticism.
 AS coded all papers, DL double-coded `r rep.RR.coded.DL` Registered Reports ($`r printnum(rep.RR.coded.DL/sum(included$is_RR)*100)` \%$) and `r rep.SR.coded.DL` standard reports ($`r printnum(rep.SR.coded.DL/sum(included$is_RR==0)*100)` \%$). 
 There were `r rep.disagreements` disagreements (Cohen's kappa = `r printp(kappa.rep)`), all were resolved by discussion. 
-
-### Additional measures
-All additional measures we collected but have not described thus far were either auxiliary variables to facilitate the coding process or earlier versions of the variables discussed above, and are documented in the Appendix and in our shared dataset and codebook.
 
 
 ## Analysis
@@ -308,7 +306,7 @@ We then listed all unique word stems within those phrases and analysed their fre
 Excluding words that are common but too unspecific by themselves (e.g., "that", "to", "whether"), the five most frequent word stems were "hypothes$^\ast$" (`r wordoccurrences.df[1,2]` occurrences), "replicat$^\ast$" (`r wordoccurrences.df[2,2]`), "test$^\ast$" (`r wordoccurrences.df[3,2]`), "examine$^\ast$" (`r wordoccurrences.df[4,2]`), and "predict$^\ast$" (`r wordoccurrences.df[5,2]`). 
 Clearly, "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times, and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word.
 
-`r printnum(n.hypintros.fivewords.RR, numerals = FALSE, capitalize = TRUE)` of the `r n.RR` Registered Reports ($`r printnum(n.hypintros.fivewords.RR/n.RR*100)` \%$) had at least one of these five most frequent word stems in their title, abstract, or keywords, meaning that a regular literature search (without access to full texts) with the search terms "hypothes$^\ast$ *OR* replicat$^\ast$ *OR* test$^\ast$ *OR* examine$^\ast$ *OR* predict$^\ast$" would have been effective in identifying these papers.
+`r n.hypintros.fivewords.RR` of the `r n.RR` Registered Reports ($`r printnum(n.hypintros.fivewords.RR/n.RR*100)` \%$) had at least one of these five most frequent word stems in their title, abstract, or keywords, meaning that a regular literature search (without access to full texts) with the search terms "hypothes$^\ast$ *OR* replicat$^\ast$ *OR* test$^\ast$ *OR* examine$^\ast$ *OR* predict$^\ast$" would have been effective in identifying these papers.
 We do not know how well these search terms represent the population of hypothesis-testing studies in Psychology, but a structured investigation of this question could be useful for future meta-research.
 
 Lastly, we noticed an interesting difference in language use between original and replication Registered Reports: 
@@ -400,7 +398,7 @@ Another confound could be that the format attracts particularly conscientious au
 This would lead to less bias in the Registered-Reports literature even if the format's safeguards against certain QRPs were actually ineffective. 
 
 Another limitation of the current study [and of @Fanelli2010] is that standard reports were selected using the search phrase "test$^\ast$ the hypothes$^\ast$".
-This phrase was virtually absent in  Registered Reports, suggesting that this search strategy may not yield a representative sample of the population of hypothesis-testing studies in the literature.
+This phrase was virtually absent in  Registered Reports, suggesting that the search strategy may not yield a representative sample of the population of hypothesis-testing studies in the literature.
 The use of the phrase might even be confounded with the outcome of a study:
 For example, authors may be more likely to describe their research explicitly as a hypothesis test when they found positive results, but prefer more vague language for unsupported hypotheses (e.g., "we examined the role of ..."). 
 A similar concern could be raised for the decision to code only the first reported hypothesis of each article.
