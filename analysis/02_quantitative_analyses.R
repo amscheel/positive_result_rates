@@ -16,7 +16,10 @@
 #####  * 4: Exploratory analysis:                   #####
 #####       positive result rate in standard        #####
 #####       reports compared to Fanelli (2010)      #####
-#####  * 5: Robustness check:                       #####
+#####  * 5: Additional analysis:                    #####
+#####       Within-journal comparison of Registered #####
+#####       Reports and standard reports            #####
+#####  * 6: Robustness check:                       #####
 #####       Run main analysis without replacement   #####
 #####       standard reports                        #####
 #####                                               #####
@@ -30,19 +33,21 @@
 ## 1. Setup: load packages and data 
 ##==============================================================================##
 
-# Four packages are needed: TOSTER to calculate equivalence tests, ggplot2 for
+# Five packages are needed: TOSTER to calculate equivalence tests, ggplot2 for
 # creating the plot for Figure 2 in the manuscript, papaja for Table 1 in 
-# the manuscript, and here to locate the data file when loading it. If you  
-# want to run these analyses outside of our R project, you may need to adjust
-# the command to load the data, and you can do this without making use of the
-# here package. papaja was not yet on CRAN when this was written and has to 
-# be installed from Github, using the devtools package. Its role in this script
-# is very minor though -- all analyses can be reproduced without papaja.
+# the manuscript, tidyr to run the additional analysis 5, and here to locate 
+# the data file when loading it. If you want to run these analyses outside of 
+# our R project, you may need to adjust the command to load the data, and you 
+# can do this without making use of the here package. papaja was not yet on 
+# CRAN when this was written and has to be installed from Github, using the 
+# devtools package. Its role in this script is very minor though -- all 
+# analyses can be reproduced without papaja.
 
 # Install packages if needed by uncommenting the respective line(s):
 # install.packages("here")  # install here
 # install.packages("TOSTER")  # install TOSTER
 # install.packages("ggplot2")  # install ggplot2
+# install.packages("tidyr")  # install tidyr
 # install.packages("devtools")  # install devtools to install papaja
 # devtools::install_github("crsh/papaja")  # install papaja
 
@@ -51,6 +56,7 @@ library("TOSTER")
 library("ggplot2")
 library("papaja")
 library("here")
+library("tidyr")
 
 # load the dataset from the RDS file created with codebook
 alldata <- readRDS(here("raw_data", "positive_results_in_registered_reports_data.rds"))
@@ -312,7 +318,67 @@ Fanellitost <- TOSTtwo.prop(prop1 = prop.support.Fanelli,
 
 
 ##==============================================================================##
-## 5. Robustness check: Main confirmatory analysis without replacement SRs
+## 5. Additional analysis: Within-journal comparison of RRs and SRs
+##
+##    A potential confound in our study design is editorial policy: The
+##    difference in positive results we observed between RRs and SRs may    
+##    (partially) be due to differences between journals that do vs do not offer
+##    RRs. To explore this possibility, we take a look at journals that 
+##    contribute papers of both formats to our dataset and analyse the positive
+##    result rate in RRs and SRs in this subset of papers.
+##    
+##==============================================================================##
+
+## 5.1 Setup: Determine which journals contribute both RRs and SRs to the dataset
+
+# Create new data frame listing all journals in the dataset and the number of 
+# SRs and RRs each contributed to the dataset
+journals <- tidyr::spread(as.data.frame(table(included[, c("is_RR", "journal")])), is_RR, Freq)
+
+# Rename the columns in the new data frame
+colnames(journals) <- c("journal", "SRs", "RRs")
+
+# Create a vector containing all journals with at least 1 SR and 1 RR
+bfjournals <- journals[which(journals$SRs>0 & journals$RRs>0), "journal"]
+
+# Create new dataframe consisting only of papers published in the three journals
+# with at least 1 SR and 1 RR
+bothformats <- included[which(included$journal==bfjournals[1] | 
+                                included$journal==bfjournals[2] | 
+                                included$journal==bfjournals[3]),]
+
+
+## 5.2 Calculate the positive result rates in SRs and RRs in this subset
+
+# Calculate the number of SRs in this set (= 13)
+n.SR.bf <- length(which(bothformats$is_RR == 0))
+# Calculate the number of RRs in this set (= 14)
+n.RR.bf <- length(which(bothformats$is_RR == 1))
+
+# Calculate the number of SRs with support (= 11)
+n.support.SR.bf <- length(which(bothformats$is_RR == 0 & bothformats$support_binary == 1))
+# Calculate the number of RRs with support (= 7)
+n.support.RR.bf <- length(which(bothformats$is_RR == 1 & bothformats$support_binary == 1))
+
+# Positive result rate of SRs (proportion of SRs with support) = .8462
+prop.support.SR.bf <- n.support.SR.bf/n.SR.bf
+# Positive result rate of RRs (proportion of RRs with support) = .5
+prop.support.RR.bf <- n.support.RR.bf/n.RR.bf
+
+# Calculate 95% confidence intervals for the positive result rate 
+# in SRs and RRs in this subset
+SR.binom.bf <- binom.test(x = n.support.SR.bf, n = n.SR.bf)
+RR.binom.bf <- binom.test(x = n.support.RR.bf, n = n.RR.bf)
+
+min(SR.binom.bf$conf.int) # lower end of CI for SRs
+max(SR.binom.bf$conf.int) # upper end of CI for SRs
+
+min(RR.binom.bf$conf.int) # lower end of CI for RRs
+max(RR.binom.bf$conf.int) # upper end of CI for RRs
+
+
+##==============================================================================##
+## 6. Robustness check: Main confirmatory analysis without replacement SRs
 ##
 ##    The decision to replace excluded SRs from the initial sample of 150 
 ##    papers had not been preregistered (and eventually led to oversampling
@@ -323,7 +389,7 @@ Fanellitost <- TOSTtwo.prop(prop1 = prop.support.Fanelli,
 ##    (i.e., analysing 144 SRs rather than 152).
 ##==============================================================================##
 
-## 5.1 Calculate group size and positive result rates for SRs
+## 6.1 Calculate group size and positive result rates for SRs
 
 # Calculate the number of included SRs (= 144)
 n.SR.round1 <- length(which(included$is_RR == 0 & included$coding_round == 1))
@@ -337,7 +403,7 @@ n.support.SR.round1 <- length(which(included$is_RR == 0
 prop.support.SR.round1 <- n.support.SR.round1/n.SR.round1
 
 
-## 5.2 Proportions test to test if RRs have a *lower* positive
+## 6.2 Proportions test to test if RRs have a *lower* positive
 ##     result rate than SRs (i.e., one-sided test)
 
 proptestresult.robcheck <- prop.test(c(n.support.SR.round1, n.support.RR), 
@@ -351,7 +417,7 @@ max(SR.binom.round1$conf.int) # upper end of CI for SRs
 
 
 
-## 5.3 Equivalence test to test if the difference is larger than 6% 
+## 6.3 Equivalence test to test if the difference is larger than 6% 
 ##     (using the same SESOI as before, see 2.4)
 
 # Run equivalence test using the TOSTER function TOSTtwo.prop:
