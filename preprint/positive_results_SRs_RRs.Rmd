@@ -21,11 +21,23 @@ note:
 
 author_note: 
 
-abstract: > 
- When studies with positive results that support the tested hypotheses have a higher probability of being published than studies with negative results, the literature will give a distorted view of the evidence for scientific claims. Psychological scientists have been concerned about the degree of distortion in their literature due to publication bias and inflated Type-1 error rates. Registered Reports were developed with the goal to minimise such biases: In this new publication format, peer review and the decision to publish take place before the study results are known. We compared the results in the full population of published Registered Reports in Psychology ($N = 71$ as of November 2018) with a random sample of hypothesis-testing studies from the standard literature ($N = 152$) by searching 633 journals for the phrase ‘test* the hypothes*’ [replicating a method by @Fanelli2010]. Analysing the first hypothesis reported in each paper, we found $96\%$ positive results in standard reports, but only $44\%$ positive results in Registered Reports. The difference remained nearly as large when direct replications were excluded from the analysis ($96\%$ vs $50\%$ positive results). This large gap suggests that psychologists under-report negative results to an extent that threatens cumulative science. Although our study did not directly test the effectiveness of Registered Reports at reducing bias, these results show that the introduction of Registered Reports has led to a much larger proportion of negative results appearing in the published literature compared to standard reports.
+abstract: >
+ \vspace{0.4cm}
+ \begin{tcolorbox}[colback=white,colframe=electricviolet,coltext=electricviolet,
+    fontupper=\normalsize,borderline={0.3mm}{0.3mm}{white}]
+  The present version of this manuscript has been accepted for publication at \textsl{Advances in Methods and Practices in Psychological Science}. Please cite as:
+   \vspace{0.2cm}
+  \begin{center}
+  Scheel, A. M., Schijen, M., \& Lakens, D. (in press). An excess of positive results: Comparing the standard Psychology literature with Registered Reports. \textsl{Advances in Methods and Practices in Psychological Science}.
+  \end{center}
+ \end{tcolorbox}
+ \vspace{0.5cm}
+ 
+ Selectively publishing results that support the tested hypotheses ('positive' results) distorts the available evidence for scientific claims. For the past decade, psychological scientists have been increasingly concerned about the degree of such distortion in their literature. A new publication format has been developed to prevent selective reporting: In Registered Reports, peer review and the decision to publish take place before results are known. We compared the results in published Registered Reports (N = 71 as of November 2018) with a random sample of hypothesis-testing studies from the standard literature (N = 152) in Psychology. Analysing the first hypothesis of each paper, we found $96\%$ positive results in standard reports, but only $44\%$ positive results in Registered Reports. We discuss possible explanations for this large difference and suggest that a plausible factor is the reduction of publication bias and/or Type-1 error inflation in the Registered-Reports literature.
+
   
 keywords          : "Publication bias, Registered Reports, hypothesis testing"
-#wordcount         : "6488"
+#wordcount         : "5870"
 
 header-includes:
   - \usepackage{float}
@@ -36,9 +48,14 @@ header-includes:
   - \captionsetup[textbox]{name=Box,labelsep=period,labelfont=it}
   - \newfloat{textbox}{thp}{lop}
   - \floatname{textbox}{Box}
+  - \usepackage[most]{tcolorbox}
+  - \definecolor{electricviolet}{rgb}{0.56, 0.0, 1.0}
 
 
 bibliography      : ["prr.bib","prr_software.bib"]
+# IMPORTANT: To successfully knit this document, prr.bib must be edited manually:
+# All instances of "howpublished" must be changed to "url". This is an issue for
+# three references: Goldacre 2016, Mitchell 2014, and RRR (nd).
 
 figsintext        : yes
 figurelist        : no
@@ -65,93 +82,88 @@ library("codebook") # not needed to knit the manuscript, but loaded here so it a
 library("rio") # not needed to knit the manuscript, but loaded here so it automatically gets cited at the end since it was used to create the codebook
 ```
 
+
 If the scientific literature were a faithful representation of the research scientists conduct, a cumulative science would be a powerful tool to infer what is true about the world. 
 When random error is the only threat to the accuracy of individual findings, aggregating across many findings allows inferences about the presence and size of effects with a certain reliability. 
 But when published findings are systematically biased, cumulative science breaks down: 
-Unlike random error, bias does not cancel out when aggregating across studies -- in the worst case it accumulates, leading us away from the truth rather than towards it.
-Unfortunately there are good reasons to believe that the Psychology literature is not a faithful representation of all research psychologists conduct. 
-For more than half a century, scientists have repeatedly noticed a suspiciously high "success" rate in Psychology:
-Studying 362 empirical articles published in four Psychology journals in 1955/56, @Sterling1959 found that $97.28\%$ of the studies that used significance tests rejected the null hypothesis. 
-A replication of this study performed on articles published in 1986/87 reported $95.56\%$ statistically significant results [@Sterling1995]. 
-Similarly, a seminal study by @Fanelli2010 compared the literatures of 20 disciplines and found that $91.5\%$ of papers published in Psychology reported support for their first hypothesis, the highest estimate of all disciplines in the study. 
-For these percentages to be a realistic representation of the research that psychologists perform, both statistical power and the proportion of true hypotheses (i.e., the prior probability that the null hypothesis is false) that are tested must exceed $90\%$. 
-In other words: nearly all predictions researchers make must be correct, and either the studied effect sizes or the used sample sizes (given the same study design) must consistently be very large.
+Unlike random error, bias does not cancel out when aggregating across studies$\,$---$\,$in the worst case it accumulates, leading us away from the truth rather than towards it.
+Unfortunately, there is reason to believe that the Psychology literature is not a faithful representation of all research psychologists conduct. 
+
+Since the 1950s, scientists have repeatedly noted a suspiciously high "success" rate in Psychology:
+Studying 362 empirical articles published in four Psychology journals in 1955/56, @Sterling1959 found that $97.28\%$ of studies using significance tests rejected the null hypothesis. 
+A later replication of this study reported $95.56\%$ statistically significant results in articles from 1986/87 [@Sterling1995]. 
+Similarly, a seminal study by @Fanelli2010 analysed authors' verbal conclusions in hypothesis-testing papers sampled from the literatures of 20 disciplines and found that $91.5\%$ of papers published in Psychology claimed support for their first hypothesis$\,$---$\,$the highest estimate of all disciplines in the study. 
+For these percentages to be a realistic representation of the research psychologists conduct, both statistical power and the proportion of true hypotheses (i.e., the prior probability that the null hypothesis is false) that are tested must exceed $90\%$. 
+Put differently, nearly all predictions researchers make must be correct, and either the studied effects or the used samples (given the same design) must consistently be very large.
+These two assumptions appear highly implausible a priori, and available evidence on average statistical power in the literature shows that at least one does not hold [e.g., @Szucs2017].
 
 ## A biased literature
-@Sterling1959 already suspected a selection process behind the numbers he found: 
-"(...) for psychological journals a policy exists under which the vast majority of published articles satisfy a minimum criterion of [statistical] significance" (p. 31). 
-This selection process is one of several kinds of biases that will lead to an inflation of positive results in the literature. 
+A more plausible explanation for these numbers may be a selection bias towards statistically significant results in the published literature.
 We can distinguish two broad categories of bias: "publication bias" and "questionable research practices". 
-Publication bias describes publishing behaviours that give manuscripts that find support for their tested hypotheses a higher chance of being published than manuscripts that do not find support for their tested hypotheses. 
-These include editors and reviewers selectively rejecting manuscripts with negative results ["reviewer bias", @Greenwald1975; @Mahoney1977] and researchers deciding not to submit studies with negative results for publication ["file-drawering"; @Rosenthal1979]. 
-Questionable research practices (QRPs) describe research behaviours that make the evidence in favour of a certain conclusion look stronger than it is [typically, though not always, leading to an inflated type-I error rate; see @Lakens2019b]. 
+Publication bias describes publishing behaviours that give manuscripts which find support for their tested hypotheses a higher chance of being published than manuscripts with "negative" results. 
+These include editors and reviewers selectively rejecting manuscripts with negative results ['reviewer bias', @Greenwald1975; @Mahoney1977] and researchers deciding not to submit studies with negative results for publication ['file-drawering'; @Rosenthal1979]. 
+Questionable research practices (QRPs) describe research behaviours that make evidence in favour of a certain conclusion look stronger than it is [typically, though not always, leading to more false positives; see @Lakens2019b]. 
 These include presenting unexpected results as having been predicted *a priori* [HARKing, short for "hypothesising after results are known"; @Kerr1998] and exploiting flexibility in data analysis to obtain statistically significant results ["*p*-hacking"; @Simmons2011]. 
 Evidence for both categories of bias exist: 
-Publication bias has been shown in peer review [@Mahoney1977; @Atkinson1982] and in longitudinal data from an NSF grant programme that found a file-drawering effect for studies with negative results [@Franco2014; @Franco2016]; and QRPs have been admitted by scientists in several survey studies [@John2012; @Fiedler2016; @Agnoli2017].
+Publication bias has been observed in peer review [@Mahoney1977; @Atkinson1982] and in longitudinal data from an NSF grant programme that found a file-drawering effect for studies with negative results [@Franco2014; @Franco2016]; and QRPs have been admitted by scientists in several survey studies [@John2012; @Fiedler2016; @Agnoli2017; @Fraser2018; @Makel2019].
 
-Some have argued that selecting for statistically significant results is defensible -- desirable, even -- because it weeds out low-quality research that would only pollute the literature [@Cleophas1999; see also @deWinter2013; and @vanAssen2014, for a critique]. 
-How problematic selective publishing is in practice remains an empirical question: 
-If most negative results that are currently missing from the literature are the result of immature ideas or poorly conducted studies, we should expect that a literature in which studies are selected based on their quality but not based on their results  would contain a similar proportion of positive results as the current one. 
-But how many positive results would such an unbiased literature contain in reality? 
-We set out to explore this question by comparing the rate of positive results in the current Psychology literature to studies published in a new format designed to minimise QRPs and publication bias: Registered Reports. 
+Some have argued that negative results are often uninformative or the result of low-quality research and should not be published at the same rate as positive results to avoid cluttering the literature [e.g., @Cleophas1999; @Mitchell2014; @Baumeister2016]. 
+If most negative results that are currently missing from the literature are indeed due to immature ideas or poor methods, a literature that selects studies based on *quality* instead of results should contain a similar proportion of positive results as the current one. 
+How many positive and negative results would such an unbiased literature contain in reality? 
+We investigated this question by comparing the rate of positive results in the Psychology literature to studies published in a new format designed to minimise publication bias and QRPs: Registered Reports. 
 
 ## Methods to mitigate bias
-An increasingly popular proposal to reduce bias is preregistration, where authors register a time-stamped protocol of their hypotheses, planned method, and analysis plan before data collection [for a historical overview, see @Wiseman2019]. 
-Preregistration is thought to mitigate QRPs by preventing HARKing (hypotheses must be stated before the results are known) and by reducing the risk of *p*-hacking via restricted flexibility in data analysis. 
+An increasingly popular proposal to reduce bias is preregistration, where authors register a time-stamped protocol of their hypotheses, methods, and analysis plan before data collection [for a historical overview, see @Wiseman2019]. 
+Preregistration is thought to mitigate QRPs by preventing HARKing (hypotheses must be stated before results are known) and by reducing the risk of *p*-hacking via restricted flexibility in data analysis. 
 However, preregistration does not prevent file-drawering or reviewer bias and may thus be insufficient to fight publication bias [@Rasmussen2009; @Goldacre2016; but see @Kaplan2015]. 
-A more effective safeguard against both publication bias and QRPs is promised by Registered Reports [@Chambers2013; @Nosek2014; @Chambers2015; @Jonas2016]. 
-Registered Reports (RRs) are a new publication format with a restructured submission timeline: 
-Before collecting data, authors submit a study protocol containing their hypotheses, planned procedures, and analysis pipeline (typically in the form of an Introduction and Method section) to a journal. 
-The protocol undergoes peer review, and, if successful, receives "in-principle acceptance", meaning that the journal commits to publishing the final article following data collection, regardless of the statistical significance of the results. 
+A more effective safeguard against both publication bias and QRPs is promised by Registered Reports [@Chambers2020]. 
+
+Registered Reports (RRs) are a publication format with a restructured submission timeline: 
+Before collecting data, authors submit a study protocol containing their hypotheses, planned methods, and analysis pipeline, which undergoes peer review.
+If successful, the journal commits to publishing the final article following data collection, regardless of whether the hypotheses are supported ("in-principle acceptance").
 The authors then collect and analyse the data and complete the final report. 
-The final report undergoes another round of peer review, but this time only to ensure that the authors adhered to the registered plan and did not draw unjustified conclusions (and, if applicable, that the data pass pre-specified quality checks).
+The final report is peer-reviewed again, but this time only to ensure that the the registered plan was adhered to and stated conclusions are justified (and, if applicable, that the data pass pre-specified quality checks).
 Registered Reports thus combine an antidote to QRPs (preregistration) with an antidote to publication bias, because studies are selected for publication before their results are known. 
-Since its introduction at the journal *Cortex* in 2013, the format has rapidly gained popularity and is offered by 225 journals at the time of writing (http://cos.io/rr).
+Since its introduction in 2013, the format has rapidly gained popularity and is offered by 256 journals at the time of writing (http://cos.io/rr).
 
-In addition to bias protection, Registered Reports promise high-quality research: Stage-1  (pre-data) peer review increases the likelihood that methodological flaws and immature or misguided ideas will be identified and addressed before a study is conducted, and authors typically have to include outcome-neutral control conditions that allow verifying data quality once results are in (studies failing these quality checks may be rejected). 
-Many journals offering Registered Reports also require that planned hypothesis tests are based on a power analysis that ensures a high probability of finding a statistically significant result if there is a true effect of the expected size (e.g., $90\%$ power for a given effect size of interest^[An overview of the requirements specified by each participating journal is available at https://docs.google.com/spreadsheets/d/1D4_k-8C_UENTRtbPzXfhjEyu3BfLxdOsn9j-otrO870]). 
-
-Assuming a constant alpha level, the rate of positive results in a literature (i.e., the proportion of supported hypotheses among all tested hypotheses) is influenced by three factors: the proportion of true hypotheses among all tested hypotheses, statistical power, and bias. 
-The Registered Reports format combines powerful safeguards against publication bias and QRPs with standards for research quality that are at least equal to ordinary peer review, and often include statistical power requirements that likely exceed those in the standard literature [see e.g., @Maxwell2004; @Szucs2017; @SingletonThorn2019]. 
-Therefore, if the emerging Registered Reports literature in Psychology contains fewer positive results than the standard literature, the cause must be either the difference in bias or a lower proportion of true hypotheses tested in Registered Reports (or a combination of the two). 
-At this time, we have good reasons to believe in a difference in bias, but less reason to believe in a difference in the proportion of true hypotheses (at least regarding original work, see below), which would make bias a more plausible explanation of a potential difference in the positive result rate. 
-Considering the high standards for research quality in Registered Reports, a large difference in positive results between Registered Reports and the standard literature would also indicate that publication bias is not a desirable filter for poorly conducted studies, but that we should worry about high-quality negative results we are missing because of it.
+In addition to reducing bias, Registered Reports are designed to ensure high standards for research quality. 
+First, pre-data peer review increases the chance that methodological flaws and immature ideas will be identified and addressed before a study is conducted. 
+Second, authors typically have to include outcome-neutral control conditions that allow verifying data quality once results are in (studies failing these quality checks may be rejected). 
+And third, many journals offering Registered Reports require that hypothesis tests are planned with high statistical power, reducing the risk of false negatives (e.g., $90\%$ power for a given effect size of interest^[An overview of the requirements specified by each participating journal is available at https://docs.google.com/spreadsheets/d/1D4_k-8C_UENTRtbPzXfhjEyu3BfLxdOsn9j-otrO870]). 
 
 ## The current study
-The goal of our study was to test if Registered Reports in Psychology show a lower positive result rate than articles published in the traditional way (henceforth referred to as "standard reports", SRs), and to estimate the size of this potential difference. 
-We set out to replicate a study by @Fanelli2010 on a new sample of standard reports in Psychology and compared them to all published Registered Reports in Psychology. 
-Fanelli searched for articles containing the phrase "test$^\ast$ the hypothes$^\ast$", drew a random sample of 150 articles per discipline, and for each of these coded if the first hypothesis mentioned in the abstract or full text had been supported or not. 
-For standard reports we used the same sampling method (restricted to the Psychology discipline), and for Registered Reports we relied on a database curated by the Center for Open Science (COS). 
-We chose this method because Fanelli's 2010 and 2012 studies (both use the same coding method) have been highly influential, and his method can easily be applied to a large set of studies. 
-We additionally coded if studies were replications or original work because many published Registered Reports are replications. 
-If replications are motivated by scepticism of the original results, the prior probability of hypotheses tested in these studies may be lower than in original studies, which could lead to a larger proportion of negative results regardless of bias.
+The goal of our study was to test if Registered Reports in Psychology have a lower positive result rate than articles published in the traditional way (henceforth "standard reports", SRs), and to estimate the size of this potential difference. 
+Because the standards for research quality in Registered Reports are at least equal to ordinary peer review, and the statistical power requirements may exceed those in the standard literature [@Maxwell2004; @Szucs2017], such a difference would be unlikely to be due to "failed" studies or false negatives.
+Barring large confounfds, such as substantial differences in the prior probability of hypotheses tested in Registered Reports versus the standard literature, a much lower positive result rate in Registered Reports might then indicate that publication bias is not a desirable filter for poorly conducted studies, and that we ought to worry about high-quality negative results we are missing because of it.
 
-In a recent commentary on benefits and challenges of open-science practices for early-career researchers, @Allen2019 conducted a similar investigation: 
-They coded the proportion of null results in the 127 biomedical and Psychology Registered Reports listed in the COS database as of September 2018. 
-We were not aware of their parallel efforts when we planned our study in September and October 2018. 
-Allen and Mehler used a self-developed method to code the percentage of unsupported hypotheses in Registered Reports (counting all hypotheses in each paper) and found $60.5\%$ unsupported hypotheses across all included Registered Reports, $66\%$ for replication attempts, and $54.5\%$ for novel research. 
-They compared these numbers to an estimate of 5--20$\%$ null results in the standard literature [based on data from @Fanelli2012, who coded only the first hypothesis of each paper; and @Cristea2018, who coded the percentage of statistically significant results in figures and tables of articles published in Nature, Science, and PNAS]. 
+We set out to compare all published Registered Reports in Psychology with a new sample of standard reports obtained by replicating @Fanelli2010. 
+Fanelli searched for articles containing the phrase "test$^\ast$ the hypothes$^\ast$", drew a random sample of 150 articles per discipline, and coded if the first hypothesis in each article had been supported or not.
+For standard reports we used the same sampling method (restricted to the Psychology discipline), for Registered Reports we relied on a database curated by the Center for Open Science (COS). 
+We chose this method because Fanelli's 2010 and 2012 studies (both use the same coding method) have been highly influential, and because it can easily be applied to a large set of studies. 
+Because we expected many more Registered Reports than standard reports to be close replications of earlier studies$\,$---$\,$and perhaps motivated by scepticism of the original results$\,$---$\,$we additionally examined the role of replications in our analysis.
 
-A major advantage of our study is that it allows us to draw a more meaningful comparison between Registered Reports and the standard literature because we apply a previously used method [@Fanelli2010; @Fanelli2012] to both groups. 
+In a recent commentary, @Allen2019 reported a similar investigation: 
+With a self-developed coding method, they surveyed the 127 biomedical and Psychology Registered Reports listed in the COS database as of September 2018 and found $60.5\%$ unsupported hypotheses across all included Registered Reports (counting all hypotheses in each paper).
+A major advantage of our study, which was planned around the same time (we were unaware of Allen and Mehler's parallel efforts), is the ability to directly compare Registered Reports with the standard literature. 
 In addition, we replicate @Fanelli2010 and provide data to evaluate his method: The search term "test$^\ast$ the hypothes$^\ast$" might introduce selection effects, meaning that results obtained this way may not generalise to hypothesis-testing studies that do not use this phrase. 
-Therefore we also coded the phrases used to introduce hypotheses in Registered Reports, analysed how many of them would have been detected with Fanelli's search term, and compiled a list of alternative search terms to test the generalisability of Fanelli's results in the future. 
+To this end, we coded the phrases used to introduce hypotheses in Registered Reports, analysed how many of them would have been detected with Fanelli's search term, and compiled a list of alternative search terms to test the generalisability of Fanelli's results in the future. 
 Finally, we share a rich dataset containing the exact quotes of hypotheses and conclusions on which we based our judgements, as well as detailed descriptions of our sampling and coding procedure (see Appendix). 
-This allows others to verify (or contest) our results and may provide an interesting resource for future meta-scientific research.
+This allows others to verify (or contest) our results and can hopefully provide an interesting resource for future meta-scientific research.
 
 # Methods
-After conducting a pilot to test the planned procedure, we preregistered our study (https://osf.io/s8e97). 
+After conducting a pilot to test the planned procedure, we preregistered our study (https://osf.io/sy927/). 
 Methods and analyses described here were preregistered unless otherwise noted. 
-A detailed comparison of our preregistration and the eventual procedure is provided in the supplement. 
-We report how we determined our sample size, all data exclusions, and all measures in the study.
+Our online materials include an Appendix with fine-grained methodological details and an annotated preregistration document with detailed comparisons to the eventual procedure (https://osf.io/dbhgr).
+Appendix and open dataset also list all measures we collected but do not describe here (all of which were either auxiliary variables to facilitate the coding process or earlier versions of the variables discussed here).
 
 ## Sample
-We used the same method as @Fanelli2010 to obtain a new sample of standard reports, but restricted year of publication to 2013-2018 to match the sample to the Registered Reports population. 
-We excluded papers if they were incomplete, unpublished, or retracted articles (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision. 
+We used the same method as @Fanelli2010 to obtain a new sample of standard reports in Psychology, but restricted year of publication to 2013-2018 to match the sample to the Registered Reports population. 
+We excluded papers in both groups if they were incomplete, unpublished, or retracted (e.g., meeting abstracts, study protocols without results), if they did not test a hypothesis, or if they contained insufficient information to reach a coding decision. 
 An overview of the sampling process and all exclusions is shown in Figure\ \@ref(fig:sampling). 
 
-For standard reports we downloaded a current version of the Essential Science Indicators (ESI) database (retrieved on 4th December 2018) and used Web of Science to search for articles published between 2013 and 2018 with a Boolean search query containing the phrase "test$^\ast$ the hypothes$^\ast$" and the ISSNs of all 633 journals listed in the ESI Psychiatry/Psychology category. 
-Using the same sample size as @Fanelli2010, we randomly selected 150 papers from the 1919 search results using the sample() function in R and the seed "20190120" (seed was not preregistered, but no other seeds were tried).
-We initially excluded eight papers and replaced them (decision to replace excluded papers was not preregistered) through the same random sampling procedure until 150 studies were found that met our criteria, but later found that two papers had been excluded erroneously, leading to a final sample size of 152 (see Fig.\ \@ref(fig:sampling)). 
+The sample size of standard reports was pre-specified to replicate the one used by Fanelli [-@Fanelli2010], $n = 150$, since it matched the maximum number of Registered Reports available at the time ($n = 151$, see below) and piloting indicated that the required coding time would just fit our resource constraints.
+Standard reports were selected by searching the 633 journals listed under "Psychiatry/Psychology" in the Essential Science Indicators database for papers published between 2013 and 2018 that contained the phrase "test$^\ast$ the hypothes$^\ast$" in title, abstract, or keywords.
+We then randomly selected 150 papers from the 1919 papers that resulted from this search. Excluded papers were replaced by resampling twice (this decision was not preregistered), which led to accidental oversampling and a final sample size of 152 (see Fig.\ \@ref(fig:sampling)). 
 
 (ref:sampling) Sampling process and exclusions for standard reports and Registered Reports. Standard reports were accidentally oversampled: We initially excluded 8 papers and only after replacing them found that two had been excluded erroneously. "Preregistered": study had been preregistered but was not a full RR; "results-blind review": article had undergone results-blind peer review but was not a full RR (authors knew results before first submission); "ambiguous": four of these had been treated as Registered Reports but used pre-existing data to which the authors had access before conducting their analyses, one had no explicit signs of an RR except for a 2.5-year delay between submission and acceptance (we chose to exclude these cases to be conservative).
 
@@ -162,67 +174,47 @@ We initially excluded eight papers and replaced them (decision to replace exclud
 knitr::include_graphics("sampling_process_flowchart.png")
 ```
 
-For Registered Reports we aimed to include all published Registered Reports in the field of Psychology that tested at least one hypothesis, regardless of whether or not they used the phrase "test$^\ast$ the hypothes$^\ast$". 
-We downloaded a database of published Registered Reports curated by the Center for Open Science^[https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (retrieved on 19th November 2018), and excluded papers published in journals that were listed in categories other than "Psychiatry/Psychology" or "Multidisciplinary" in the ESI. 
-Note that the decision to focus only on the Psychiatry/Psychology category meant excluding 13 Registered Reports published in *Cortex* because the ESI counts this journal towards the separate category "Neuroscience and Behavior". 
-Papers published in multidisciplinary journals and in journals not included in the ESI (e.g., *Royal Society Open Science*) were hand-coded by AS. 
-This deviates from our preregistration insofar as we had not specified how discipline membership would be determined.
-
-Following these exclusions, we verified the Registered Reports status of all remaining papers in our sample. 
-Papers were counted as Registered Reports if they were labelled as such by the journal itself and the journal submission guidelines made it clear that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with https://cos.io/rr). 
-For papers not clearly labelled as Registered Reports, we consulted relevant editorial publications (e.g., for special issues) or contacted the respective editors directly. 
-Of the 151 entries in the COS Registered Reports database, 55 were excluded because they belonged to a non-Psychology discipline, 12 because we could not verify that they were Registered Reports, and 13 because they did not test hypotheses or contained insufficient information, leaving 71 Registered Reports for the final analysis (see Fig.\ \@ref(fig:sampling)). 
-Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focusses on effect size estimation and not hypothesis testing [@RRRwebsite, decision was not preregistered].
+The sample size of Registered Report was determined by our goal to include all published Registered Reports in the field of Psychology that tested at least one hypothesis, regardless of whether they used the phrase "test$^\ast$ the hypothes$^\ast$". 
+Registered Reports were selected through a Registered-Reports database curated by the Center for Open Science^[https://www.zotero.org/groups/479248/osf/items/collectionKey/KEJP68G9] (retrieved 19th November 2018). 
+After excluding non-Psychology papers, we verified that all remaining papers were indeed Registered Reports by consulting the journal submission guidelines, relevant editorials, or contacting the editors directly. 
+Papers were counted as Registered Reports if we could establish that these submissions had been reviewed and received in-principle acceptance before the data collection (or analyses) of all studies in the paper had been conducted (in accordance with https://cos.io/rr). 
+We excluded 80 of the 151 entries in the COS Registered Reports database, leaving 71 Registered Reports for the final analysis (see Fig.\ \@ref(fig:sampling)). 
+Note that we excluded all eight "Registered Replication Reports" [RRRs; @Simons2014; @Simons2018] in our sample because this format explicitly focuses on effect size estimation and not hypothesis testing [@RRRwebsite, decision was not preregistered].
 
 ## Measures and coding procedure
+
 The main dependent variable was whether the first hypothesis was supported or not, as reported by the authors.
-We tried to follow Fanelli's [-@Fanelli2010] coding procedure as closely as possible, which he describes as follows: 
+We tried to follow Fanelli's coding procedure as closely as possible: 
 
 > By examining the abstract and/or full- text, it was determined whether the authors of each paper had concluded to have found a positive (full or partial) or negative (null or negative) support. 
 > If more than one hypothesis was being tested, only the first one to appear in the text was considered. 
-> We excluded meeting abstracts and papers that either did not test a hypothesis or for which we lacked sufficient information to determine the outcome. (p. 8) 
-
-Like @Fanelli2010, we coded hypotheses as having received "support", "partial support", or "no support", which was recoded into a binary "support" (full or partial) vs "no support" variable for the analysis. 
-Coding disagreements between full and partial support were deemed minor since they would not affect the final results. Thus, only disagreements affecting the binary support/no support classification were treated as major and resolved through discussion.
-
-Before preregistering our study, we conducted a pilot to assess if we could employ Fanelli's method successfully.
-Originally we had planned to first reproduce his results on the same sample of Psychiatry/Psychology articles used in @Fanelli2010. 
-Unfortunately the author refused to share the original data (or even a list of the coded articles) with us. 
-Instead, we received an excerpt which contained data for 11 records from the original sample, but no reference information of the coded articles (personal communication, 5th October 2018). 
-We were able to find these 11 articles based on the hypothesis quotes that had been coded, and used them as a pilot sample along with 10 randomly selected Registered Reports. 
-MS and AS independently coded all 21 pilot articles with only one major disagreement in each group. 
-In the standard reports group, this disagreement was also the only case of major disagreement with Fanelli's original coding, which we deemed satisfying to proceed. 
+> We excluded meeting abstracts and papers that either did not test a hypothesis or for which we lacked sufficient information to determine the outcome.  [@Fanelli2010, p. 8]
 
 ```{r include=FALSE}
 source(here("analysis", "01_interrater_agreement.R"))
 ```
 
-
-Based on our experiences during the pilot, we added one coding criterion: 
-If the first hypothesis mentioned in a paper was not explicitly tested but subsequently divided into sub-hypotheses that were tested, we would code the first *tested* hypothesis rather than the first hypothesis mentioned in the text. 
-In Registered Reports we coded the first preregistered hypothesis, thus excluding unregistered pilot studies. 
+In Registered Reports, we coded the first *preregistered* hypothesis, thus excluding unregistered pilot studies.
+The coding procedure was identical for both article formats in all other respects. 
+Coding disagreements between "full" and "partial" support were deemed minor since they would not affect the final results. 
+Thus, only disagreements affecting the binary support (full or partial) vs no support classification were treated as major and resolved through discussion.
 MS coded all papers in the sample, AS double-coded all papers MS had found difficult to code or could not code ($`r sum(included$coded_by_AS & included$is_RR==1)`$ RRs and $`r sum(included$coded_by_AS & included$is_RR==0)`$ SRs). 
 Only `r support.disagreement.major` disagreements were major (Cohen's kappa = `r printp(kappa.support)`) and subsequently resolved by discussion; `r support.disagreement.minor` were minor (disagreement between "support" and "partial support"). 
-We had preregistered that AS would additionally code a random subset of both groups, but decided against it because the number of double-coded papers seemed sufficient after double-coding only the difficult cases.
+We overturned the preregistered plan that AS would additionally code a random subset of both groups, because the number of double-coded papers seemed sufficient after double-coding only the difficult cases.
+Because removing all indicators that could have identified Registered Reports as such from their full texts would have been practically impossible, coding was not blind to publication format (Registered Report vs standard report).
 
 ### Hypothesis introductions
-Selecting papers that use the phrase "test$^\ast$ the hypothes$^\ast$" might yield different results than alternative search phrases. 
-Getting a better overview of "natural" descriptions of hypotheses would be useful for future investigations of the generalisability of Fanelli's [-@Fanelli2010] results and could inspire new research questions. 
-We therefore extracted the phrase used to introduce the hypothesis from the coded hypothesis quotes for all Registered Reports and tried to identify clusters of similar expressions which may be used to create alternative search phrases. 
+Selecting standard reports based on the phrase "test$^\ast$ the hypothes$^\ast$" might yield different results than alternative search phrases. 
+To get a better overview of "natural" descriptions of hypotheses and facilitate future investigations of the generalisability of Fanelli's [-@Fanelli2010] results, we extracted the phrase used to introduce the coded hypothesis in all Registered Reports and tried to identify clusters of common expressions.
 
 ### Replication status
-We also wanted to code if a study was a replication of a previously published one: 
-We expected a much larger proportion of Registered Reports to be direct replications, many of which may have been motivated by scepticism of the original study. 
-A lower positive result rate in Registered Reports could then be an effect of failed replications rather than an effect of safeguards against QRPs and publication bias. 
-After an initial coding attempt with ill-defined coding criteria had led to too many disagreements (described further in the Appendix), we developed the following strategy (not pre-registered): 
-We searched the full texts of all papers for the string "replic$^\ast$" [cf. @Makel2012; @Kohler2019; @Mueller-Langer2019; @Pridemore2018] and, for papers that did contain it, determined whether the coded hypothesis was a close replication with the goal to verify a previously published result. 
+We expected a large proportion of Registered Reports to be replications, many of which may have been motivated by scepticism of the original study. 
+Because this circumstance alone could potentially lead to a lower positive result rate in Registered Reports, we additionally coded if hypotheses were close replications of previously published work.
+Due to ill-specified coding criteria in our preregistration (see Appendix), we used an unregistered coding strategy: 
+We determined whether the coded hypothesis of papers whose full text contained the string "replic$^\ast$" [cf. @Makel2012; @Mueller-Langer2019] was a close replication with the goal to verify a previously published result. 
 Conceptual replications and internal replications (replication of a study in the same paper) were not counted as replications in this narrow sense, since both are more likely to be motivated by the goal to build on previous work than by scepticism.
 AS coded all papers, DL double-coded `r rep.RR.coded.DL` Registered Reports ($`r printnum(rep.RR.coded.DL/sum(included$is_RR)*100)` \%$) and `r rep.SR.coded.DL` standard reports ($`r printnum(rep.SR.coded.DL/sum(included$is_RR==0)*100)` \%$). 
 There were `r rep.disagreements` disagreements (Cohen's kappa = `r printp(kappa.rep)`), all were resolved by discussion. 
-
-### Additional measures
-All additional measures we collected but have not described thus far were either auxiliary variables to facilitate the coding process or earlier versions of the variables discussed above. 
-All of these are documented in the Appendix and in our shared dataset and codebook.
 
 
 ## Analysis
@@ -234,7 +226,10 @@ We planned to test our hypothesis in the following way (quoting directly from ou
 > The rationale for choosing general social sciences as a comparison is that this discipline had the lowest positive result rate amongst the "soft" sciences [@Fanelli2010]. 
 > The exact percentage for general social sciences was extracted from Figure 1 in @Fanelli2010 using the software WebPlotDigitizer [@Rohatgi2018].
 
-We would accept our hypothesis that Registered Reports have a lower positive result rate than standard reports if we found a negative difference between Registered Reports and standard reports that was significantly different from 0 *and* not statistically equivalent to a range from $-6\%$ to $+6\%$ (both at $\alpha = 5\%$). 
+We would accept our hypothesis that Registered Reports have a lower positive result rate than standard reports if the observed difference between Registered Reports and standard reports was significantly smaller than 0 *and* not statistically equivalent to a range from $-6\%$ to $+6\%$ (both at $\alpha = 5\%$)^[Note that these inference criteria are logically equivalent to "significantly smaller than 0 and not statistically equivalent to a range from $-6\%$ to $0\%$": Since the first criterion (statistically smaller than 0) requires the $90\%$ CI to end below 0, half of the equivalence range specified in the second criterion $\,$---$\,$from $0\%$ to $+6\%\,$---$\,$ is redundant (which we failed to notice before preregistering the analysis).]. 
+Specifying a smallest effect size of interest of $6\%$ absolute risk reduction provides an initial yardstick to evaluate our results and make our prediction falsifiable.
+However, the value of $\pm 6\%$ does not possess an intrinsic theoretical meaning. 
+As the emerging meta-psychological literature matures, we hope to see future research base the smallest effect size of interest on increasingly well-informed empirical and theoretical considerations.
 
 
 # Results
@@ -242,11 +237,11 @@ We would accept our hypothesis that Registered Reports have a lower positive res
 source(here("analysis", "02_quantitative_analyses.R"))
 ```
 
-## Confirmatory Analyses
+## Preregistered analysis
 
-`r n.support.SR` out of `r n.SR` standard reports and `r n.support.RR` out of `r n.RR` Registered Reports had positive results, meaning that the positive result rate was $`r printnum(prop.support.SR*100)` \%$ for standard reports ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]) and $`r printnum(prop.support.RR*100)` \%$ for Registered Reports ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]; see Fig.\ \@ref(fig:mainplot)). 
-The preregistered one-sided proportions test with an alpha level of $5\%$ showed that this difference of $`r printnum((prop.support.SR-prop.support.RR)*100)` \%$ was statistically significant, $\chi^2 = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
-Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100` \%$ and $`r SESOI*100` \%$ at $\alpha = 5\%$, $z = `r printnum(min(abs(tostresult$TOST_z1), abs(tostresult$TOST_z2)))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$, meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
+`r n.support.RR` out of `r n.RR` Registered Reports and `r n.support.SR` out of `r n.SR` standard reports had positive results, meaning that the positive result rate was $`r printnum(prop.support.RR*100)` \%$ for Registered Reports ($95 \%$ CI [`r printnum(min(RR.binom$conf.int)*100)`, `r printnum(max(RR.binom$conf.int)*100)`]) and $`r printnum(prop.support.SR*100)` \%$ for standard reports ($95 \%$ CI [`r printnum(min(SR.binom$conf.int)*100)`, `r printnum(max(SR.binom$conf.int)*100)`]; see Fig.\ \@ref(fig:mainplot)). 
+This difference of $`r printnum((prop.support.RR-prop.support.SR)*100)` \%$ was statistically significant in the preregistered one-sided proportions test with $\alpha = 5\%$, $\chi^2(`r proptestresult$parameter`) = `r printnum(proptestresult$statistic)`$, $p `r printp(proptestresult$p.value)`$.
+Unsurprisingly, the difference was not statistically equivalent to a range between $`r -SESOI*100` \%$ and $`r SESOI*100` \%$ at $\alpha = 5\%$ ($z = `r printnum(min(abs(tostresult$TOST_z1), abs(tostresult$TOST_z2)))`$, $p `r printp(max(tostresult$TOST_p1, tostresult$TOST_p2))`$), meaning that we cannot reject differences more extreme than $`r SESOI*100`\%$. 
 We thus accept our hypothesis that the positive result rate in Registered Reports is lower than in standard reports.
 
 (ref:mainplot) Positive result rates for standard reports and Registered Reports. Error bars indicate $95 \%$ confidence intervals around the observed positive result rate.
@@ -286,13 +281,11 @@ ggplot(mainplot.df, aes(x = is_RR, y = value, fill = support)) +
 ```
 
 
-## Exploratory Analyses
-As described in the Method section, we only classified direct replications of previously published work as replications. 
-This means that our non-replication category also contains some conceptual replications and "internal" replications (where original and replication are published in the same paper). 
-For ease of communication we will nonetheless refer to this category as "original" studies.
-As expected, direct replications were much more common among Registered Reports than standard reports: `r n.rep.RR` out of `r n.RR` Registered Reports ($`r printnum(prop.rep.RR*100)`\%$), but only `r n.rep.SR` out of `r n.SR` standard reports ($`r printnum(prop.rep.SR*100)`\%$) were classified as direct replications of previously published work. 
-However, this difference cannot account for the stark overall difference between standard reports and Registered Reports described above: 
-Although replication Registered Reports in our sample indeed had a lower positive result rate than original Registered Reports (see Table 1), the difference between original standard reports and original Registered Reports, $`r printnum((prop.orig.support.SR-prop.orig.support.RR)*100)`\%$, was still significantly different from 0 ($\chi^2 = `r printnum(origproptest$statistic)`$, $p `r printp(origproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(abs(reptost$TOST_z1), abs(reptost$TOST_z2)))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
+## Exploratory analyses
+For ease of communication we will refer to papers that were classified as close replications of previously published work as "replications" and to all other studies as "original", even though the latter include some conceptual replications and internal replications (as explained above).
+As expected, replications were much more common among Registered Reports ($`r n.rep.RR` / `r n.RR` = `r printnum(prop.rep.RR*100)`\%$) than standard reports ($`r n.rep.SR` / `r n.SR` = `r printnum(prop.rep.SR*100)`\%$), and replication Registered Reports had a descriptively lower positive result rate than original Registered Reports (see Table 1).
+However, this finding fails to explain the main result described above:
+When analysing only original papers, the difference between the positive result rates of Registered Reports and standard reports, $`r printnum((prop.orig.support.RR-prop.orig.support.SR)*100)`\%$, was still significantly smaller than 0 ($\chi^2(`r origproptest$parameter`) = `r printnum(origproptest$statistic)`$, $p `r printp(origproptest$p.value)`$) and not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(abs(reptost$TOST_z1), abs(reptost$TOST_z2)))`$, $p `r printp(max(reptost$TOST_p1, reptost$TOST_p2))`$), both at $\alpha = 5\%$.
 
 (ref:table1) Positive results in original studies vs replication studies
 
@@ -309,32 +302,40 @@ apa_table(
 )
 ```
 
-Since our standard-reports sample represents a direct replication of @Fanelli2010 for the discipline Psychiatry & Psychology, another interesting question to ask is how our results compare to Fanelli's.
-The difference between the positive result rate for standard reports in our sample ($`r printnum(prop.support.SR*100)`\%$) and Fanelli's ($`r printnum(prop.support.Fanelli*100)`\%$) is $`r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$. This difference is not significantly different from 0 in a two-sided proportions test ($\chi^2 = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(abs(Fanellitost$TOST_z1), abs(Fanellitost$TOST_z2)))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
-In other words, we can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least $\pm `r SESOI*100`\%$ between them. 
-The data are inconclusive.
+Since our standard-reports sample represents a direct replication of @Fanelli2010 for the discipline Psychiatry & Psychology, another interesting question is how our results compare to Fanelli's.
+The difference between the positive result rates of standard reports in our sample and Fanelli's ($`r printnum(prop.support.SR*100)`\% - `r printnum(prop.support.Fanelli*100)`\% = `r printnum((prop.support.SR-prop.support.Fanelli)*100)`\%$) is not significantly different from 0 in a two-sided proportions test ($\chi^2(`r Fanelliproptest$parameter`) = `r printnum(Fanelliproptest$statistic)`$, $p= `r printp(Fanelliproptest$p.value)`$) but also not statistically equivalent to a range between $`r -SESOI*100`\%$ and $`r SESOI*100`\%$ ($z = `r printnum(min(abs(Fanellitost$TOST_z1), abs(Fanellitost$TOST_z2)))`$, $p= `r printp(max(Fanellitost$TOST_p1, Fanellitost$TOST_p2))`$), both at $\alpha = 5\%$. 
+The data are inconclusive: 
+We can neither reject the hypothesis that the positive result rates of the two populations are the same, nor that there is a difference of at least $\pm `r SESOI*100`\%$ between them. 
 
 
 ```{r include=FALSE}
 source(here("analysis", "03_hypothesis_introduction_analyses.R"))
+
+unique(intros.long$phrase[which(intros.long$is_replication == 0 &
+                                                intros.long$hypothes == TRUE &
+                                                intros.long$test == FALSE &
+                                                intros.long$predict == FALSE &
+                                                intros.long$examin == FALSE)])
+
 ```
 Finally, we analysed the language that was used to introduce or refer to hypotheses in Registered Reports.
-We were interested in whether the search phrase "test$^\ast$ the hypothes$^\ast$" used by Fanelli captures the way researchers write about hypothesis tests reasonably well. The answer is a resounding "no":
+We found extremely little overlap with Fanelli's search phrase "test$^\ast$ the hypothes$^\ast$":
 Searching the abstracts, titles, and keywords of the Registered Reports sample showed that only `r testthehypothes.RR`/`r n.RR` Registered Reports would have been detected with this search phrase. 
-To get an overview of analogous hypothesis-introduction phrases researchers used in Registered Reports, we stripped the hypothesis quotes of Registered Reports from all content-specific information and extracted "minimal" phrases that most distinctively indicated that a hypothesis was being described.
+To analyse which other hypothesis-introduction phrases researchers used in Registered Reports, we stripped the coded hypothesis quotes from all content-specific information and extracted "minimal" phrases that most distinctively indicated that a hypothesis was being described.
 For example, from the hypothesis quote "(f)or Study 1, we predicted that participants reading about academic (vs. social) behaviors would show a better anagram performance" we extracted the hypothesis-introduction phrase "predicted that". 
 
 For the majority of Registered Reports (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==1))`), we identified one hypothesis-introduction phrase; the remaining ones used two (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==2))` RRs), three (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==3))` RRs), or four (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==4))` RR) different phrases or had no identifiable hypothesis introduction (`r length(which((hypintros$abstract.count+hypintros$fulltext.count)==0))` RR).
 In this total set of `r nrow(intros.long)` hypothesis introductions, we found `r length(uniquephrases)` unique phrases showing substantial linguistic variation (see Tables 2 and 3).
-To condense the information, we listed all unique word stems (e.g., the word stem "hypothes$^\ast$" captures the words "hypothesis", "hypotheses", "hypothesize", "hypothesized", and so on) and analysed their frequency among all hypothesis introductions.
-Excluding words that are common but too unspecific by themselves, such as "that", "to", or "whether", the five most frequent word stems were "hypothes$^\ast$" (`r wordoccurrences.df[1,2]` occurrences), "replicat$^\ast$" (`r wordoccurrences.df[2,2]`), "test$^\ast$" (`r wordoccurrences.df[3,2]`), "examine$^\ast$" (`r wordoccurrences.df[4,2]`), and "predict$^\ast$" (`r wordoccurrences.df[5,2]`). 
-Clearly, "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word. Interestingly, the frequency of these two words differed between original studies and direct replications: 30 out of 43 ($`r printnum(30/43*100)`\%$) hypothesis introductions in original Registered Reports contained either "test$^\ast$" or "hypothes$^\ast$" or both, but the same was true for only 16 out of 54 ($`r printnum(16/54*100)`\%$) hypothesis introductions in direct replication Registered Reports.
+We then listed all unique word stems within those phrases and analysed their frequency.
+Excluding words that are common but too unspecific by themselves (e.g., "that", "to", "whether"), the five most frequent word stems were "hypothes$^\ast$" (`r wordoccurrences.df[1,2]` occurrences), "replicat$^\ast$" (`r wordoccurrences.df[2,2]`), "test$^\ast$" (`r wordoccurrences.df[3,2]`), "examine$^\ast$" (`r wordoccurrences.df[4,2]`), and "predict$^\ast$" (`r wordoccurrences.df[5,2]`). 
+Clearly, "test$^\ast$" and "hypothes$^\ast$" are quite popular, yet they co-occurred only `r test.and.hypothes` times, and more than half of all hypothesis introductions (`r nrow(intros.long)-test.or.hypothes`/`r nrow(intros.long)`) contained neither word.
 
-We noticed that direct replication Registered Reports generally tended to use different language to describe their hypothesis. As the high frequency of the word stem "replicat$^\ast$" suggests, these studies were often not framed as *tests* of a previously tested hypothesis, but as attempts to repeat a previously conducted procedure. 
-Authors thus seemed to have focussed more on the goal to replicate a previous finding than to test a hypothesis.
+`r n.hypintros.fivewords.RR` of the `r n.RR` Registered Reports ($`r printnum(n.hypintros.fivewords.RR/n.RR*100)` \%$) had at least one of these five most frequent word stems in their title, abstract, or keywords, meaning that a regular literature search (without access to full texts) with the search terms "hypothes$^\ast$ *OR* replicat$^\ast$ *OR* test$^\ast$ *OR* examine$^\ast$ *OR* predict$^\ast$" would have been effective in identifying these papers.
+We do not know how well these search terms represent the population of hypothesis-testing studies in Psychology, but a structured investigation of this question could be useful for future meta-research.
 
-Tables 2 and 3 list all unique hypothesis introductions and their frequency in original Registered Reports and direct replication Registered Reports, respectively, grouped by the five most frequent word stems ("hypothes$^\ast$", "replicat$^\ast$", "test$^\ast$", "examine$^\ast$", "predict$^\ast$"). 
-Using five as a cut-off value is an arbitrary decision, but we believe that it strikes a reasonable balance between condensing the information and doing the variance of the data justice. 
+Lastly, we noticed an interesting difference in language use between original and replication Registered Reports: 
+As the high frequency of the word stem "replicat$^\ast$" suggests, replications were often framed as attempts to repeat a previously conducted *procedure* rather than as attempts to test a previously tested *hypothesis*. 
+Tables 2 and 3 list all unique hypothesis introductions and their frequency in original Registered Reports and replication Registered Reports, respectively, grouped by the five most frequent word stems ("hypothes$^\ast$", "replicat$^\ast$", "test$^\ast$", "examine$^\ast$", "predict$^\ast$"). 
 
 (ref:table2) Hypothesis introduction phrases in original Registered Reports (testing new hypotheses)
 
@@ -378,31 +379,26 @@ apa_table(
 )
 ```
 
-It is important to keep in mind that not all hypotheses could be coded from the abstract: For `r n.hypintro.fulltext.only` Registered Reports, the hypothesis introduction phrases analysed above came only from the full text, which means that search terms extracted from them may not be useful in literature searches focussed only on titles, abstracts, and keywords. 
-Therefore we additionally tested how many of the Registered Reports would have been detected in a regular search using our five most frequent word stems. 
-We searched titles, abstracts, and keywords for "hypothes$^\ast$" OR "replicat$^\ast$" OR "test$^\ast$" OR "examine$^\ast$" OR "predict$^\ast$" and found that $`r n.hypintros.fivewords.RR`/`r n.RR`$ Registered Reports ($`r printnum(n.hypintros.fivewords.RR/n.RR*100)` \%$) would have been detected this way. 
-We do not know how well these search terms represent the population of hypothesis-testing studies in Psychology, but a structured investigation of this question would be very useful for future meta-research.
-
 # Discussion
-We examined the proportion of Psychology articles that find support for their first tested hypothesis and discovered a large difference ($`r printnum(prop.support.SR*100)` \%$ vs $`r printnum(prop.support.RR*100)` \%$) between a random sample of standard reports and the full population of Registered Reports (at the time of data analysis). 
-More than half of the analysed hypothesis tests in Registered Reports were direct replications of previous work, but the difference between standard reports and Registered Reports was still large when direct replications were excluded from the analysis ($`r printnum(prop.orig.support.SR*100)` \%$ vs $`r printnum(prop.orig.support.RR*100)` \%$). 
-The introduction of Registered Reports has clearly led to a much larger proportion of null results appearing in the published literature compared to standard reports. 
+We examined the proportion of Psychology articles that find support for their first tested hypothesis and discovered a large difference ($`r printnum(prop.support.SR*100)` \%$ vs $`r printnum(prop.support.RR*100)` \%$) between a random sample of standard reports and the full population of Registered Reports (at the time of data collection). 
+More than half of the analysed hypothesis tests in Registered Reports were close replications of previous work, but the difference between standard reports and Registered Reports remained large when close replications were excluded from the analysis ($`r printnum(prop.orig.support.SR*100)` \%$ vs $`r printnum(prop.orig.support.RR*100)` \%$). 
+Clearly, the emerging literature of Registered Reports appears to be publishing a much larger proportion of null results than the standard literature. 
 
-The positive result rate we found in standard reports ($`r printnum(prop.support.SR*100)` \%$) is slightly higher than the $91.5\%$ reported by @Fanelli2010, although this difference was not statistically significant. 
+The positive result rate we found in standard reports ($`r printnum(prop.support.SR*100)` \%$) is slightly but non-significantly higher than the $91.5\%$ reported by @Fanelli2010. 
 Our replication in a more recent sample of the Psychology literature thus yielded a comparably high estimate of supported hypotheses, but we cannot rule out that the positive result rate in the population has increased since 2010 [cf. @Fanelli2012].
 Furthermore, our estimate of the positive result rate for Registered Reports ($`r printnum(prop.support.RR*100)` \%$) is comparable to the $39.5\%$ reported by @Allen2019, despite some differences in method and studied population.
 
 To explain the $`r printnum((prop.support.SR - prop.support.RR)*100)` \%$ gap between standard reports and Registered Reports, we must assume some combination of differences in bias, statistical power, or the proportion of true hypotheses researchers choose to examine. 
-Figure\ \@ref(fig:powerbaserate) visualises the combinations of statistical power and proportion of true hypotheses that would produce the observed positive result rates if the literature were completely unbiased. 
-For example, assuming no publication bias and no QRPs, even if *all* hypotheses authors of standard reports tested were true, their study designs would need to have more than $90\%$ power for the true effect size. 
-This is highly unlikely, meaning that the standard literature is unlikely to reflect reality. 
-As we noted above, there is good reason to assume that methodological rigour and statistical power in Registered Reports are as high as in standard reports or higher, leaving the rate of true hypotheses and bias as remaining explanations.
+Figure\ \@ref(fig:powerbaserate) visualises the combinations of statistical power and proportion of true hypotheses that could produce the observed positive result rates if the literature were completely unbiased. 
+Assuming no publication bias and no QRPs, authors of standard reports would need to test almost exclusively true hypotheses ($>90\%$) with more than $90\%$ power.
+Because this is highly implausible and contradicted by available evidence [e.g., @Szucs2017], the standard literature is unlikely to reflect reality. 
+As noted above, methodological rigour and statistical power in Registered Reports likely meet or exceed the level of standard reports, leaving the rate of true hypotheses and bias as remaining explanations.
 
 (ref:powerbaserate) Combinations of the proportion of true hypotheses and statistical power that would produce the observed positive result rates given $\alpha = 5 \%$ and no bias. Shaded areas indicate $95\%$ confidence intervals. SRs = standard reports, RRs = Registered Reports. The curve for all SRs (i.e, including replications; $`r printnum(prop.support.SR*100)` \%$ positive results, $N = `r n.SR`$) is not shown because it is almost identical to the one for original SRs. Plotted values were calculated using the equation $PRR = \alpha*(1-t) + (1-\beta)*t$; with $PRR =$ positive result rate, $\alpha =$ probability of obtaining a positive result when testing a false hypothesis (here fixed at .05), $1-\beta =$ probability of obtaining a positive result when testing a true hypothesis (power), and $t =$ proportion of true hypotheses; and solving for $t$ and $1-\beta$, respectively (with the simplifying assumption that all studies in one group have the same power).
 
 ```{r powerbaserate, echo=FALSE, fig.width=5, fig.height=3, fig.align='center', warning=FALSE, fig.cap="(ref:powerbaserate)", out.width = "0.6\\textwidth", fig.env="figure*"}
 
-# Important altrnative chunk options when using journal mode: 
+# Important alternative chunk options when using journal mode: 
 # 1. use out.width="0.6\\textwidth" (it's 0.8 in manuscript mode)
 # 2. set fig.env="figure*"
 
@@ -410,43 +406,48 @@ source(here("analysis", "04_power_baserate_plot.R"))
 power.baserate.plot
 ```
 
-
-
 It is *a-priori* plausible that Registered Reports are currently used for a population of hypotheses that are less likely to be true: 
 For example, authors may use the format strategically for studies they expect to yield negative results (which would be difficult to publish otherwise). 
 However, assuming over $90\%$ true hypotheses in the standard literature is neither realistic, nor would it be desirable for a science that wants to advance knowledge beyond trivial facts. 
-We thus believe that this factor alone is not sufficient to explain the gap between the positive result rates in Registered Reports and standard reports. 
-Rather, the numbers strongly suggest a reduction of publication bias and/or Type-1 error inflation in the Registered Reports literature.
+We thus believe that this factor alone is not sufficient to explain the large difference in positive results.
+Rather, the numbers strongly suggest a reduction of publication bias and/or QRPs in the Registered-Reports literature.
+Nonetheless, the prior probability of hypotheses in Registered Reports and standard reports may differ and should be studied in future research.
 
 ## Limitations
-We compared hypotheses tested in Registered Reports with hypotheses tested in standard reports. 
-Because hypotheses, authors, and editors were not randomly assigned to each publication format, we cannot draw firm conclusions about the causes that led to a difference in the proportion of supported hypotheses. 
-Although it seems plausible that selective reporting and QRPs are reduced in Registered Reports, we do not know by how much, nor if this reduction would be of comparable size in a randomised experiment. 
-As mentioned above, it is *a-priori* plausible that the Registered Reports format is used selectively for particularly risky hypotheses. 
-This means that the proportion of true hypotheses in Registered Reports does not necessarily generalise to the entire population of hypotheses that are tested in Psychology. 
-It is also important to note that our results do not warrant the conclusion that Registered Reports are effective at reducing all forms of bias. 
-Authors self-select to submit Registered Reports, and the format may be particularly popular among those who try to minimise the risk of inflated error rates regardless of the report format they use. 
-This would lead to less bias in the Registered Reports literature even if the format's safeguards against certain QRPs were actually ineffective. 
+Since coders could not be blinded to an article's publication format, their judgment may have been biased.
+Our study was not an experiment$\,$---$\,$hypotheses, authors, and editors were not randomly assigned to each publication format$\,$---$\,$and thus precludes strong causal inferences.
+As discussed above, it seems highly plausible that Registered Reports reduce publication bias and QRPs, which in turn reduces the positive result rate. 
+Yet we neither know exactly how effective Registered Reports are at reducing bias, nor how large the effect on positive results would be in the absence of potential confounds. 
+One such confound, as just discussed, could be that Registered Reports may be used for particularly risky hypotheses.
+Another confound could be that the format attracts particularly conscientious authors who try to minimise the risk of inflated error rates regardless of the report format they use. 
+As a third potential confound, journals that offer Registered Reports may have more progressive editorial policies which aim to reduce publication bias and type-I error inflation for all empirical articles they publish.
+This could lead to less bias in the Registered-Reports literature even if the format's safeguards against certain QRPs were actually ineffective. 
+Additional research, ideally with prospective and experimental or quasi-experimental study designs, is needed to further investigate the influence of such factors.
+However, a cursory look at the three journals which contributed both standard reports and Registered Reports to our dataset (*`r bfjournals[1]`*, *`r bfjournals[2]`*, and *`r bfjournals[3]`*) suggests that the pattern observed in our main analysis may hold for within-journal comparisons, which would speak against a strong influence of an editorial-policy confound:
+In these three journals, $`r n.support.SR.bf`/`r n.SR.bf`$ ($`r printnum(prop.support.SR.bf*100)`\%$; $95 \%$ CI [`r printnum(min(SR.binom.bf$conf.int)*100)`, `r printnum(max(SR.binom.bf$conf.int)*100)`]) standard reports had positive results, compared to only $`r n.support.RR.bf`/`r n.RR.bf`$ ($`r printnum(prop.support.RR.bf*100)`\%$; $95 \%$ CI [`r printnum(min(RR.binom.bf$conf.int)*100)`, `r printnum(max(RR.binom.bf$conf.int)*100)`]) Registered Reports.
 
-A second limitation of the current study [and of @Fanelli2010] is that standard reports were selected using the search term "test$^\ast$ the hypothes$^\ast$". 
-As our results show, this phrase was virtually absent in the Registered Report population. 
-The wide variety of ways to introduce a hypothesis we observed in Registered Reports suggests that a search for "test$^\ast$ the hypothes$^\ast$" might miss most of the hypothesis-testing studies in the psychological literature, and results obtained this way may not generalise to all published studies. 
-For example, it is possible that authors are more likely to describe their research explicitly as a hypothesis test when they found positive results, but prefer more vague language for unsupported hypotheses (e.g., "we examined the role of ..."). 
-If this were true, using other strategies to select standard reports might yield lower estimates for the positive result rate. 
-However, this does not seem to be the case: 
-Studies using different selection criteria for articles and hypotheses have found very similar rates of supported hypotheses. 
-For example, the positive result rates in @Sterling1959, @Sterling1995, and the original studies included in the Reproducibility Project: Psychology [@OSC2015] were $97.28\%$, $95.56\%$, and $97\%$, respectively. 
-@Motyl2017 report $89.17\%$ and $92.01\%$ significant results for "critical" hypothesis tests in papers published in 2003-2004 and 2013-2014, respectively. 
-Therefore, although the search term used to find standard reports might limit the generalisability of our results, it seems to yield comparable estimates as the selection strategies used in different studies. 
-
-A final limitation is the decision to code only the first reported hypothesis. 
+Another limitation of the current study [and of @Fanelli2010] is that standard reports were selected using the search phrase "test$^\ast$ the hypothes$^\ast$".
+This phrase was virtually absent in  Registered Reports, suggesting that the search strategy may not yield a representative sample of the population of hypothesis-testing studies in the literature.
+The use of the phrase might even be confounded with the outcome of a study:
+For example, authors may be more likely to describe their research explicitly as a hypothesis test when they found positive results, but prefer more vague language for unsupported hypotheses (e.g., "we examined the role of ..."). 
+A similar concern could be raised for the decision to code only the first reported hypothesis of each article.
 The first hypothesis test may not be representative for all hypothesis tests reported in a paper, and the order of reporting may differ between standard reports and Registered Reports. 
-Perhaps Registered-Report authors are more likely to present their hypotheses in "chronological" order, whereas standard-report authors tend to rearrange the order in which hypotheses are reported based on their outcomes, and present supported hypotheses first. 
-Here again, the converging estimates from the four studies cited above (none of which use the first-hypothesis rule) make it seem unlikely that our result is an artefact of this decision. 
-Regardless of which hypothesis one chooses to analyse across a set of papers -- the first, the last, or the "critical" one -- the positive result rate turns out to be higher than what can be expected based on realistic estimates of the proportion of true hypotheses researchers study and the statistical power of their tests. 
+For example, standard-report authors might tend to present supported hypotheses first, whereas Registered-Report authors might be more likely to present their hypotheses in "chronological" order. 
+
+Both of these potential confounds might lead to an inflated estimate of the positive result rate in standard reports.
+However, studies using different selection criteria for articles and hypotheses have found very similar rates of supported hypotheses in the literature: 
+$97.28\%$ in @Sterling1959, $95.56\%$ in @Sterling1995, and $97\%$ in the original studies included in the Reproducibility Project: Psychology [@OSC2015].
+In addition, @Motyl2017 report $89.17\%$ and $92.01\%$ significant results for "critical" hypothesis tests in papers published in 2003-2004 and 2013-2014, respectively. 
+Although the selection criteria for articles and hypotheses in our study may limit the generalisability of the results, this level of convergence makes it seem unlikely that alternative methods would have yielded dramatically different conclusions.
 
 ## Conclusion
-Our study presents a systematic comparison of positive results in Registered Reports and the standard literature. The much lower positive result rate in Registered Reports compared to standard reports suggests that an unbiased literature would look very different from the existing body of published research. Standard publication formats seem to lead psychological scientists to miss out on many negative results from high-quality studies, which are available in the Registered Reports literature. The absence of negative results is a serious threat to a cumulative science. In 1959, Sterling asked: "What credence can then be given to inferences drawn from statistical tests of $H_0$ if the reader is not aware of all experimental outcomes of a kind?" The amount of experimental outcomes missing from the standard literature appears to be so large that not much credence may be left. In contrast, Registered Reports have clearly led to a much larger proportion of negative results appearing in the literature---and may be one solution to achieve a more credible scientific record.
+Our study presents a systematic comparison of positive results in Registered Reports and the standard literature. 
+The much lower positive result rate in Registered Reports compared to standard reports suggests that an unbiased literature would look very different from the existing body of published research. 
+Standard publication formats seem to lead psychological scientists to miss out on many negative results from high-quality studies, which are available in the Registered-Reports literature. 
+The absence of negative results is a serious threat to a cumulative science. 
+In 1959, Sterling asked: "What credence can then be given to inferences drawn from statistical tests of $H_0$ if the reader is not aware of all experimental outcomes of a kind?" 
+The amount of experimental outcomes missing from the standard literature appears to be so large that not much credence may be left. 
+In contrast, Registered Reports have clearly led to a much larger proportion of negative results appearing in the literature$\,$---$\,$and may be one solution to achieve a more credible scientific record.
 
 
 ```{r include=FALSE}
@@ -459,14 +460,20 @@ my_citation <- cite_r(file = "prr_software.bib")
 [Data](https://osf.io/aqr2s/) and code necessary to reproduce all analyses reported here, as well as the [Appendix](https://osf.io/qw798/), the [preregistration](https://osf.io/sy927/), and additional supplementary files, are available at <https://osf.io/dbhgr>. 
 The manuscript, including figures and statistical analyses, the [Appendix](https://osf.io/qw798/), and the [codebook](https://osf.io/6jrkz/) available in the supplement were created using RStudio [1.2.5019, @RStudioTeam2019] and `r my_citation`.
 
+### Reporting
+We report how we determined our sample size, all data exclusions, all manipulations, and all measures in the study.
+
+### Author Contributions
+Conceptualisation: A.S. & D.L.; data curation, formal analysis, and software: A.S. & M.S.; investigation, methodology, and validation: A.S., M.S., & D.L; supervision: A.S & D.L.; visualisation and writing$\,$---$\,$original draft: A.S; writing$\,$---$\,$review and editing: A.S., M.S., & D.L.
+
 ### Conflicts of Interest
 The authors declare that they have no conflicts of interest with respect to the authorship or the publication of this article.
 
-### Author Contributions
-Conceptualisation: A.S. & D.L.; data curation, formal analysis, and software: A.S. & M.S.; investigation, methodology, and validation: A.S., M.S., & D.L; supervision: A.S & D.L.; visualisation and writing---original draft: A.S; writing---review and editing: A.S., M.S., & D.L.
-
 ### Acknowledgements
 This work was funded by VIDI grant 452-17-013. We thank Chris Chambers, Emma Henderson, Leonid Tiokhin, and Stuart Ritchie for valuable comments that helped improve this manuscript.
+
+### Prior versions
+A preprint of this manuscript has been published on *PsyArXiv* (https://doi.org/10.31234/osf.io/p6e9c). All sections of the present manuscript have been shortened to comply with the submission guidelines, but are intended to contain the same arguments, methods, results, and conclusions as the preprint.
 
 
 # References
