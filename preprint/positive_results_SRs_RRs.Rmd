@@ -8,7 +8,7 @@ author:
     corresponding : yes    # Define only one corresponding author
     address       : "Den Dolech 1, Atlas 9.417, 5600 MB, Eindhoven, The Netherlands"
     email         : "a.m.scheel@tue.nl"
-  - name          : "Mitchell Schijen"
+  - name          : "Mitchell R. M. J. Schijen"
     affiliation   : "1"
   - name          : "Daniël Lakens"
     affiliation   : "1"
@@ -25,15 +25,15 @@ abstract: >
  \vspace{0.4cm}
  \begin{tcolorbox}[colback=white,colframe=electricviolet,coltext=electricviolet,
     fontupper=\normalsize,borderline={0.3mm}{0.3mm}{white}]
-  The present version of this manuscript has been accepted for publication at \textsl{Advances in Methods and Practices in Psychological Science}. Please cite as:
+  A copy-edited version of this manuscript is now published at \textsl{Advances in Methods and Practices in Psychological Science}. Please cite as:
    \vspace{0.2cm}
   \begin{center}
-  Scheel, A. M., Schijen, M., \& Lakens, D. (in press). An excess of positive results: Comparing the standard Psychology literature with Registered Reports. \textsl{Advances in Methods and Practices in Psychological Science}.
+  Scheel, A. M., Schijen, M. R. M. J., \& Lakens, D. (2021). An excess of positive results: Comparing the standard Psychology literature with Registered Reports. \textsl{Advances in Methods and Practices in Psychological Science, 4}(2). \url{https://doi.org/10.1177/25152459211007467}
   \end{center}
  \end{tcolorbox}
  \vspace{0.5cm}
  
- Selectively publishing results that support the tested hypotheses ('positive' results) distorts the available evidence for scientific claims. For the past decade, psychological scientists have been increasingly concerned about the degree of such distortion in their literature. A new publication format has been developed to prevent selective reporting: In Registered Reports, peer review and the decision to publish take place before results are known. We compared the results in published Registered Reports (N = 71 as of November 2018) with a random sample of hypothesis-testing studies from the standard literature (N = 152) in Psychology. Analysing the first hypothesis of each paper, we found $96\%$ positive results in standard reports, but only $44\%$ positive results in Registered Reports. We discuss possible explanations for this large difference and suggest that a plausible factor is the reduction of publication bias and/or Type-1 error inflation in the Registered-Reports literature.
+ Selectively publishing results that support the tested hypotheses ('positive' results) distorts the available evidence for scientific claims. For the past decade, psychological scientists have been increasingly concerned about the degree of such distortion in their literature. A new publication format has been developed to prevent selective reporting: In Registered Reports, peer review and the decision to publish take place before results are known. We compared the results in published Registered Reports (*N* = 71 as of November 2018) with a random sample of hypothesis-testing studies from the standard literature (*N* = 152) in Psychology. Analysing the first hypothesis of each paper, we found $96\%$ positive results in standard reports, but only $44\%$ positive results in Registered Reports. We discuss possible explanations for this large difference and suggest that a plausible factor is the reduction of publication bias and/or Type-I error inflation in the Registered-Reports literature.
 
   
 keywords          : "Publication bias, Registered Reports, hypothesis testing"
@@ -86,7 +86,7 @@ library("rio") # not needed to knit the manuscript, but loaded here so it automa
 If the scientific literature were a faithful representation of the research scientists conduct, a cumulative science would be a powerful tool to infer what is true about the world. 
 When random error is the only threat to the accuracy of individual findings, aggregating across many findings allows inferences about the presence and size of effects with a certain reliability. 
 But when published findings are systematically biased, cumulative science breaks down: 
-Unlike random error, bias does not cancel out when aggregating across studies$\,$---$\,$in the worst case it accumulates, leading us away from the truth rather than towards it.
+Unlike random error, bias does not cancel out when aggregating across studies$\,$---$\,$in the worst case, it accumulates, leading us away from the truth rather than towards it.
 Unfortunately, there is reason to believe that the Psychology literature is not a faithful representation of all research psychologists conduct. 
 
 Since the 1950s, scientists have repeatedly noted a suspiciously high "success" rate in Psychology:
@@ -102,10 +102,10 @@ A more plausible explanation for these numbers may be a selection bias towards s
 We can distinguish two broad categories of bias: "publication bias" and "questionable research practices". 
 Publication bias describes publishing behaviours that give manuscripts which find support for their tested hypotheses a higher chance of being published than manuscripts with "negative" results. 
 These include editors and reviewers selectively rejecting manuscripts with negative results ['reviewer bias', @Greenwald1975; @Mahoney1977] and researchers deciding not to submit studies with negative results for publication ['file-drawering'; @Rosenthal1979]. 
-Questionable research practices (QRPs) describe research behaviours that make evidence in favour of a certain conclusion look stronger than it is [typically, though not always, leading to more false positives; see @Lakens2019b]. 
+Questionable research practices (QRPs) describe research behaviours that make evidence in favour of a certain conclusion look stronger than it is [typically, though not always, leading to more false positives; see @Lakens2019]. 
 These include presenting unexpected results as having been predicted *a priori* [HARKing, short for "hypothesising after results are known"; @Kerr1998] and exploiting flexibility in data analysis to obtain statistically significant results ["*p*-hacking"; @Simmons2011]. 
 Evidence for both categories of bias exist: 
-Publication bias has been observed in peer review [@Mahoney1977; @Atkinson1982] and in longitudinal data from an NSF grant programme that found a file-drawering effect for studies with negative results [@Franco2014; @Franco2016]; and QRPs have been admitted by scientists in several survey studies [@John2012; @Fiedler2016; @Agnoli2017; @Fraser2018; @Makel2019].
+Publication bias has been observed in peer review [@Mahoney1977; @Atkinson1982] and in longitudinal data from an NSF grant programme that found a file-drawering effect for studies with negative results [@Franco2014; @Franco2016]; and QRPs have been admitted by scientists in several survey studies [@John2012; @Fiedler2016; @Agnoli2017; @Fraser2018; @Makel2021].
 
 Some have argued that negative results are often uninformative or the result of low-quality research and should not be published at the same rate as positive results to avoid cluttering the literature [e.g., @Cleophas1999; @Mitchell2014; @Baumeister2016]. 
 If most negative results that are currently missing from the literature are indeed due to immature ideas or poor methods, a literature that selects studies based on *quality* instead of results should contain a similar proportion of positive results as the current one. 
@@ -198,9 +198,9 @@ In Registered Reports, we coded the first *preregistered* hypothesis, thus exclu
 The coding procedure was identical for both article formats in all other respects. 
 Coding disagreements between "full" and "partial" support were deemed minor since they would not affect the final results. 
 Thus, only disagreements affecting the binary support (full or partial) vs no support classification were treated as major and resolved through discussion.
-MS coded all papers in the sample, AS double-coded all papers MS had found difficult to code or could not code ($`r sum(included$coded_by_AS & included$is_RR==1)`$ RRs and $`r sum(included$coded_by_AS & included$is_RR==0)`$ SRs). 
-Only `r support.disagreement.major` disagreements were major (Cohen's kappa = `r printp(kappa.support)`) and subsequently resolved by discussion; `r support.disagreement.minor` were minor (disagreement between "support" and "partial support"). 
-We overturned the preregistered plan that AS would additionally code a random subset of both groups, because the number of double-coded papers seemed sufficient after double-coding only the difficult cases.
+M.S. coded all papers in the sample, A.S. double-coded all papers M.S. had found difficult to code or could not code ($`r sum(included$coded_by_AS & included$is_RR==1)`$ RRs and $`r sum(included$coded_by_AS & included$is_RR==0)`$ SRs). 
+Only `r support.disagreement.major` disagreements were major (Cohen's $\kappa$ = `r printp(kappa.support)`) and subsequently resolved by discussion; `r support.disagreement.minor` were minor (disagreement between "support" and "partial support"). 
+We overturned the preregistered plan that A.S. would additionally code a random subset of both groups, because the number of double-coded papers seemed sufficient after double-coding only the difficult cases.
 Because removing all indicators that could have identified Registered Reports as such from their full texts would have been practically impossible, coding was not blind to publication format (Registered Report vs standard report).
 
 ### Hypothesis introductions
@@ -213,8 +213,8 @@ Because this circumstance alone could potentially lead to a lower positive resul
 Due to ill-specified coding criteria in our preregistration (see Appendix), we used an unregistered coding strategy: 
 We determined whether the coded hypothesis of papers whose full text contained the string "replic$^\ast$" [cf. @Makel2012; @Mueller-Langer2019] was a close replication with the goal to verify a previously published result. 
 Conceptual replications and internal replications (replication of a study in the same paper) were not counted as replications in this narrow sense, since both are more likely to be motivated by the goal to build on previous work than by scepticism.
-AS coded all papers, DL double-coded `r rep.RR.coded.DL` Registered Reports ($`r printnum(rep.RR.coded.DL/sum(included$is_RR)*100)` \%$) and `r rep.SR.coded.DL` standard reports ($`r printnum(rep.SR.coded.DL/sum(included$is_RR==0)*100)` \%$). 
-There were `r rep.disagreements` disagreements (Cohen's kappa = `r printp(kappa.rep)`), all were resolved by discussion. 
+A.S. coded all papers, D.L. double-coded `r rep.RR.coded.DL` Registered Reports ($`r printnum(rep.RR.coded.DL/sum(included$is_RR)*100)` \%$) and `r rep.SR.coded.DL` standard reports ($`r printnum(rep.SR.coded.DL/sum(included$is_RR==0)*100)` \%$). 
+There were `r rep.disagreements` disagreements (Cohen's $\kappa$ = `r printp(kappa.rep)`), all were resolved by discussion. 
 
 
 ## Analysis
@@ -420,10 +420,10 @@ As discussed above, it seems highly plausible that Registered Reports reduce pub
 Yet we neither know exactly how effective Registered Reports are at reducing bias, nor how large the effect on positive results would be in the absence of potential confounds. 
 One such confound, as just discussed, could be that Registered Reports may be used for particularly risky hypotheses.
 Another confound could be that the format attracts particularly conscientious authors who try to minimise the risk of inflated error rates regardless of the report format they use. 
-As a third potential confound, journals that offer Registered Reports may have more progressive editorial policies which aim to reduce publication bias and type-I error inflation for all empirical articles they publish.
+As a third potential confound, journals that offer Registered Reports may have more progressive editorial policies which aim to reduce publication bias and Type-I error inflation for all empirical articles they publish.
 This could lead to less bias in the Registered-Reports literature even if the format's safeguards against certain QRPs were actually ineffective. 
 Additional research, ideally with prospective and experimental or quasi-experimental study designs, is needed to further investigate the influence of such factors.
-However, a cursory look at the three journals which contributed both standard reports and Registered Reports to our dataset (*`r bfjournals[1]`*, *`r bfjournals[2]`*, and *`r bfjournals[3]`*) suggests that the pattern observed in our main analysis may hold for within-journal comparisons, which would speak against a strong influence of an editorial-policy confound:
+However, a cursory look at the three journals which contributed both standard reports and Registered Reports to our dataset (*`r bfjournals[1]`*; *`r bfjournals[2]`*; and *`r bfjournals[3]`*) suggests that the pattern observed in our main analysis may hold for within-journal comparisons, which would speak against a strong influence of an editorial-policy confound:
 In these three journals, $`r n.support.SR.bf`/`r n.SR.bf`$ ($`r printnum(prop.support.SR.bf*100)`\%$; $95 \%$ CI [`r printnum(min(SR.binom.bf$conf.int)*100)`, `r printnum(max(SR.binom.bf$conf.int)*100)`]) standard reports had positive results, compared to only $`r n.support.RR.bf`/`r n.RR.bf`$ ($`r printnum(prop.support.RR.bf*100)`\%$; $95 \%$ CI [`r printnum(min(RR.binom.bf$conf.int)*100)`, `r printnum(max(RR.binom.bf$conf.int)*100)`]) Registered Reports.
 
 Another limitation of the current study [and of @Fanelli2010] is that standard reports were selected using the search phrase "test$^\ast$ the hypothes$^\ast$".
@@ -445,7 +445,7 @@ Our study presents a systematic comparison of positive results in Registered Rep
 The much lower positive result rate in Registered Reports compared to standard reports suggests that an unbiased literature would look very different from the existing body of published research. 
 Standard publication formats seem to lead psychological scientists to miss out on many negative results from high-quality studies, which are available in the Registered-Reports literature. 
 The absence of negative results is a serious threat to a cumulative science. 
-In 1959, Sterling asked: "What credence can then be given to inferences drawn from statistical tests of $H_0$ if the reader is not aware of all experimental outcomes of a kind?" 
+In 1959, Sterling asked: "What credence can then be given to inferences drawn from statistical tests of $H_0$ if the reader is not aware of all experimental outcomes of a kind?" (p. 33).
 The amount of experimental outcomes missing from the standard literature appears to be so large that not much credence may be left. 
 In contrast, Registered Reports have clearly led to a much larger proportion of negative results appearing in the literature$\,$---$\,$and may be one solution to achieve a more credible scientific record.
 
@@ -464,16 +464,13 @@ The manuscript, including figures and statistical analyses, the [Appendix](https
 We report how we determined our sample size, all data exclusions, all manipulations, and all measures in the study.
 
 ### Author Contributions
-Conceptualisation: A.S. & D.L.; data curation, formal analysis, and software: A.S. & M.S.; investigation, methodology, and validation: A.S., M.S., & D.L; supervision: A.S & D.L.; visualisation and writing$\,$---$\,$original draft: A.S; writing$\,$---$\,$review and editing: A.S., M.S., & D.L.
+Conceptualisation: A.S. & D.L.; data curation, formal analysis, and software: A.S. & M.R.M.J.S.; investigation, methodology, and validation: A.S., M.R.M.J.S., & D.L; supervision: A.S & D.L.; visualisation and writing$\,$---$\,$original draft: A.S; writing$\,$---$\,$review and editing: A.S., M.R.M.J.S., & D.L.
 
 ### Conflicts of Interest
 The authors declare that they have no conflicts of interest with respect to the authorship or the publication of this article.
 
 ### Acknowledgements
-This work was funded by VIDI grant 452-17-013. We thank Chris Chambers, Emma Henderson, Leonid Tiokhin, and Stuart Ritchie for valuable comments that helped improve this manuscript.
-
-### Prior versions
-A preprint of this manuscript has been published on *PsyArXiv* (https://doi.org/10.31234/osf.io/p6e9c). All sections of the present manuscript have been shortened to comply with the submission guidelines, but are intended to contain the same arguments, methods, results, and conclusions as the preprint.
+This work was funded by VIDI grant 452-17-013. We thank Chris Chambers, Emma Henderson, Leo Tiokhin, Stuart Ritchie, and Simine Vazire for valuable comments that helped improve this manuscript.
 
 
 # References
